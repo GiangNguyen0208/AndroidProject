@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="firebase_database_url" translatable="false">https://rentcarapp-03062024-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+    <string name="gcm_defaultSenderId" translatable="false">138770822067</string>
+    <string name="google_api_key" translatable="false">AIzaSyAI_nAJhXx86D1UNOU7icxvQTncGpmmiAE</string>
+    <string name="google_app_id" translatable="false">1:138770822067:android:28f9116a58a186a99a11c6</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAI_nAJhXx86D1UNOU7icxvQTncGpmmiAE</string>
+    <string name="google_storage_bucket" translatable="false">rentcarapp-03062024.appspot.com</string>
+    <string name="project_id" translatable="false">rentcarapp-03062024</string>
+</resources>
