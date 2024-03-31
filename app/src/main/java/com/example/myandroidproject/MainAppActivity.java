@@ -28,6 +28,6 @@ public class MainAppActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             startActivity(new Intent(MainAppActivity.this, LoginActivity.class));
             finish();
-        }, 5275);
+        }, 2275);
     }
 }

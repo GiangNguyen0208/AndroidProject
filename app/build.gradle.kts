@@ -39,11 +39,11 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.database)
-    implementation(files("C:\\Users\\nhgle\\Downloads\\sqlite-android-3450200.aar"))
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
+    //implementation(libs.firebase.auth)
+    //implementation(libs.firebase.database)
+    //implementation(files("C:\\Users\\nhgle\\Downloads\\sqlite-android-3450200.aar"))
+    //testImplementation(libs.junit)
+    //androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
     //noinspection UseTomlInstead
