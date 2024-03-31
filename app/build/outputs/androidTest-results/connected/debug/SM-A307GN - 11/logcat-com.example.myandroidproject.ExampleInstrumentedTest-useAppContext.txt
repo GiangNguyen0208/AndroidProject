@@ -1,2 +1,0 @@
-03-07 08:19:21.638 32379 32481 I TestRunner: started: useAppContext(com.example.myandroidproject.ExampleInstrumentedTest)
-03-07 08:19:21.646 32379 32481 I TestRunner: finished: useAppContext(com.example.myandroidproject.ExampleInstrumentedTest)
