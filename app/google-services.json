@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "138770822067",
+    "firebase_url": "https://rentcarapp-03062024-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "rentcarapp-03062024",
+    "storage_bucket": "rentcarapp-03062024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138770822067:android:28f9116a58a186a99a11c6",
+        "android_client_info": {
+          "package_name": "com.example.myandroidproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI_nAJhXx86D1UNOU7icxvQTncGpmmiAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
