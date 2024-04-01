@@ -39,6 +39,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
     //implementation(libs.firebase.auth)
     //implementation(libs.firebase.database)
     //implementation(files("C:\\Users\\nhgle\\Downloads\\sqlite-android-3450200.aar"))

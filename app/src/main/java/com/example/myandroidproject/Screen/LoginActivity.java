@@ -1,9 +1,11 @@
 package com.example.myandroidproject.Screen;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,8 @@ import com.example.myandroidproject.R;
 public class LoginActivity extends AppCompatActivity {
 
     private TextView createAccount;
+    private View loginBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         createAccount = findViewById(R.id.create_account);
+        loginBtn = findViewById(R.id.login_btn);
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,6 +41,14 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        loginBtn.setOnClickListener((v)->{
+            Toast.makeText(LoginActivity.this, v.getClass().toString(), Toast.LENGTH_SHORT).show();
+
+            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+            finish();
+        });
+
 
     }
 }
