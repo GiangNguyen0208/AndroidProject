@@ -21,10 +21,6 @@
             android:name=".Screen.SupportActivity"
             android:exported="false" />
         <activity
-            android:name=".SupportActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MyAndroidProject" />
-        <activity
             android:name=".Screen.HomeActivity"
             android:exported="false" />
         <activity
