@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.myandroidproject"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -39,6 +39,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
     //implementation(libs.firebase.auth)
     //implementation(libs.firebase.database)
     //implementation(files("C:\\Users\\nhgle\\Downloads\\sqlite-android-3450200.aar"))
