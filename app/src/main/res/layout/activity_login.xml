@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="-30dp"
-        android:alpha="0.2"
-        android:background="@color/DeepPink" />
+        android:alpha="0.5"
+        android:background="@color/xam" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,17 +24,18 @@
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="213dp"
+            android:layout_height="92dp"
             android:importantForAccessibility="no"
-            android:src="@drawable/car_rental" />
+            android:src="@drawable/tgkhu8e7" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="@string/rent_car"
-            android:textColor="@color/White"
+            android:textColor="@color/notYellow"
+            android:textStyle="bold"
             android:textSize="32sp"
             tools:ignore="MissingConstraints" />
 
@@ -46,11 +47,12 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="-20dp"
         app:cardCornerRadius="28dp"
-        android:alpha="0.88">
+        android:alpha="0.85">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="538dp"
+            android:background="@color/White"
             android:orientation="vertical"
             android:padding="28dp">
 
@@ -58,7 +60,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/wel_come"
-                android:textColor="@color/Purple"
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
@@ -145,7 +146,7 @@
                 android:layout_gravity="center"
                 android:alpha="0.7"
                 android:text="@string/create_a_account"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
