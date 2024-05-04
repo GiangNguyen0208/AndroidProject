@@ -43,8 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginBtn.setOnClickListener((v)->{
-            Toast.makeText(LoginActivity.this, v.getClass().toString(), Toast.LENGTH_SHORT).show();
-
             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
             finish();
         });

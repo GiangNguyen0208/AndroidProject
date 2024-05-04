@@ -1,21 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:id="@+id/main"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp">
 
-    <androidx.core.widget.NestedScrollView
+    <View
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/Yellow"
-        android:fillViewport="false">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        android:layout_height="240dp"
+        android:background="@color/CornflowerBlue"
+
+        android:clickable="false"
+        android:foreground="@mipmap/support_foreground" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:translationY="-30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/White"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoText="false"
+                android:background="#FFFFFF"
+                android:duplicateParentState="false"
+                android:editable="false"
+                android:gravity="center"
+                android:text="Cần hỗ trợ nhanh, vui lòng gọi 911 (24/7) hoặc gửi tin nhắn vào Five Bro"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button2"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@color/Coral"
+                    android:text="Call" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button3"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@color/BlueViolet"
+                    android:text="Five Bro" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
 
 
-    </androidx.core.widget.NestedScrollView>
 </LinearLayout>
