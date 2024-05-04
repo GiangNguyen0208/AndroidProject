@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/Azure"
     tools:context=".Fragments.NavigatorFragment">
 
     <LinearLayout
@@ -22,8 +23,8 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
 
-                android:scaleType="fitCenter"
-                android:src="@mipmap/home"></ImageButton>
+                
+                android:src="@mipmap/home" />
 
             <TextView
                 android:layout_width="75dp"
@@ -31,7 +32,7 @@
                 android:layout_below="@+id/homebtn"
                 android:text="Home"
                 android:textAlignment="center"
-                android:textFontWeight="100"></TextView>
+                android:textFontWeight="100" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -48,8 +49,8 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
 
-                android:scaleType="fitCenter"
-                android:src="@mipmap/home"></ImageButton>
+                
+                android:src="@mipmap/home" />
 
             <TextView
                 android:layout_width="75dp"
@@ -57,7 +58,7 @@
                 android:layout_below="@+id/homebtn1"
                 android:text="Home"
                 android:textAlignment="center"
-                android:textFontWeight="100"></TextView>
+                android:textFontWeight="100" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -73,9 +74,7 @@
                 android:layout_width="75dp"
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
-
-                android:scaleType="fitCenter"
-                android:src="@mipmap/home"></ImageButton>
+                android:src="@mipmap/home" />
 
             <TextView
                 android:layout_width="75dp"
@@ -83,7 +82,7 @@
                 android:layout_below="@+id/homebtn2"
                 android:text="Home"
                 android:textAlignment="center"
-                android:textFontWeight="100"></TextView>
+                android:textFontWeight="100" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -98,9 +97,7 @@
                 android:layout_width="75dp"
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
-
-                android:scaleType="fitCenter"
-                android:src="@mipmap/support"></ImageButton>
+                android:src="@mipmap/support" />
 
             <TextView
                 android:layout_width="75dp"
@@ -108,7 +105,7 @@
                 android:layout_below="@+id/supportBtn"
                 android:text="Support"
                 android:textAlignment="center"
-                android:textFontWeight="100"></TextView>
+                android:textFontWeight="100" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -125,8 +122,8 @@
                 android:layout_height="55dp"
                 android:background="@android:color/transparent"
 
-                android:scaleType="fitCenter"
-                android:src="@mipmap/home"></ImageButton>
+                
+                android:src="@mipmap/home"/>
 
             <TextView
                 android:layout_width="75dp"
@@ -134,7 +131,7 @@
                 android:layout_below="@+id/homebtn4"
                 android:text="Home"
                 android:textAlignment="center"
-                android:textFontWeight="100"></TextView>
+                android:textFontWeight="100" />
         </RelativeLayout>
     </LinearLayout>
 </FrameLayout>
