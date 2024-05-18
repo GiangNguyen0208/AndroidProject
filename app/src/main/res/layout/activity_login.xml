@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img"
-    tools:context=".Screen.LoginActivity">
+    tools:context=".Screen.LoginActivity"
+    android:background="@color/White">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,20 +24,10 @@
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
-            android:layout_width="213dp"
-            android:layout_height="92dp"
+            android:layout_width="318dp"
+            android:layout_height="153dp"
             android:importantForAccessibility="no"
-            android:src="@drawable/tgkhu8e7" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:text="@string/rent_car"
-            android:textColor="@color/notYellow"
-            android:textStyle="bold"
-            android:textSize="32sp"
-            tools:ignore="MissingConstraints" />
+            android:src="@drawable/logo_rental" />
 
     </LinearLayout>
 
@@ -73,37 +63,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:text="@string/email_address"
-                android:textStyle="bold" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/username"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:autofillHints="emailAddress"
-                android:drawableEnd="@drawable/check"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:text="@string/password"
-                android:textStyle="bold" />
+                app:errorEnabled="true">
 
-            <EditText
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:autofillHints="emailAddress"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:textSize="12sp"
+                    app:endIconMode="clear_text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="false"
+                app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:autofillHints="password"
-                android:drawableEnd="@drawable/eye_showing"
                 android:hint="@string/password"
+                android:autofillHints="password"
                 android:inputType="textPassword"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                app:endIconMode="password_toggle"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -15,8 +15,6 @@ import com.example.myandroidproject.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextView createAccount;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        createAccount = findViewById(R.id.create_account);
+        TextView createAccount = findViewById(R.id.create_account);
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

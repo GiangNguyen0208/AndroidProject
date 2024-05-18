@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/img"
-    tools:context=".Screen.LoginActivity">
+    tools:context=".Screen.SignUpActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,11 +23,6 @@
         android:padding="28dp"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
-            android:layout_width="213dp"
-            android:layout_height="65dp"
-            android:importantForAccessibility="no"
-            android:src="@drawable/tgkhu8e7" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -66,94 +61,92 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp" />
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:text="@string/first_name"
-                android:textStyle="bold" />
-
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/first_Name"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:autofillHints="username"
-                android:drawableEnd="@drawable/check"
-                android:hint="@string/first_name"
-                android:inputType="text"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/lastNameLabel"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:text="@string/last_name"
-                android:textStyle="bold" />
+                app:errorEnabled="true">
 
-            <EditText
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:autofillHints="name"
+                    android:hint="@string/first_name"
+                    android:inputType="text"
+                    android:textSize="12sp"
+                    app:endIconMode="clear_text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/last_name"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginEnd="0dp"
-                android:autofillHints="Last Name"
-                android:drawableEnd="@drawable/check"
-                android:hint="@string/last_name"
-                android:inputType="text"
-                android:textSize="12sp" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:text="@string/email_address"
-                android:textStyle="bold" />
+                app:errorEnabled="true">
 
-            <EditText
-                android:id="@+id/email_Sign_Up"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:autofillHints="name"
+                    android:hint="@string/last_name"
+                    android:inputType="text"
+                    android:textSize="12sp"
+                    app:endIconMode="clear_text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email_sign_up"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:autofillHints="emailAddress"
-                android:drawableEnd="@drawable/check"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:text="@string/password"
-                android:textStyle="bold" />
+                app:errorEnabled="true">
 
-            <EditText
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:autofillHints="emailAddress"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:textSize="12sp"
+                    app:endIconMode="clear_text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/password_Sign_Up"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:autofillHints="password"
-                android:drawableEnd="@drawable/eye_showing"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:text="@string/confirm_password"
-                android:textStyle="bold" />
+                app:errorEnabled="true"
+                app:passwordToggleEnabled="true">
 
-            <EditText
+                <com.google.android.material.textfield.TextInputEditText
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:autofillHints="password"
+                    android:textSize="12sp"
+                    app:endIconMode="password_toggle"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/password_Sign_Up_Confirm"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:autofillHints="password"
-                android:drawableEnd="@drawable/eye_showing"
-                android:hint="@string/confirm_password"
-                android:inputType="textPassword"
-                android:textSize="12sp" />
+                android:layout_height="wrap_content"
+                app:errorEnabled="false"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:autofillHints="password"
+                    android:hint="@string/confirm_password"
+                    android:inputType="textPassword"
+                    android:textSize="12sp"
+                    app:endIconMode="password_toggle"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <View
