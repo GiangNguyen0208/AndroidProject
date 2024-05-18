@@ -12,8 +12,7 @@
         android:layout_height="240dp"
         android:background="@color/CornflowerBlue"
 
-        android:clickable="false"
-        android:foreground="@mipmap/support_foreground" />
+        android:clickable="false" />
 
     <FrameLayout
         android:layout_width="match_parent"
