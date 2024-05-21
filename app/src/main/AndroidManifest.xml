@@ -18,7 +18,7 @@
         android:theme="@style/Theme.MyAndroidProject"
         tools:targetApi="31">
         <activity
-            android:name=".ShowroomActivity"
+            android:name=".Customer.ShowroomActivity"
             android:exported="true" />
         <activity
             android:name=".Screen.SupportActivity"

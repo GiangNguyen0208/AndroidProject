@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +19,7 @@ import com.example.myandroidproject.R;
 public class LoginActivity extends AppCompatActivity {
 
     private TextView createAccount;
-    private View loginBtn;
+    private Button loginBtn;
 
 
     @Override
@@ -33,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         createAccount = findViewById(R.id.create_account);
-        loginBtn = findViewById(R.id.login_btn);
+        loginBtn = (Button) findViewById(R.id.login_btn);
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
