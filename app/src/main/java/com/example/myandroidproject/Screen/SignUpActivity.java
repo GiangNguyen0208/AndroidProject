@@ -28,6 +28,7 @@ import com.example.myandroidproject.ConnectionDBSQLite;
 import com.example.myandroidproject.Helpers.StringHelper;
 import com.example.myandroidproject.Models.User;
 import com.example.myandroidproject.R;
+import com.example.myandroidproject.Utils.Constraint;
 import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONException;
@@ -125,7 +126,9 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
-        String url = "http://172.16.1.180:8080/api/v1/user/register";
+
+        String url = Constraint.URL_BE + "/api/v1/user/register";
+
 
         JSONObject jsonBody = new JSONObject();
         try {
@@ -141,6 +144,11 @@ public class SignUpActivity extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                firstName.setText(null);
+                lastName.setText(null);
+                emailSignUp.setText(null);
+                password.setText(null);
+                passwordConfirm.setText(null);
                 Toast.makeText(SignUpActivity.this, "Đăng ký thành công !!!", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
@@ -148,6 +156,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 System.out.println(error);
                 Toast.makeText(SignUpActivity.this, "Đăng ký thất bại !!!", Toast.LENGTH_SHORT).show();
+
             }
         }){
             @Override
@@ -197,7 +206,6 @@ public class SignUpActivity extends AppCompatActivity {
     public boolean validationPasswordAndPassConfirm() {
         String pass = password.getText().toString();
         String passConf = passwordConfirm.getText().toString();
-
         if (pass.isEmpty()) {
             password.setError("Mật khẩu không được để trống.");
             return false;
@@ -213,24 +221,4 @@ public class SignUpActivity extends AppCompatActivity {
             return true;
         }
     }
-
-
-//    boolean emailChecker(String email) {
-//        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
-//    }
-//
-//    void createUser(String email, String password) {
-//        User user = new User(email, password);
-//        DB =  new ConnectionDBSQLite(this);
-//        if(!DB.checkusername(email)){
-//            Boolean inserted = DB.insertData(email, password);
-//            if(inserted){
-//                Toast.makeText(SignUpActivity.this, "Sign Up Success !!!", Toast.LENGTH_SHORT).show();
-//            } else {
-//                Toast.makeText(SignUpActivity.this, "Sign Up Fail !!!", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    }
-
-
 }
