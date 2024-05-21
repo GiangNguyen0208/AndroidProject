@@ -18,10 +18,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.Helpers.StringHelper;
@@ -33,12 +33,16 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
 public class LoginActivity extends AppCompatActivity {
 
     private TextView createAccount;
     private Button loginBtn;
     private EditText txt_email, txt_password;
-
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -62,8 +66,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
                 finish();
+                authenticationAndSignUserIn();
             }
         });
+
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,25 +110,22 @@ public class LoginActivity extends AppCompatActivity {
         });
         queue.add(jsonObjectRequest);
     }
-
     public void goToSignUp(View view) {
         Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
         startActivity(intent);
         finish();
     }
-
     public void goToHome(View view) {
         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
         startActivity(intent);
         finish();
-    }
 
+    }
     public void goToSignUpAct(View view) {
         Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
         startActivity(intent);
         finish();
     }
-
     public boolean validationEmail() {
         String email = txt_email.getText().toString();
         if (email.isEmpty()) {

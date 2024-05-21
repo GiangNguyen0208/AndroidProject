@@ -74,6 +74,29 @@ public class SignUpActivity extends AppCompatActivity {
         // Hook Sign Up Button
         signUpButton = findViewById(R.id.sign_Up);
 
+//        signUpButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (firstName.getText().toString().trim().isEmpty()) {
+//                    Toast.makeText(SignUpActivity.this, "Enter First Name", Toast.LENGTH_SHORT).show();
+//                } else if (lastName.getText().toString().trim().isEmpty()) {
+//                    Toast.makeText(SignUpActivity.this, "Enter Last Name", Toast.LENGTH_SHORT).show();
+//                } else if (emailSignUp.getText().toString().trim().isEmpty()) {
+//                    Toast.makeText(SignUpActivity.this, "Enter Valid Email", Toast.LENGTH_SHORT).show();
+//                } else if (password.getText().toString().trim().isEmpty()) {
+//                    Toast.makeText(SignUpActivity.this, "Enter password", Toast.LENGTH_SHORT).show();
+//                } else if (!password.getText().toString().trim().equals(passwordConfirm.getText().toString().trim())) {
+//                    Toast.makeText(SignUpActivity.this, "Enter valid password", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    if (emailChecker(emailSignUp.getText().toString().trim())) {
+//                        createUser(emailSignUp.getText().toString().trim(), password.getText().toString().trim());
+//                    } else {
+//                        Toast.makeText(SignUpActivity.this, "Enter valid email", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }
+//        });
+
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,7 +126,9 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
+
         String url = Constraint.URL_BE + "/api/v1/user/register";
+
 
         JSONObject jsonBody = new JSONObject();
         try {
@@ -115,6 +140,7 @@ public class SignUpActivity extends AppCompatActivity {
             e.printStackTrace();
             return;
         }
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -130,6 +156,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 System.out.println(error);
                 Toast.makeText(SignUpActivity.this, "Đăng ký thất bại !!!", Toast.LENGTH_SHORT).show();
+
             }
         }){
             @Override
@@ -179,7 +206,6 @@ public class SignUpActivity extends AppCompatActivity {
     public boolean validationPasswordAndPassConfirm() {
         String pass = password.getText().toString();
         String passConf = passwordConfirm.getText().toString();
-
         if (pass.isEmpty()) {
             password.setError("Mật khẩu không được để trống.");
             return false;

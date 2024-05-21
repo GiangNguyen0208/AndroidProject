@@ -1,0 +1,120 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White">
+
+    <!-- Header with Profile Image and Name -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="32dp"
+        android:paddingBottom="16dp"
+        android:background="@color/xam">
+
+        <ImageView
+            android:id="@+id/userProfileImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/eye_showing"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/userNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lê Nguyễn Gia Huy"
+            android:textSize="24sp"
+            android:textColor="@color/notYellow"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerLayout"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="4dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="238dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Option Items -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawablePadding="12dp"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="Tài khoản của tôi"
+                    android:textColor="@color/xam"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawablePadding="12dp"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="Giấy phép lái xe"
+                    android:textColor="@color/xam"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawablePadding="12dp"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="Quà tặng"
+                    android:textColor="@color/xam"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Logout Button -->
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardView"
+        android:layout_marginTop="16dp"
+        android:text="Đăng xuất"
+        android:textColor="@color/xam"
+        android:textSize="18sp"
+        android:background="@android:color/transparent"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>
