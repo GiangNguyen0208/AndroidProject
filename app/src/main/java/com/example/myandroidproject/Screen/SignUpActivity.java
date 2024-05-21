@@ -28,6 +28,7 @@ import com.example.myandroidproject.ConnectionDBSQLite;
 import com.example.myandroidproject.Helpers.StringHelper;
 import com.example.myandroidproject.Models.User;
 import com.example.myandroidproject.R;
+import com.example.myandroidproject.Utils.Constraint;
 import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONException;
@@ -73,29 +74,6 @@ public class SignUpActivity extends AppCompatActivity {
         // Hook Sign Up Button
         signUpButton = findViewById(R.id.sign_Up);
 
-//        signUpButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (firstName.getText().toString().trim().isEmpty()) {
-//                    Toast.makeText(SignUpActivity.this, "Enter First Name", Toast.LENGTH_SHORT).show();
-//                } else if (lastName.getText().toString().trim().isEmpty()) {
-//                    Toast.makeText(SignUpActivity.this, "Enter Last Name", Toast.LENGTH_SHORT).show();
-//                } else if (emailSignUp.getText().toString().trim().isEmpty()) {
-//                    Toast.makeText(SignUpActivity.this, "Enter Valid Email", Toast.LENGTH_SHORT).show();
-//                } else if (password.getText().toString().trim().isEmpty()) {
-//                    Toast.makeText(SignUpActivity.this, "Enter password", Toast.LENGTH_SHORT).show();
-//                } else if (!password.getText().toString().trim().equals(passwordConfirm.getText().toString().trim())) {
-//                    Toast.makeText(SignUpActivity.this, "Enter valid password", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    if (emailChecker(emailSignUp.getText().toString().trim())) {
-//                        createUser(emailSignUp.getText().toString().trim(), password.getText().toString().trim());
-//                    } else {
-//                        Toast.makeText(SignUpActivity.this, "Enter valid email", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            }
-//        });
-
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,7 +103,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
-        String url = "http://172.16.1.180:8080/api/v1/user/register";
+        String url = Constraint.URL_BE + "/api/v1/user/register";
 
         JSONObject jsonBody = new JSONObject();
         try {
@@ -137,10 +115,14 @@ public class SignUpActivity extends AppCompatActivity {
             e.printStackTrace();
             return;
         }
-
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                firstName.setText(null);
+                lastName.setText(null);
+                emailSignUp.setText(null);
+                password.setText(null);
+                passwordConfirm.setText(null);
                 Toast.makeText(SignUpActivity.this, "Đăng ký thành công !!!", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
@@ -213,24 +195,4 @@ public class SignUpActivity extends AppCompatActivity {
             return true;
         }
     }
-
-
-//    boolean emailChecker(String email) {
-//        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
-//    }
-//
-//    void createUser(String email, String password) {
-//        User user = new User(email, password);
-//        DB =  new ConnectionDBSQLite(this);
-//        if(!DB.checkusername(email)){
-//            Boolean inserted = DB.insertData(email, password);
-//            if(inserted){
-//                Toast.makeText(SignUpActivity.this, "Sign Up Success !!!", Toast.LENGTH_SHORT).show();
-//            } else {
-//                Toast.makeText(SignUpActivity.this, "Sign Up Fail !!!", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    }
-
-
 }

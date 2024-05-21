@@ -13,7 +13,7 @@
         android:background="@color/CornflowerBlue"
 
         android:clickable="false"
-        android:foreground="@mipmap/support_foreground" />
+         />
 
     <FrameLayout
         android:layout_width="match_parent"

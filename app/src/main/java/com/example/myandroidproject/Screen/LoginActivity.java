@@ -3,6 +3,7 @@ package com.example.myandroidproject.Screen;
 import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.PixelCopy;
 import android.view.View;
@@ -19,10 +20,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.Helpers.StringHelper;
 import com.example.myandroidproject.R;
+import com.example.myandroidproject.Utils.Constraint;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,43 +62,67 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
                 finish();
-                authenticationAndSignUserIn();
             }
         });
 
-        loginBtn.setOnClickListener((v)->{
-            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-            finish();
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validationEmail() && validationPassword()) {
+                    authenticationAndSignUserIn();
+                }
+            }
         });
 
 
     }
 
     private void authenticationAndSignUserIn() {
-         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-         String url = "http://localhost:8080/api/v1/user/signin";
-         HashMap<String, String> param = new HashMap<String, String>();
-         param.put("email", txt_email.getText().toString());
-         param.put("password", txt_password.getText().toString());
-
-//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url);
-
+        RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+        String url = Constraint.URL_BE + "/api/v1/user/signin";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("email", txt_email.getText().toString());
+            jsonObject.put("password", txt_password.getText().toString());
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                // Chuyển đến HomeActivity
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+        queue.add(jsonObjectRequest);
     }
+
     public void goToSignUp(View view) {
         Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
         startActivity(intent);
         finish();
     }
+
     public void goToHome(View view) {
         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
         startActivity(intent);
         finish();
     }
+
     public void goToSignUpAct(View view) {
         Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
         startActivity(intent);
         finish();
     }
+
     public boolean validationEmail() {
         String email = txt_email.getText().toString();
         if (email.isEmpty()) {
@@ -108,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
     }
+
     public boolean validationPassword() {
         String pass = txt_password.getText().toString();
 

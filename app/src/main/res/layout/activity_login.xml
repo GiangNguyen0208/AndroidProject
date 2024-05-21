@@ -80,6 +80,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/email_Sign_In"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:autofillHints="emailAddress"
@@ -96,6 +97,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/password_Sign_In"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:autofillHints="password"
