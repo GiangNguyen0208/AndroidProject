@@ -29,9 +29,10 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+
 }
 
 dependencies {
@@ -41,13 +42,10 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
-    //implementation(libs.firebase.auth)
-    //implementation(libs.firebase.database)
-    //implementation(files("C:\\Users\\nhgle\\Downloads\\sqlite-android-3450200.aar"))
-    //testImplementation(libs.junit)
-    //androidTestImplementation(libs.ext.junit)
+
     androidTestImplementation(libs.espresso.core)
 
     //noinspection UseTomlInstead
     implementation("com.airbnb.android:lottie:6.4.0")
+    implementation("com.android.volley:volley:1.2.1")
 }

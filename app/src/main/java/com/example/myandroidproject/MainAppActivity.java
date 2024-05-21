@@ -3,6 +3,7 @@ package com.example.myandroidproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,9 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.myandroidproject.Screen.LoginActivity;
 
 public class MainAppActivity extends AppCompatActivity {
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
