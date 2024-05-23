@@ -22,23 +22,22 @@
             android:name=".Customer.ShowroomActivity"
             android:exported="true" />
         <activity
-            android:name=".Screen.SupportActivity"
-            android:exported="false" />
+            android:name=".Customer.SupportActivity"
+            android:exported="true" />
         <activity
-            android:name=".Screen.HomeActivity"
-            android:exported="false" />
+            android:name=".Customer.HomeActivity"
+            android:exported="true" />
         <activity
-            android:name=".Screen.SignUpActivity"
-            android:exported="false" />
+            android:name=".Customer.SignUpActivity"
+            android:exported="true" />
         <activity
-            android:name=".Screen.LoginActivity"
-            android:exported="false" />
+            android:name=".Customer.LoginActivity"
+            android:exported="true" />
         <activity
             android:name=".MainAppActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

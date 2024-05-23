@@ -1,4 +1,4 @@
-package com.example.myandroidproject.Screen;
+package com.example.myandroidproject.Customer;
 
 import android.os.Bundle;
 

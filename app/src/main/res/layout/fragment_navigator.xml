@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/notYellow"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.NavigatorFragment">
 
     <LinearLayout
@@ -11,127 +11,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="75dp"
-            android:layout_weight="1"
-     
-            android:orientation="vertical">
-            <ImageButton
-                android:id="@+id/homebtn"
-                android:layout_width="75dp"
-                android:layout_height="55dp"
-                android:background="@android:color/transparent"
 
-                
-                android:src="@mipmap/home" />
 
-            <TextView
-                android:layout_width="75dp"
-                android:layout_height="25dp"
-                android:layout_below="@+id/homebtn"
-                android:text="Home"
-                android:textAlignment="center"
-                android:textFontWeight="100" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="75dp"
-            android:layout_weight="1"
-     
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/homebtn1"
-
-                android:layout_width="75dp"
-                android:layout_height="55dp"
-                android:background="@android:color/transparent"
-
-                
-                android:src="@mipmap/home" />
-
-            <TextView
-                android:layout_width="75dp"
-                android:layout_height="25dp"
-                android:layout_below="@+id/homebtn1"
-                android:text="Home"
-                android:textAlignment="center"
-                android:textFontWeight="100" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="75dp"
-            android:layout_weight="1"
-     
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/homebtn2"
-
-                android:layout_width="75dp"
-                android:layout_height="55dp"
-                android:background="@android:color/transparent"
-                android:src="@mipmap/home" />
-
-            <TextView
-                android:layout_width="75dp"
-                android:layout_height="25dp"
-                android:layout_below="@+id/homebtn2"
-                android:text="Home"
-                android:textAlignment="center"
-                android:textFontWeight="100" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="75dp"
-            android:layout_weight="1"
-     
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/supportBtn"
-                android:layout_width="75dp"
-                android:layout_height="55dp"
-                android:background="@android:color/transparent"
-                android:src="@mipmap/support" />
-
-            <TextView
-                android:layout_width="75dp"
-                android:layout_height="25dp"
-                android:layout_below="@+id/supportBtn"
-                android:text="Support"
-                android:textAlignment="center"
-                android:textFontWeight="100" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="75dp"
-            android:layout_weight="1"
-     
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/homebtn4"
-
-                android:layout_width="75dp"
-                android:layout_height="55dp"
-                android:background="@android:color/transparent"
-
-                
-                android:src="@mipmap/home"/>
-
-            <TextView
-                android:layout_width="75dp"
-                android:layout_height="25dp"
-                android:layout_below="@+id/homebtn4"
-                android:text="Home"
-                android:textAlignment="center"
-                android:textFontWeight="100" />
-        </RelativeLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/notYellow"
+            style="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/menu_bottom" />
     </LinearLayout>
 </FrameLayout>

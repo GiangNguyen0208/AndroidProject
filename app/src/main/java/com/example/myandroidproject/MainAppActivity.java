@@ -3,7 +3,6 @@ package com.example.myandroidproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,12 +10,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.myandroidproject.Screen.LoginActivity;
+import com.example.myandroidproject.Customer.HomeActivity;
 
 public class MainAppActivity extends AppCompatActivity {
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +26,7 @@ public class MainAppActivity extends AppCompatActivity {
         });
         // delay animation for 5275
         new Handler().postDelayed(() -> {
-            startActivity(new Intent(MainAppActivity.this, LoginActivity.class));
+            startActivity(new Intent(MainAppActivity.this, HomeActivity.class));
             finish();
         }, 2275);
     }
