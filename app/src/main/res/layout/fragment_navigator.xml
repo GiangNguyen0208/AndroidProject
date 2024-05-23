@@ -4,14 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.NavigatorFragment">
+    tools:context=".fragments.NavigatorFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"

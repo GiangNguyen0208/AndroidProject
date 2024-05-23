@@ -1,6 +1,5 @@
-package com.example.myandroidproject.Fragments;
+package com.example.myandroidproject.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.example.myandroidproject.R;
-import com.example.myandroidproject.Customer.SupportActivity;
 
 public class NavigatorFragment extends Fragment {
     //Navigator button defined here

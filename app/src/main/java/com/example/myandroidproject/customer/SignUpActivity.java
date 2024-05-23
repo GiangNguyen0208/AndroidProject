@@ -1,4 +1,4 @@
-package com.example.myandroidproject.Customer;
+package com.example.myandroidproject.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,10 +20,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.ConnectionDBSQLite;
-import com.example.myandroidproject.Helpers.StringHelper;
+import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.R;
-import com.example.myandroidproject.Screen.HomeActivity;
-import com.example.myandroidproject.Utils.Constraint;
+import com.example.myandroidproject.screen.HomeActivity;
+import com.example.myandroidproject.utils.Constraint;
 import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONException;
