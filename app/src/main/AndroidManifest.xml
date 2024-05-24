@@ -19,19 +19,19 @@
         android:theme="@style/Theme.MyAndroidProject"
         tools:targetApi="31">
         <activity
-            android:name=".customer.ShowroomActivity"
+            android:name=".customer.activities.ShowroomActivity"
             android:exported="true" />
         <activity
-            android:name=".customer.SupportActivity"
+            android:name=".customer.fragments.SupportFragment"
             android:exported="true" />
         <activity
-            android:name=".customer.HomeActivity"
+            android:name=".customer.activities.HomeActivity"
             android:exported="true" />
         <activity
-            android:name=".customer.SignUpActivity"
+            android:name=".customer.activities.SignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".customer.LoginActivity"
+            android:name=".customer.activities.LoginActivity"
             android:exported="true" />
         <activity
             android:name=".MainAppActivity"

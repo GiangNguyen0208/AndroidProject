@@ -10,7 +10,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.myandroidproject.customer.HomeActivity;
+import com.example.myandroidproject.customer.activities.HomeActivity;
+import com.example.myandroidproject.customer.activities.LoginActivity;
 
 public class MainAppActivity extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class MainAppActivity extends AppCompatActivity {
         });
         // delay animation for 5275
         new Handler().postDelayed(() -> {
-            startActivity(new Intent(MainAppActivity.this, HomeActivity.class));
+            startActivity(new Intent(MainAppActivity.this, LoginActivity.class));
             finish();
         }, 2275);
     }

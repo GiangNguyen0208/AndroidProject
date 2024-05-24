@@ -13,11 +13,11 @@
         android:title="Notify"
         android:icon="@drawable/baseline_circle_notifications_24"/>
     <item
+        android:id="@+id/support"
+        android:title="Support"
+        android:icon="@drawable/baseline_home_24"/>
+    <item
         android:id="@+id/user"
         android:title="User"
         android:icon="@drawable/baseline_account_circle_24"/>
-    <item
-        android:id="@+id/supportBtn"
-        android:title="Support"
-        android:icon="@drawable/baseline_home_24"/>
 </menu>
