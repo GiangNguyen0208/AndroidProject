@@ -103,7 +103,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
-        String url = Constraint.URL_BE + "/api/v1/user/register";
+        String url = "http://"+Constraint.URL_BE+":"+Constraint.PORT_BE+"/api/v1/user/register";
 
         JSONObject jsonBody = new JSONObject();
         try {

@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void authenticationAndSignUserIn() {
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-        String url = Constraint.URL_BE + "/api/v1/user/signin";
+        String url = "http://"+Constraint.URL_BE+":"+Constraint.PORT_BE+"/api/v1/user/signin";
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("email", txt_email.getText().toString());
