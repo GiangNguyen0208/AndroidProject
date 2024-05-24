@@ -1,4 +1,4 @@
-package com.example.myandroidproject.customer;
+package com.example.myandroidproject.customer.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +22,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.ConnectionDBSQLite;
 import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.R;
-import com.example.myandroidproject.screen.HomeActivity;
 import com.example.myandroidproject.utils.Constraint;
 import com.google.android.material.button.MaterialButton;
 

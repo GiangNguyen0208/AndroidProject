@@ -1,4 +1,4 @@
-package com.example.myandroidproject.customer;
+package com.example.myandroidproject.customer.activities;
 
 import android.os.Bundle;
 
