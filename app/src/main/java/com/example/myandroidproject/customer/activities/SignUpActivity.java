@@ -24,6 +24,7 @@ import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.utils.Constraint;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,9 +35,8 @@ import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
     private TextView goBackLogin;
-    private EditText firstName, lastName, emailSignUp, password, passwordConfirm;
+    private TextInputEditText firstName, lastName, emailSignUp, password, passwordConfirm;
     private MaterialButton signUpButton;
-    private ConnectionDBSQLite DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,29 +67,6 @@ public class SignUpActivity extends AppCompatActivity {
         // Hook Sign Up Button
         signUpButton = findViewById(R.id.sign_Up);
 
-//        signUpButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (firstName.getText().toString().trim().isEmpty()) {
-//                    Toast.makeText(SignUpActivity.this, "Enter First Name", Toast.LENGTH_SHORT).show();
-//                } else if (lastName.getText().toString().trim().isEmpty()) {
-//                    Toast.makeText(SignUpActivity.this, "Enter Last Name", Toast.LENGTH_SHORT).show();
-//                } else if (emailSignUp.getText().toString().trim().isEmpty()) {
-//                    Toast.makeText(SignUpActivity.this, "Enter Valid Email", Toast.LENGTH_SHORT).show();
-//                } else if (password.getText().toString().trim().isEmpty()) {
-//                    Toast.makeText(SignUpActivity.this, "Enter password", Toast.LENGTH_SHORT).show();
-//                } else if (!password.getText().toString().trim().equals(passwordConfirm.getText().toString().trim())) {
-//                    Toast.makeText(SignUpActivity.this, "Enter valid password", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    if (emailChecker(emailSignUp.getText().toString().trim())) {
-//                        createUser(emailSignUp.getText().toString().trim(), password.getText().toString().trim());
-//                    } else {
-//                        Toast.makeText(SignUpActivity.this, "Enter valid email", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            }
-//        });
-
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,13 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
     }
-    public void goToHome(View view) {
-        Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    public void goToSignInAct(View view) {
+    public void goToSignInAct() {
         Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
@@ -143,6 +114,7 @@ public class SignUpActivity extends AppCompatActivity {
                 password.setText(null);
                 passwordConfirm.setText(null);
                 Toast.makeText(SignUpActivity.this, "Đăng ký thành công !!!", Toast.LENGTH_SHORT).show();
+                goToSignInAct();
             }
         }, new Response.ErrorListener() {
             @Override
