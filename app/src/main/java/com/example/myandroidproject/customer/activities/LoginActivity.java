@@ -1,9 +1,8 @@
 package com.example.myandroidproject.customer.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,15 +20,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
+import com.example.myandroidproject.admin.activities.AdminActivity;
 import com.example.myandroidproject.helpers.StringHelper;
+import com.example.myandroidproject.shipper.activites.ShipperActivity;
 import com.example.myandroidproject.utils.Constraint;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -105,17 +103,29 @@ public class LoginActivity extends AppCompatActivity {
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
                 new Response.Listener<JSONObject>() {
-                    @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            if (response.has("email") && response.has("password")) {
+                            if (response.has("roles")) {
+                                String role = response.getString("roles");
                                 Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+
+                                SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("role", role);
+                                editor.apply();
+
+                                if (role.equals("admin")) {
+                                    startActivity(new Intent(LoginActivity.this, AdminActivity.class));
+                                } else if(role.equals("shipper")) {
+                                    startActivity(new Intent(LoginActivity.this, ShipperActivity.class));
+                                } else {
+                                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                }
                                 finish();
                             } else {
                                 Toast.makeText(LoginActivity.this, "Login failed. Please try again.", Toast.LENGTH_SHORT).show();
                             }
-                        } catch (Exception e) {
+                        } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(LoginActivity.this, "Error occurred while parsing response.", Toast.LENGTH_SHORT).show();
                         }
