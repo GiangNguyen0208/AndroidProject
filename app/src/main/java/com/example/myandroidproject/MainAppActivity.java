@@ -10,9 +10,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.myandroidproject.customer.activities.HomeActivity;
-import com.example.myandroidproject.customer.activities.LoginActivity;
-
 public class MainAppActivity extends AppCompatActivity {
 
     @Override

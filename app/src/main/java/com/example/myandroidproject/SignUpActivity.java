@@ -1,9 +1,7 @@
-package com.example.myandroidproject.customer.activities;
+package com.example.myandroidproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,13 +13,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.myandroidproject.ConnectionDBSQLite;
 import com.example.myandroidproject.helpers.StringHelper;
-import com.example.myandroidproject.R;
 import com.example.myandroidproject.utils.Constraint;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -31,12 +25,11 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class SignUpActivity extends AppCompatActivity {
-    private TextView goBackLogin;
     private TextInputEditText firstName, lastName, emailSignUp, password, passwordConfirm;
-    private MaterialButton signUpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +42,10 @@ public class SignUpActivity extends AppCompatActivity {
             return insets;
         });
 
-        goBackLogin = findViewById(R.id.go_back_login);
-        goBackLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                finish();
-            }
+        TextView goBackLogin = findViewById(R.id.go_back_login);
+        goBackLogin.setOnClickListener(v -> {
+            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+            finish();
         });
 
         firstName = findViewById(R.id.first_Name);
@@ -65,14 +55,9 @@ public class SignUpActivity extends AppCompatActivity {
         passwordConfirm = findViewById(R.id.password_Sign_Up_Confirm);
 
         // Hook Sign Up Button
-        signUpButton = findViewById(R.id.sign_Up);
+        MaterialButton signUpButton = findViewById(R.id.sign_Up);
 
-        signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                processFormFields();
-            }
-        });
+        signUpButton.setOnClickListener(v -> processFormFields());
 
     }
     public void goToSignInAct() {
@@ -96,34 +81,24 @@ public class SignUpActivity extends AppCompatActivity {
 
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("firstname", firstName.getText().toString());
-            jsonBody.put("lastname", lastName.getText().toString());
-            jsonBody.put("email", emailSignUp.getText().toString());
-            jsonBody.put("password", password.getText().toString());
+            jsonBody.put("firstname", Objects.requireNonNull(firstName.getText()).toString());
+            jsonBody.put("lastname", Objects.requireNonNull(lastName.getText()).toString());
+            jsonBody.put("email", Objects.requireNonNull(emailSignUp.getText()).toString());
+            jsonBody.put("password", Objects.requireNonNull(password.getText()).toString());
         } catch (JSONException e) {
             e.printStackTrace();
             return;
         }
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                firstName.setText(null);
-                lastName.setText(null);
-                emailSignUp.setText(null);
-                password.setText(null);
-                passwordConfirm.setText(null);
-                Toast.makeText(SignUpActivity.this, "Đăng ký thành công !!!", Toast.LENGTH_SHORT).show();
-                goToSignInAct();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println(error);
-                Toast.makeText(SignUpActivity.this, "Đăng ký thất bại !!!", Toast.LENGTH_SHORT).show();
-
-            }
-        }){
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, response -> {
+            firstName.setText(null);
+            lastName.setText(null);
+            emailSignUp.setText(null);
+            password.setText(null);
+            passwordConfirm.setText(null);
+            Toast.makeText(SignUpActivity.this, "Đăng ký thành công !!!", Toast.LENGTH_SHORT).show();
+            goToSignInAct();
+        }, error -> Toast.makeText(SignUpActivity.this, "Đăng ký thất bại !!!", Toast.LENGTH_SHORT).show()){
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
@@ -135,7 +110,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public boolean validationFirstName() {
-        String firstname = firstName.getText().toString();
+        String firstname = Objects.requireNonNull(firstName.getText()).toString();
         if (firstname.isEmpty()) {
             firstName.setError("Tên không được để trống.");
             return false;
@@ -145,7 +120,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
     public boolean validationLastName() {
-        String lastname = lastName.getText().toString();
+        String lastname = Objects.requireNonNull(lastName.getText()).toString();
         if (lastname.isEmpty()) {
             lastName.setError("Họ không được để trống.");
             return false;
@@ -155,7 +130,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
     public boolean validationEmail() {
-        String email = emailSignUp.getText().toString();
+        String email = Objects.requireNonNull(emailSignUp.getText()).toString();
         if (email.isEmpty()) {
             emailSignUp.setError("Email không được để trống.");
             return false;
@@ -169,16 +144,13 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public boolean validationPasswordAndPassConfirm() {
-        String pass = password.getText().toString();
-        String passConf = passwordConfirm.getText().toString();
+        String pass = Objects.requireNonNull(password.getText()).toString();
+        String passConf = Objects.requireNonNull(passwordConfirm.getText()).toString();
         if (pass.isEmpty()) {
             password.setError("Mật khẩu không được để trống.");
             return false;
         } else if (!pass.equals(passConf)) {
             password.setError("Mật khẩu không khớp !!!");
-            return false;
-        } else if (passConf.isEmpty()) {
-            passwordConfirm.setError("Xác nhận mật khẩu không được để trống.");
             return false;
         } else {
             password.setError(null);

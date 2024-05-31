@@ -1,4 +1,4 @@
-package com.example.myandroidproject.customer.activities;
+package com.example.myandroidproject;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,8 +19,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.myandroidproject.R;
 import com.example.myandroidproject.admin.activities.AdminActivity;
+import com.example.myandroidproject.customer.activities.HomeActivity;
 import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.shipper.activites.ShipperActivity;
 import com.example.myandroidproject.utils.Constraint;
@@ -77,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             email.setError(null);
         }
-
         if (passwordInput.isEmpty()) {
             password.setError("Mật khẩu không được để trống.");
             return false;

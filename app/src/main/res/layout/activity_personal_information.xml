@@ -57,8 +57,8 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Option Items -->
                 <TextView
+                    android:id="@+id/myAccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -68,11 +68,12 @@
                     android:padding="12dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="Tài khoản của tôi"
+                    android:text="@string/t_i_kho_n_c_a_t_i"
                     android:textColor="@color/xam"
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/my_license"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -82,11 +83,12 @@
                     android:padding="12dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="Giấy phép lái xe"
+                    android:text="@string/gi_y_ph_p_l_i_xe"
                     android:textColor="@color/xam"
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/myGift"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -96,7 +98,7 @@
                     android:padding="12dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="Quà tặng"
+                    android:text="@string/qu_t_ng"
                     android:textColor="@color/xam"
                     android:textSize="18sp" />
 
@@ -111,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/cardView"
         android:layout_marginTop="16dp"
-        android:text="Đăng xuất"
+        android:text="@string/ng_xu_t"
         android:textColor="@color/xam"
         android:textSize="18sp"
         android:background="@android:color/transparent"

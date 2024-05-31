@@ -67,5 +67,9 @@
     <string name="call_support">Call</string>
     <string name="message_support">Message</string>
     <string name="hotline_support">Need a support? Call or message to us for a help</string>
+    <string name="t_i_kho_n_c_a_t_i">Tài khoản của tôi</string>
+    <string name="qu_t_ng">Quà tặng</string>
+    <string name="gi_y_ph_p_l_i_xe">Giấy phép lái xe</string>
+    <string name="ng_xu_t">Đăng xuất</string>
 
 </resources>
