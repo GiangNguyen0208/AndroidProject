@@ -30,6 +30,7 @@ import com.example.myandroidproject.Models.User;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.Utils.Constraint;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,9 +42,8 @@ import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
     private TextView goBackLogin;
-    private EditText firstName, lastName, emailSignUp, password, passwordConfirm;
+    private TextInputEditText firstName, lastName, emailSignUp, password, passwordConfirm;
     private MaterialButton signUpButton;
-    private ConnectionDBSQLite DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,13 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
     }
-    public void goToHome(View view) {
-        Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    public void goToSignInAct(View view) {
+    public void goToSignInAct() {
         Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
@@ -124,6 +118,7 @@ public class SignUpActivity extends AppCompatActivity {
                 password.setText(null);
                 passwordConfirm.setText(null);
                 Toast.makeText(SignUpActivity.this, "Đăng ký thành công !!!", Toast.LENGTH_SHORT).show();
+                goToSignInAct();
             }
         }, new Response.ErrorListener() {
             @Override
