@@ -19,23 +19,25 @@
         android:theme="@style/Theme.MyAndroidProject"
         tools:targetApi="31">
         <activity
-            android:name=".Screen.SupportActivity"
-            android:exported="false" />
+            android:name=".customer.activities.ShowroomActivity"
+            android:exported="true" />
         <activity
-            android:name=".Screen.HomeActivity"
-            android:exported="false" />
+            android:name=".customer.fragments.SupportFragment"
+            android:exported="true" />
         <activity
-            android:name=".Screen.SignUpActivity"
-            android:exported="false" />
+            android:name=".customer.activities.HomeActivity"
+            android:exported="true" />
         <activity
-            android:name=".Screen.LoginActivity"
-            android:exported="false" />
+            android:name=".customer.activities.SignUpActivity"
+            android:exported="true" />
+        <activity
+            android:name=".customer.activities.LoginActivity"
+            android:exported="true" />
         <activity
             android:name=".MainAppActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

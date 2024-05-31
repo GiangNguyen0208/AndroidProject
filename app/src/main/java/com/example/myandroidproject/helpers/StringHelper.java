@@ -1,4 +1,4 @@
-package com.example.myandroidproject.Helpers;
+package com.example.myandroidproject.helpers;
 
 public class StringHelper {
 

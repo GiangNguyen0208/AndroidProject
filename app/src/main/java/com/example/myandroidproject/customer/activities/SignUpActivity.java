@@ -1,34 +1,28 @@
-package com.example.myandroidproject.Screen;
+package com.example.myandroidproject.customer.activities;
 
-import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.ConnectionDBSQLite;
-import com.example.myandroidproject.Helpers.StringHelper;
-import com.example.myandroidproject.Models.User;
+import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.R;
-import com.example.myandroidproject.Utils.Constraint;
+import com.example.myandroidproject.utils.Constraint;
 import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONException;
@@ -36,7 +30,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 
 public class SignUpActivity extends AppCompatActivity {
