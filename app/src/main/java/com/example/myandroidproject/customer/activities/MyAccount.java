@@ -28,7 +28,6 @@ public class MyAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account);
 
-        etUsername = findViewById(R.id.etUsername);
         etFirstname = findViewById(R.id.etFirstname);
         etLastname = findViewById(R.id.etLastname);
         etPhone = findViewById(R.id.etPhone);
@@ -80,10 +79,6 @@ public class MyAccount extends AppCompatActivity {
 
         JSONObject user = new JSONObject();
         try {
-            // Kiểm tra và thêm từng trường vào JSON object nếu có giá trị
-            if (!etUsername.getText().toString().isEmpty()) {
-                user.put("username", etUsername.getText().toString());
-            }
             if (!etFirstname.getText().toString().isEmpty()) {
                 user.put("firstname", etFirstname.getText().toString());
             }
