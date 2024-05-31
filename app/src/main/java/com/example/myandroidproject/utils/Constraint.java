@@ -1,4 +1,4 @@
-package com.example.myandroidproject.Utils;
+package com.example.myandroidproject.utils;
 
 public class Constraint {
     public static final String URL_BE = "192.168.100.176";

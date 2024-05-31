@@ -4,14 +4,14 @@ junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 appcompat = "1.6.1"
-material = "1.11.0"
-activity = "1.8.2"
+material = "1.12.0"
+activity = "1.9.0"
 constraintlayout = "2.1.4"
 googleServices = "4.4.1"
 firebaseAuth = "22.3.1"
 firebaseDatabase = "20.3.1"
-navigationFragment = "2.6.0"
-navigationUi = "2.6.0"
+navigationFragment = "2.7.7"
+navigationUi = "2.7.7"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }

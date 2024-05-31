@@ -63,5 +63,9 @@
     </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="version_app">Ver 1.0</string>
+    <string name="call_support">Call</string>
+    <string name="message_support">Message</string>
+    <string name="hotline_support">Need a support? Call or message to us for a help</string>
 
 </resources>
