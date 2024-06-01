@@ -3,24 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_home_graph"
-    app:startDestination="@id/home">
+    app:startDestination="@id/fragment_home">
 
     <fragment
-        android:id="@+id/home"
+        android:id="@+id/fragment_home"
         android:name="com.example.myandroidproject.customer.fragments.HomeFragment"
-        android:label="fragment_nav_home"
         tools:layout="@layout/fragment_home" >
     </fragment>
 
     <fragment
-        android:id="@+id/support_fragment"
+        android:id="@+id/fragment_support"
         android:name="com.example.myandroidproject.customer.fragments.SupportFragment"
-        android:label="fragment_nav_home"
         tools:layout="@layout/fragment_support">
     </fragment>
 
-    <action android:id="@+id/action_global_home" app:destination="@id/home" />
-    <action android:id="@+id/action_global_support_fragment" app:destination="@id/support_fragment" />
+    <fragment
+        android:id="@+id/fragment_chat_customer"
+        android:name="com.example.myandroidproject.customer.fragments.ChatFragment"
+        tools:layout="@layout/fragment_chat_customer">
+    </fragment>
+
+    <action android:id="@+id/action_global_fragment_home" app:destination="@id/fragment_home" />
+    <action android:id="@+id/action_global_fragment_support" app:destination="@id/fragment_support" />
+    <action android:id="@+id/action_global_fragment_chat_customer" app:destination="@id/fragment_chat_customer" />
 
 
 </navigation>

@@ -29,9 +29,9 @@ public class HomeActivity extends AppCompatActivity {
         navbar.setOnItemSelectedListener(item -> {
 
            if (item.getItemId() == R.id.support){
-               navController.navigate(R.id.action_global_support_fragment);
+               navController.navigate(R.id.action_global_fragment_support);
            } else if (item.getItemId() == R.id.home) {
-               navController.navigate(R.id.action_global_home);
+               navController.navigate(R.id.action_global_fragment_home);
            }
 
             return true;

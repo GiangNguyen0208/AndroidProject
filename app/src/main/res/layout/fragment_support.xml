@@ -58,6 +58,7 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
+                            android:id="@+id/callBtn"
                             android:layout_width="match_parent"
                             android:layout_height="32dp"
                             android:layout_weight="0.5"
@@ -88,6 +89,7 @@
                             android:layout_weight="0" />
 
                         <LinearLayout
+                            android:id="@+id/msgBtn"
                             android:layout_width="match_parent"
                             android:layout_height="32dp"
                             android:layout_weight="0.5"
