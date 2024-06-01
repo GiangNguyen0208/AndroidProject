@@ -22,7 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:backgroundTint="@color/notYellow"
-        style="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface"
+        app:itemIconTint="@color/Dark"
+        app:itemTextColor="@color/Dark"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_bottom" />
