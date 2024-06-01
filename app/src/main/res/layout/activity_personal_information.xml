@@ -2,12 +2,10 @@
     android:id="@+id/main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/White">
 
-    <!-- Header with Profile Image and Name -->
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
@@ -24,7 +22,8 @@
             android:layout_height="100dp"
             android:src="@drawable/eye_showing"
             android:scaleType="centerCrop"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp"
+            android:importantForAccessibility="no" />
 
         <TextView
             android:id="@+id/userNameTextView"
