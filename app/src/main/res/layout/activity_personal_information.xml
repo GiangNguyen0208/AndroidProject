@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     android:id="@+id/main"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -5,9 +6,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White">
+    android:background="@color/White"
+    tools:context=".customer.fragments.InformationFragment">
 
-    <!-- Header with Profile Image and Name -->
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
@@ -24,7 +25,8 @@
             android:layout_height="100dp"
             android:src="@drawable/eye_showing"
             android:scaleType="centerCrop"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp"
+            android:importantForAccessibility="no" />
 
         <TextView
             android:id="@+id/userNameTextView"
@@ -57,8 +59,8 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Option Items -->
                 <TextView
+                    android:id="@+id/myAccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -68,11 +70,12 @@
                     android:padding="12dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="Tài khoản của tôi"
+                    android:text="@string/t_i_kho_n_c_a_t_i"
                     android:textColor="@color/xam"
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/my_license"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -82,11 +85,12 @@
                     android:padding="12dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="Giấy phép lái xe"
+                    android:text="@string/gi_y_ph_p_l_i_xe"
                     android:textColor="@color/xam"
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/myGift"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -96,7 +100,7 @@
                     android:padding="12dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="Quà tặng"
+                    android:text="@string/qu_t_ng"
                     android:textColor="@color/xam"
                     android:textSize="18sp" />
 
@@ -111,7 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/cardView"
         android:layout_marginTop="16dp"
-        android:text="Đăng xuất"
+        android:text="@string/ng_xu_t"
         android:textColor="@color/xam"
         android:textSize="18sp"
         android:background="@android:color/transparent"

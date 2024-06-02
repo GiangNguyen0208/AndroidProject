@@ -13,6 +13,13 @@
     </fragment>
 
     <fragment
+        android:id="@+id/in4"
+        android:name="com.example.myandroidproject.customer.fragments.InformationFragment"
+        android:label="fragment_nav_home"
+        tools:layout="@layout/activity_personal_information" >
+    </fragment>
+
+    <fragment
         android:id="@+id/support_fragment"
         android:name="com.example.myandroidproject.customer.fragments.SupportFragment"
         android:label="fragment_nav_home"
@@ -20,6 +27,7 @@
     </fragment>
 
     <action android:id="@+id/action_global_home" app:destination="@id/home" />
+    <action android:id="@+id/in4_personal" app:destination="@id/in4" />
     <action android:id="@+id/action_global_support_fragment" app:destination="@id/support_fragment" />
 
 
