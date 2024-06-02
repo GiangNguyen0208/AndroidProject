@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +23,9 @@ import com.example.myandroidproject.utils.Constraint;
 
 public class MyAccount extends AppCompatActivity {
 
-    private EditText firstname, lastname, phone, email, birthday, password, gender;
+    private EditText firstname, lastname, phone, email, birthday, password;
+    private RadioGroup gender;
+    private RadioButton male, female;
     private Button btnSave;
 
     @Override
@@ -35,7 +39,9 @@ public class MyAccount extends AppCompatActivity {
         email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPassword);
         birthday = findViewById(R.id.etBirthday);
-        gender = findViewById(R.id.etGender);
+        gender = findViewById(R.id.radioGenderGroup);
+        male = findViewById(R.id.radioMale);
+        female = findViewById(R.id.radioFemale);
         btnSave = findViewById(R.id.btnSave);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
@@ -63,7 +69,12 @@ public class MyAccount extends AppCompatActivity {
                         email.setText(user.optString("email", ""));
                         password.setText(user.optString("password", ""));
                         phone.setText(user.optString("phone", ""));
-                        gender.setText(user.optString("gender", ""));
+                        boolean isMale = user.optBoolean("gender", true);
+                        if (isMale) {
+                            gender.check(R.id.radioMale);
+                        } else {
+                            gender.check(R.id.radioFemale);
+                        }
                         birthday.setText(user.optString("birthDay", ""));
 
                     } catch (JSONException e) {
@@ -98,9 +109,8 @@ public class MyAccount extends AppCompatActivity {
             if (!phone.getText().toString().isEmpty()) {
                 user.put("phone", phone.getText().toString());
             }
-            if (!gender.getText().toString().isEmpty()) {
-                user.put("gender", gender.getText().toString());
-            }
+            boolean isMale = gender.getCheckedRadioButtonId() == R.id.radioMale;
+            user.put("gender", isMale);
             if (!birthday.getText().toString().isEmpty()) {
                 user.put("birthDay", birthday.getText().toString());
             }
