@@ -19,12 +19,13 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navbar"
+        style="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:backgroundTint="@color/notYellow"
-        style="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu_bottom" />
+        app:menu="@menu/menu_bottom"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

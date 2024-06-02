@@ -13,7 +13,7 @@
     <EditText
         android:id="@+id/etFirstname"
         android:layout_width="match_parent"
-        android:layout_height="61dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="First Name"
         android:padding="10dp"
@@ -23,7 +23,7 @@
     <EditText
         android:id="@+id/etLastname"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="Last Name"
         android:padding="10dp"
@@ -33,7 +33,7 @@
     <EditText
         android:id="@+id/etPhone"
         android:layout_width="match_parent"
-        android:layout_height="61dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="Phone"
         android:padding="10dp"
@@ -41,11 +41,32 @@
         android:textSize="18sp" />
 
     <EditText
+        android:id="@+id/etGender"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Gender"
+        android:padding="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
-        android:layout_height="62dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/password"
         android:padding="10dp"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
@@ -53,9 +74,9 @@
     <EditText
         android:id="@+id/etBirthday"
         android:layout_width="match_parent"
-        android:layout_height="57dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="Birth Day"
+        android:hint="YYYY-MM-DD"
         android:padding="10dp"
         android:textColor="@android:color/black"
         android:textSize="18sp" />

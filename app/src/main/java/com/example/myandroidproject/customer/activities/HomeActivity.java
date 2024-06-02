@@ -25,6 +25,8 @@ public class HomeActivity extends AppCompatActivity {
                navController.navigate(R.id.action_global_support_fragment);
            } else if (item.getItemId() == R.id.home) {
                navController.navigate(R.id.action_global_home);
+           }else if (item.getItemId() == R.id.user) {
+               navController.navigate(R.id.in4_personal);
            }
             return true;
         });

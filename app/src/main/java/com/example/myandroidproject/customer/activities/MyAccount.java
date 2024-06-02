@@ -17,10 +17,11 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.example.myandroidproject.R;
+import com.example.myandroidproject.utils.Constraint;
 
 public class MyAccount extends AppCompatActivity {
 
-    private EditText etUsername, etFirstname, etLastname, etPhone, etEmail, etBirthday;
+    private EditText firstname, lastname, phone, email, birthday, password, gender;
     private Button btnSave;
 
     @Override
@@ -28,17 +29,19 @@ public class MyAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account);
 
-        etFirstname = findViewById(R.id.etFirstname);
-        etLastname = findViewById(R.id.etLastname);
-        etPhone = findViewById(R.id.etPhone);
-        etEmail = findViewById(R.id.etEmail);
-        etBirthday = findViewById(R.id.etBirthday);
+        firstname = findViewById(R.id.etFirstname);
+        lastname = findViewById(R.id.etLastname);
+        phone = findViewById(R.id.etPhone);
+        email = findViewById(R.id.etEmail);
+        password = findViewById(R.id.etPassword);
+        birthday = findViewById(R.id.etBirthday);
+        gender = findViewById(R.id.etGender);
         btnSave = findViewById(R.id.btnSave);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String userId = sharedPreferences.getString("userId", null); // giả sử userId đã được lưu sau khi đăng nhập
+        int userId = sharedPreferences.getInt("id", -1);
 
-        if (userId != null) {
+        if (userId != -1) {
             loadUserData(userId);
         }
 
@@ -47,20 +50,21 @@ public class MyAccount extends AppCompatActivity {
         });
     }
 
-    private void loadUserData(String email) {
+    private void loadUserData(int userId) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://your-backend-url/api/v1/users/" + email;
+        String url = Constraint.URL_BE + "/api/v1/users/" + userId;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
                     try {
                         JSONObject user = new JSONObject(response);
-                        etUsername.setText(user.optString("username", ""));
-                        etFirstname.setText(user.optString("firstname", ""));
-                        etLastname.setText(user.optString("lastname", ""));
-                        etPhone.setText(user.optString("phone", ""));
-                        etEmail.setText(user.optString("email", ""));
-                        etBirthday.setText(user.optString("birthDay", ""));
+                        firstname.setText(user.optString("firstname", ""));
+                        lastname.setText(user.optString("lastname", ""));
+                        email.setText(user.optString("email", ""));
+                        password.setText(user.optString("password", ""));
+                        phone.setText(user.optString("phone", ""));
+                        gender.setText(user.optString("gender", ""));
+                        birthday.setText(user.optString("birthDay", ""));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -73,26 +77,32 @@ public class MyAccount extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    private void saveUserData(String userId) {
+    private void saveUserData(int userId) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://your-backend-url/api/v1/users/" + userId;
+        String url = Constraint.URL_BE + "/api/v1/users/" + userId;
 
         JSONObject user = new JSONObject();
         try {
-            if (!etFirstname.getText().toString().isEmpty()) {
-                user.put("firstname", etFirstname.getText().toString());
+            if (!firstname.getText().toString().isEmpty()) {
+                user.put("firstname", firstname.getText().toString());
             }
-            if (!etLastname.getText().toString().isEmpty()) {
-                user.put("lastname", etLastname.getText().toString());
+            if (!lastname.getText().toString().isEmpty()) {
+                user.put("lastname", lastname.getText().toString());
             }
-            if (!etPhone.getText().toString().isEmpty()) {
-                user.put("phone", etPhone.getText().toString());
+            if (!email.getText().toString().isEmpty()) {
+                user.put("email", email.getText().toString());
             }
-            if (!etEmail.getText().toString().isEmpty()) {
-                user.put("email", etEmail.getText().toString());
+            if (!password.getText().toString().isEmpty()) {
+                user.put("password", password.getText().toString());
             }
-            if (!etBirthday.getText().toString().isEmpty()) {
-                user.put("birthDay", etBirthday.getText().toString());
+            if (!phone.getText().toString().isEmpty()) {
+                user.put("phone", phone.getText().toString());
+            }
+            if (!gender.getText().toString().isEmpty()) {
+                user.put("gender", gender.getText().toString());
+            }
+            if (!birthday.getText().toString().isEmpty()) {
+                user.put("birthDay", birthday.getText().toString());
             }
         } catch (JSONException e) {
             e.printStackTrace();

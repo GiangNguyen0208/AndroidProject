@@ -5,11 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,8 +21,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-
 
 public class SignUpActivity extends AppCompatActivity {
     private TextInputEditText firstName, lastName, emailSignUp, password, passwordConfirm;
@@ -34,13 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sign_up);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         TextView goBackLogin = findViewById(R.id.go_back_login);
         goBackLogin.setOnClickListener(v -> {
@@ -58,47 +46,96 @@ public class SignUpActivity extends AppCompatActivity {
         MaterialButton signUpButton = findViewById(R.id.sign_Up);
 
         signUpButton.setOnClickListener(v -> processFormFields());
+    }
 
-    }
-    public void goToSignInAct() {
-        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
     public void processFormFields() {
+        if (validateFields()) {
+            registerUser();
+        }
+    }
 
-        if (!validationFirstName()
-                || !validationLastName()
-                || !validationEmail()
-                || !validationPasswordAndPassConfirm()) {
-            return;
+    private boolean validateFields() {
+        boolean valid = true;
+
+        if (firstName.getText().toString().isEmpty()) {
+            firstName.setError("Tên không được để trống.");
+            valid = false;
+        } else {
+            firstName.setError(null);
         }
 
+        if (lastName.getText().toString().isEmpty()) {
+            lastName.setError("Họ không được để trống.");
+            valid = false;
+        } else {
+            lastName.setError(null);
+        }
+
+        String email = emailSignUp.getText().toString();
+        if (email.isEmpty()) {
+            emailSignUp.setError("Email không được để trống.");
+            valid = false;
+        } else if (!StringHelper.regexEmailValidationPattern(email)) {
+            emailSignUp.setError("Vui lòng nhập email hợp lệ.");
+            valid = false;
+        } else {
+            emailSignUp.setError(null);
+        }
+
+        String pass = password.getText().toString();
+        String passConf = passwordConfirm.getText().toString();
+
+        if (pass.isEmpty()) {
+            password.setError("Mật khẩu không được để trống.");
+            valid = false;
+        } else {
+            password.setError(null);
+        }
+
+        if (passConf.isEmpty()) {
+            passwordConfirm.setError("Xác nhận mật khẩu không được để trống.");
+            valid = false;
+        } else {
+            passwordConfirm.setError(null);
+        }
+
+        if (!pass.equals(passConf)) {
+            passwordConfirm.setError("Mật khẩu không khớp !!!");
+            valid = false;
+        } else {
+            passwordConfirm.setError(null);
+        }
+
+        return valid;
+    }
+
+    private void registerUser() {
         RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
-
         String url = Constraint.URL_BE + "/api/v1/user/register";
-
 
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("firstname", Objects.requireNonNull(firstName.getText()).toString());
-            jsonBody.put("lastname", Objects.requireNonNull(lastName.getText()).toString());
-            jsonBody.put("email", Objects.requireNonNull(emailSignUp.getText()).toString());
-            jsonBody.put("password", Objects.requireNonNull(password.getText()).toString());
+            jsonBody.put("firstname", firstName.getText().toString());
+            jsonBody.put("lastname", lastName.getText().toString());
+            jsonBody.put("email", emailSignUp.getText().toString());
+            jsonBody.put("password", password.getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
             return;
         }
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, response -> {
-            firstName.setText(null);
-            lastName.setText(null);
-            emailSignUp.setText(null);
-            password.setText(null);
-            passwordConfirm.setText(null);
-            Toast.makeText(SignUpActivity.this, "Đăng ký thành công !!!", Toast.LENGTH_SHORT).show();
-            goToSignInAct();
-        }, error -> Toast.makeText(SignUpActivity.this, "Đăng ký thất bại !!!", Toast.LENGTH_SHORT).show()){
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
+                response -> {
+                    firstName.setText("");
+                    lastName.setText("");
+                    emailSignUp.setText("");
+                    password.setText("");
+                    passwordConfirm.setText("");
+                    Toast.makeText(SignUpActivity.this, "Đăng ký thành công !!!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                    finish();
+                },
+                error -> Toast.makeText(SignUpActivity.this, "Đăng ký thất bại !!!", Toast.LENGTH_SHORT).show()) {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
@@ -107,55 +144,5 @@ public class SignUpActivity extends AppCompatActivity {
             }
         };
         queue.add(jsonObjectRequest);
-    }
-
-    public boolean validationFirstName() {
-        String firstname = Objects.requireNonNull(firstName.getText()).toString();
-        if (firstname.isEmpty()) {
-            firstName.setError("Tên không được để trống.");
-            return false;
-        } else {
-            firstName.setError(null);
-            return true;
-        }
-    }
-    public boolean validationLastName() {
-        String lastname = Objects.requireNonNull(lastName.getText()).toString();
-        if (lastname.isEmpty()) {
-            lastName.setError("Họ không được để trống.");
-            return false;
-        } else {
-            lastName.setError(null);
-            return true;
-        }
-    }
-    public boolean validationEmail() {
-        String email = Objects.requireNonNull(emailSignUp.getText()).toString();
-        if (email.isEmpty()) {
-            emailSignUp.setError("Email không được để trống.");
-            return false;
-        } else if (!StringHelper.regexEmailValidationPattern(email)) {
-            emailSignUp.setError("Vui lòng nhập email hợp lệ.");
-            return false;
-        } else {
-            emailSignUp.setError(null);
-            return true;
-        }
-    }
-
-    public boolean validationPasswordAndPassConfirm() {
-        String pass = Objects.requireNonNull(password.getText()).toString();
-        String passConf = Objects.requireNonNull(passwordConfirm.getText()).toString();
-        if (pass.isEmpty()) {
-            password.setError("Mật khẩu không được để trống.");
-            return false;
-        } else if (!pass.equals(passConf)) {
-            password.setError("Mật khẩu không khớp !!!");
-            return false;
-        } else {
-            password.setError(null);
-            passwordConfirm.setError(null);
-            return true;
-        }
     }
 }

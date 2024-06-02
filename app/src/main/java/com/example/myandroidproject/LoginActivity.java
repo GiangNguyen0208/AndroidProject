@@ -15,6 +15,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.admin.activities.AdminActivity;
@@ -63,8 +65,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean validateLoginForm() {
-        String emailInput = Objects.requireNonNull(email.getText()).toString().trim();
-        String passwordInput = Objects.requireNonNull(password.getText()).toString().trim();
+        String emailInput = email.getText().toString().trim();
+        String passwordInput = password.getText().toString().trim();
 
         if (emailInput.isEmpty()) {
             email.setError("Email không được để trống.");
@@ -90,8 +92,8 @@ public class LoginActivity extends AppCompatActivity {
 
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("email", Objects.requireNonNull(email.getText()).toString());
-            jsonBody.put("password", Objects.requireNonNull(password.getText()).toString());
+            jsonBody.put("email", email.getText()).toString();
+            jsonBody.put("password", password.getText()).toString();
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(this, "Failed to create request body.", Toast.LENGTH_SHORT).show();
@@ -103,11 +105,13 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         if (response.has("roles")) {
                             String role = response.getString("roles");
+                            int idUser = response.getInt("id");
                             Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
 
                             SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putString("role", role);
+                            editor.putInt("id", idUser);
                             editor.apply();
 
                             if (role.equals("admin")) {
