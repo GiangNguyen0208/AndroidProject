@@ -29,7 +29,8 @@
             android:layout_height="40dp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="0dp"
-            android:src="@drawable/promotion"/>
+            android:src="@drawable/promotion"
+            android:background="@drawable/circle_background"/>
 
         <TextView
             android:id="@+id/promotion"
@@ -74,7 +75,8 @@
             android:layout_height="40dp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="0dp"
-            android:src="@drawable/ic_campaign" />
+            android:src="@drawable/ic_campaign"
+            android:background="@drawable/circle_background"/>
 
         <TextView
             android:id="@+id/news"
