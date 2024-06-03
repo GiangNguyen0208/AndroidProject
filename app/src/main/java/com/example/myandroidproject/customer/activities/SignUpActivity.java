@@ -1,34 +1,28 @@
-package com.example.myandroidproject.Screen;
+package com.example.myandroidproject.customer.activities;
 
-import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.ConnectionDBSQLite;
-import com.example.myandroidproject.Helpers.StringHelper;
-import com.example.myandroidproject.Models.User;
+import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.R;
-import com.example.myandroidproject.Utils.Constraint;
+import com.example.myandroidproject.utils.Constraint;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -37,7 +31,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 
 public class SignUpActivity extends AppCompatActivity {
@@ -74,6 +67,7 @@ public class SignUpActivity extends AppCompatActivity {
         // Hook Sign Up Button
         signUpButton = findViewById(R.id.sign_Up);
 
+
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +91,9 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
-        String url = "http://"+Constraint.URL_BE+":"+Constraint.PORT_BE+"/api/v1/user/register";
+
+        String url = "http://" + Constraint.URL_BE + ":" + Constraint.PORT_BE + "/api/v1/user/register";
+
 
         JSONObject jsonBody = new JSONObject();
         try {
@@ -109,6 +105,7 @@ public class SignUpActivity extends AppCompatActivity {
             e.printStackTrace();
             return;
         }
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -125,6 +122,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 System.out.println(error);
                 Toast.makeText(SignUpActivity.this, "Đăng ký thất bại !!!", Toast.LENGTH_SHORT).show();
+
             }
         }){
             @Override
@@ -174,7 +172,6 @@ public class SignUpActivity extends AppCompatActivity {
     public boolean validationPasswordAndPassConfirm() {
         String pass = password.getText().toString();
         String passConf = passwordConfirm.getText().toString();
-
         if (pass.isEmpty()) {
             password.setError("Mật khẩu không được để trống.");
             return false;
