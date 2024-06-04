@@ -59,7 +59,6 @@ public class ShowroomActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                            List<Vehicle> temps = new ArrayList<>();
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = response.getJSONObject(i);
                                 int id = jsonObject.getInt("id");
