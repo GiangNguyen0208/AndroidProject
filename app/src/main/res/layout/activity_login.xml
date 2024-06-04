@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/img"
-    tools:context=".customer.activities.LoginActivity">
+    tools:context=".LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,18 +25,10 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="112dp"
             android:importantForAccessibility="no"
-            android:src="@drawable/car_rental" />
+            android:src="@drawable/logo_rental" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/rent_car"
-            android:textColor="@color/White"
-            android:textSize="32sp"
-            tools:ignore="MissingConstraints" />
 
     </LinearLayout>
 
@@ -72,39 +64,41 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:text="@string/email_address"
-                android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/email_Sign_In"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etUsernameLayout"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:autofillHints="emailAddress"
-                android:drawableEnd="@drawable/check"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:textSize="12sp" />
+                android:layout_height="wrap_content">
 
-            <TextView
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email_Sign_In"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:autofillHints="emailAddress"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:textSize="12sp"  />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.7"
-                android:text="@string/password"
-                android:textStyle="bold" />
+                android:layout_height="15dp" />
 
-            <EditText
-                android:id="@+id/password_Sign_In"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etPasswordLayout"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:autofillHints="password"
-                android:drawableEnd="@drawable/eye_showing"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:textSize="12sp" />
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password_Sign_In"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:autofillHints="password"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:textSize="12sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
