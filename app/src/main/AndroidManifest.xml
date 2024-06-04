@@ -39,6 +39,9 @@
             android:exported="false" />
 
         <activity
+            android:name=".customer.activities.DetailItemActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainAppActivity"
             android:exported="true">
             <intent-filter>
