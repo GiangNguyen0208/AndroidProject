@@ -88,8 +88,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void performLogin() {
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-        String url = "http://" + Constraint.URL_BE + ":" + Constraint.PORT_BE + "/api/v1/user/signin";
-//            String url = Constraint.URL + "/api/v1/user/signin";
+//        String url = "http://" + Constraint.URL_BE + ":" + Constraint.PORT_BE + "/api/v1/user/signin";
+            String url = Constraint.URL_SIGN_IN;
         System.out.println(url);
         JSONObject jsonBody = new JSONObject();
         try {
@@ -134,7 +134,6 @@ public class LoginActivity extends AppCompatActivity {
                     error.printStackTrace();
                     Toast.makeText(LoginActivity.this, "Login failed. Please try again.", Toast.LENGTH_SHORT).show();
                 });
-
         queue.add(jsonObjectRequest);
     }
 }

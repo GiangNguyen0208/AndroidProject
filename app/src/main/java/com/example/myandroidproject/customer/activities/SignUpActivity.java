@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myandroidproject.LoginActivity;
 import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.utilss.Constraint;
@@ -90,7 +91,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
 
-        String url = "http://" + Constraint.URL_BE + ":" + Constraint.PORT_BE + "/api/v1/user/register";
+//        String url = "http://" + Constraint.URL_BE + ":" + Constraint.PORT_BE + "/api/v1/user/register";
+        String url = Constraint.URL_SIGN_UP;
 
 
         JSONObject jsonBody = new JSONObject();
