@@ -22,8 +22,6 @@ public class Vehicle {
     private double price;
 
     private String imageLink;
-
-
     public Vehicle(String name, String brand, double price, String imageLink) {
     }
 }

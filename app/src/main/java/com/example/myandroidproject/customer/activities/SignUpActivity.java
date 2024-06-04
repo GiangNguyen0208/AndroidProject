@@ -3,7 +3,6 @@ package com.example.myandroidproject.customer.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,10 +18,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.myandroidproject.ConnectionDBSQLite;
 import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.R;
-import com.example.myandroidproject.utils.Constraint;
+import com.example.myandroidproject.utilss.Constraint;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 

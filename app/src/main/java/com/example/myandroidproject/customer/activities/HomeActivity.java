@@ -1,4 +1,6 @@
 package com.example.myandroidproject.customer.activities;
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +12,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
     static final int supportId = R.id.support;
-    listView = findViewById(R.id.list_item);
+    TextView goto_showroom;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,5 +31,6 @@ public class HomeActivity extends AppCompatActivity {
            }
             return true;
         });
+
     }
 }

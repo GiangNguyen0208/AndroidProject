@@ -23,7 +23,7 @@ import com.example.myandroidproject.R;
 import com.example.myandroidproject.admin.activities.AdminActivity;
 import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.shipper.activites.ShipperActivity;
-import com.example.myandroidproject.utils.Constraint;
+import com.example.myandroidproject.utilss.Constraint;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
