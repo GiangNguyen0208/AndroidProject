@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".customer.activities.Notify">
+    tools:context=".customer.fragments.NotifyFragment">
 
     <TextView
         android:id="@+id/notify"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="45dp"
             android:layout_marginTop="1dp"
             android:text="Khuyến Mãi"
             android:textStyle="bold" />
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="45dp"
             android:layout_marginTop="20dp"
             android:text="GIẢM 50% cho chuyến đầu"
             android:textSize="16sp" />
@@ -85,7 +85,7 @@
             android:layout_height="40dp"
             android:text="Tin tức"
             android:textStyle="bold"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="45dp"
             android:layout_marginTop="1dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"/>
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:text="Chưa có tin tức nào"
             android:textSize="16sp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="45dp"
             android:layout_marginTop="20dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"/>
@@ -123,7 +123,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:paddingStart="20dp"
-            android:text="Mới"
+            android:text="Cập nhật quan trọng"
             android:textStyle="bold"/>
     </RelativeLayout>
 
