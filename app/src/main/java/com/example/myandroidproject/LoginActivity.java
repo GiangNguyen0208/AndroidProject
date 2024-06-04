@@ -15,12 +15,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.admin.activities.AdminActivity;
 import com.example.myandroidproject.customer.activities.HomeActivity;
+import com.example.myandroidproject.customer.fragments.NotifyFragment;
 import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.shipper.activites.ShipperActivity;
 import com.example.myandroidproject.utilss.Constraint;
@@ -28,8 +27,6 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -58,9 +55,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginBtn.setOnClickListener(v -> {
-            if (validateLoginForm()) {
-                performLogin();
-            }
+//            if (validateLoginForm()) {
+//                performLogin();
+//            }
+            startActivity(new Intent(this, HomeActivity.class));
         });
     }
 
