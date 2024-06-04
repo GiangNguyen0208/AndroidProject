@@ -42,10 +42,18 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.car.ui.lib)
 
     androidTestImplementation(libs.espresso.core)
 
-    //noinspection UseTomlInstead
     implementation("com.airbnb.android:lottie:6.4.0")
     implementation("com.android.volley:volley:1.2.1")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    compileOnly("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
+
+
+//    implementation ("com.squareup.okhttp:okhttp:2.7.2")
+//    implementation ("com.squareup.retrofit2:retrofit:2.4.0")
+//    implementation ("com.squareup.retrofit2:converter-gson:2.3.0")
 }
