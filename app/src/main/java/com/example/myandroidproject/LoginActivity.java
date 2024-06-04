@@ -22,7 +22,7 @@ import com.example.myandroidproject.customer.activities.HomeActivity;
 import com.example.myandroidproject.customer.fragments.NotifyFragment;
 import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.shipper.activites.ShipperActivity;
-import com.example.myandroidproject.utils.Constraint;
+import com.example.myandroidproject.utilss.Constraint;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
@@ -86,8 +86,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void performLogin() {
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-        String url = Constraint.URL_BE + "/api/v1/user/signin";
-
+//        String url = "http://" + Constraint.URL_BE + ":" + Constraint.PORT_BE + "/api/v1/user/signin";
+            String url = Constraint.URL_SIGN_IN;
+        System.out.println(url);
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("email", email.getText()).toString();
@@ -131,7 +132,6 @@ public class LoginActivity extends AppCompatActivity {
                     error.printStackTrace();
                     Toast.makeText(LoginActivity.this, "Login failed. Please try again.", Toast.LENGTH_SHORT).show();
                 });
-
         queue.add(jsonObjectRequest);
     }
 }

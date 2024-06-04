@@ -4,7 +4,13 @@
     <color name="xam">#5e5e5e</color>
     <color name="Dark">#010101</color>
     <color name="notYellow">#d3bc67</color>
+
     <color name="circle_color_border">#5e5e5e</color>
     <color name="circle_notify_color_border">#7F7F7F</color>
     <color name="border_background">#010101</color>
+
+    <color name="Green">#4CAF50</color>
+    <color name="Red">#e60a31</color>
+    <color name="Black">#000000</color>
+
 </resources>

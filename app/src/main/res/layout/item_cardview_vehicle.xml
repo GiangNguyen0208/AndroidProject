@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageVehicle"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                app:srcCompat="@mipmap/item_icon_foreground" />
+
+            <TextView
+                android:id="@+id/nameVehicle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/brandVehicle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Brand" />
+
+            <TextView
+                android:id="@+id/rentalPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="100.000 VNĐ" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
