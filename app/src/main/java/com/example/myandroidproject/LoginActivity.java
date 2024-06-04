@@ -55,10 +55,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginBtn.setOnClickListener(v -> {
-//            if (validateLoginForm()) {
-//                performLogin();
-//            }
-            startActivity(new Intent(this, HomeActivity.class));
+            if (validateLoginForm()) {
+                performLogin();
+            }
+//            startActivity(new Intent(this, HomeActivity.class));
         });
     }
 
