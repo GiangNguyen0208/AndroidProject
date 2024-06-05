@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.activities.DetailItemActivity;
 import com.example.myandroidproject.models.Vehicle;
-import com.example.myandroidproject.utilss.Constraint;
+import com.example.myandroidproject.utils.Constraint;
 
 import java.util.List;
 

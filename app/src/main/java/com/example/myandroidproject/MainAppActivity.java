@@ -13,6 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.myandroidproject.customer.activities.HomeActivity;
 
 public class MainAppActivity extends AppCompatActivity {
+
+    //where the program should start
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

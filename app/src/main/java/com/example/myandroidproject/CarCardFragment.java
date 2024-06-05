@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -23,11 +22,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.myandroidproject.R;
-import com.example.myandroidproject.customer.activities.SignUpActivity;
 import com.example.myandroidproject.customer.adapters.ListVehicleAdapter;
 import com.example.myandroidproject.models.Vehicle;
-import com.example.myandroidproject.utilss.Constraint;
+import com.example.myandroidproject.utils.Constraint;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -101,8 +98,6 @@ public class CarCardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
         goto_showroom = this.getActivity().findViewById(R.id.goto_showroom);
         goto_showroom.setOnClickListener(v -> {
             startActivity(new Intent(v.getContext(), CarCardFragment.class));
@@ -116,7 +111,9 @@ public class CarCardFragment extends Fragment {
     }
     private void getListVehicle() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        String url = Constraint.URL_VEHICLE_LIST;
+        String url = "http://" + Constraint.URL_BE + ":" + Constraint.PORT_BE + "/api/v1/product";
+
+//        String url = Constraint.URL_VEHICLE_LIST;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,

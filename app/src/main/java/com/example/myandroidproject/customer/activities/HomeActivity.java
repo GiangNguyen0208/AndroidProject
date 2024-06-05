@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.myandroidproject.LoginActivity;
+import com.example.myandroidproject.account.LoginActivity;
 import com.example.myandroidproject.R;
-import com.example.myandroidproject.utilss.SharedPreferencesUtils;
+import com.example.myandroidproject.utils.SharedPreferencesUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {

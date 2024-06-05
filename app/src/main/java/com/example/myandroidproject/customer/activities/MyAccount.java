@@ -19,7 +19,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.example.myandroidproject.R;
-import com.example.myandroidproject.utilss.Constraint;
+import com.example.myandroidproject.utils.Constraint;
 
 public class MyAccount extends AppCompatActivity {
 
@@ -58,7 +58,7 @@ public class MyAccount extends AppCompatActivity {
 
     private void loadUserData(int userId) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = Constraint.URL_BE + "/api/v1/users/" + userId;
+        String url = Constraint.URL_BE + ":" + Constraint.PORT_BE  + "/api/v1/users/" + userId;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
@@ -90,7 +90,7 @@ public class MyAccount extends AppCompatActivity {
 
     private void saveUserData(int userId) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = Constraint.URL_BE + "/api/v1/users/" + userId;
+        String url = Constraint.URL_BE + ":" + Constraint.PORT_BE  + "/api/v1/users/" + userId;
 
         JSONObject user = new JSONObject();
         try {

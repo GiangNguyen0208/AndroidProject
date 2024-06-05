@@ -46,10 +46,10 @@
             android:name=".customer.activities.HomeActivity"
             android:exported="true" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".account.SignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".account.LoginActivity"
             android:exported="true" />
         <activity
             android:name=".shipper.activites.ShipperActivity"

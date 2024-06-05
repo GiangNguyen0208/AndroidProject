@@ -1,4 +1,4 @@
-package com.example.myandroidproject.utilss;
+package com.example.myandroidproject.utils;
 
 import static java.security.AccessController.getContext;
 

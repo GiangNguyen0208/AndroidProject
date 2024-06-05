@@ -1,14 +1,11 @@
 package com.example.myandroidproject.customer.activities;
 
-import static com.example.myandroidproject.utilss.Constraint.ID_VEHICLE;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,23 +16,19 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.adapters.DetailVehicleAdapter;
 import com.example.myandroidproject.models.Vehicle;
-import com.example.myandroidproject.utilss.Constraint;
+import com.example.myandroidproject.utils.Constraint;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class DetailItemActivity extends AppCompatActivity {
@@ -67,7 +60,7 @@ public class DetailItemActivity extends AppCompatActivity {
         discountValue = findViewById(R.id.discount);
         priceDiscount = findViewById(R.id.priceDiscount);
 
-        id = getIntent().getIntExtra(ID_VEHICLE, 0);
+        id = getIntent().getIntExtra(Constraint.ID_VEHICLE, 0);
         detailVehicleAdapter = new DetailVehicleAdapter(this, vehicleView);
         getDetailCallAPI(id);
 
@@ -95,7 +88,8 @@ public class DetailItemActivity extends AppCompatActivity {
 
     private void getDetailCallAPI(Integer id) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = Constraint.URL_VEHICLE_DETAIL_BY_ID + String.valueOf(id);
+        String url = "http://" + Constraint.URL_BE + ":" + Constraint.PORT_BE + "/api/v1/product/detail?id=" + String.valueOf(id);
+//        String url = Constraint.URL_VEHICLE_DETAIL_BY_ID + String.valueOf(id);
 
         JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(
                 Request.Method.GET,
