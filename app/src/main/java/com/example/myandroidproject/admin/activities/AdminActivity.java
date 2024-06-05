@@ -60,6 +60,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        System.out.println(menuItem.getItemId() == R.id.chat);
         if (menuItem.getItemId() == R.id.chat){
             navController.navigate(R.id.action_global_chat_admin);
         }else if (menuItem.getItemId() == R.id.home){

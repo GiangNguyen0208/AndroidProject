@@ -59,7 +59,7 @@ public class ChatFragment extends Fragment {
 
         chatExitBtn.setOnClickListener(v -> {
             NavController navController = Navigation.findNavController(view);
-            navController.navigate(R.id.action_global_fragment_support);
+            navController.navigate(R.id.action_global_support_fragment);
         });
 
         listView.setAdapter(messageAdapter);
