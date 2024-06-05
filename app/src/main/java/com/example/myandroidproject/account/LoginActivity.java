@@ -113,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString("role", role);
                             editor.putInt("id", idUser);
                             editor.apply();
+
                             // Login success and save cache
                             SharedPreferencesUtils.add(SharedPreferencesUtils.STATE_LOGIN, "TRUE", this);
                             if (role.equals("admin")) {
@@ -125,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             finish();
                         } else {
-                            Toast.makeText(LoginActivity.this, "Login failed. Please try again.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Login failed. Please try again. No roles Founded", Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
