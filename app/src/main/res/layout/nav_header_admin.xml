@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:divider="@null"
+    android:showDividers="none"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/notYellow"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:textColor="@color/White"
+        android:text="FiVe BrO"
+        android:gravity="center"
+        android:fontFamily="sans-serif"
+        android:textFontWeight="500"
+        android:textSize="60sp"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <TextView
+        android:gravity="center"
+        android:textColor="@color/White"
+        android:text="Us power is powder"
+        android:fontFamily="sans-serif"
+        android:textFontWeight="500"
+        android:textSize="20sp"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

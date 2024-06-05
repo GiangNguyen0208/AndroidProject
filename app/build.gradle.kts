@@ -48,4 +48,5 @@ dependencies {
     //noinspection UseTomlInstead
     implementation("com.airbnb.android:lottie:6.4.0")
     implementation("com.android.volley:volley:1.2.1")
+    implementation("androidx.drawerlayout:drawerlayout:1.2.0")
 }
