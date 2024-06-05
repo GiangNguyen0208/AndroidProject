@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <group>
+        <item android:title="Overview">
+            <menu>
                 <item
                     android:id="@+id/home"
                     android:title="Home"
@@ -13,6 +15,8 @@
                     android:id="@+id/chat"
                     android:title="Chat"
                     android:icon="@drawable/message"/>
-
+            </menu>
+        </item>
+    </group>
 
 </menu>
