@@ -1,65 +1,65 @@
 package com.example.myandroidproject.customer.activities;
 
+import static com.example.myandroidproject.R.layout.activity_my_license;
+
+import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
+
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.myandroidproject.LoginActivity;
 import com.example.myandroidproject.R;
-import com.example.myandroidproject.admin.activities.AdminActivity;
-import com.example.myandroidproject.shipper.activites.ShipperActivity;
+import com.example.myandroidproject.helpers.VolleyMultipartRequest;
 import com.example.myandroidproject.utils.Constraint;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyLicense extends AppCompatActivity {
-    private static final int CAMERA_REQUEST = 1888;
-    private TextView verificationStatus, read;
+    private static final int REQUEST_PERMISSIONS = 100;
+    private TextView verificationStatus;
+    private TextView textView;
+    private Bitmap bitmap;
     private ImageView licenseImg;
-    private Button captureImg, verify;
+
+    private ActivityResultLauncher<Intent> captureImageResultLauncher;
+    private ActivityResultLauncher<Intent> pickImageResultLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_my_license);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        setContentView(activity_my_license);
 
         verificationStatus = findViewById(R.id.tvVerificationStatus);
-        read = findViewById(R.id.readMe);
+        TextView read = findViewById(R.id.readMe);
         licenseImg = findViewById(R.id.ivLicenseImage);
-        captureImg = findViewById(R.id.btnCapture);
-        verify = findViewById(R.id.btnVerifyNow);
+        Button captureImg = findViewById(R.id.btnCapture);
+        Button verify = findViewById(R.id.btnVerifyNow);
+        textView = findViewById(R.id.textView);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         int userId = sharedPreferences.getInt("id", -1);
@@ -67,89 +67,98 @@ public class MyLicense extends AppCompatActivity {
         loadStatus(userId);
         read.setOnClickListener(v -> showReadMeDialog());
 
+        captureImageResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                        Bitmap photo = (Bitmap) result.getData().getExtras().get("data");
+                        licenseImg.setImageBitmap(photo);
+                        uploadBitmap(photo, userId);
+                    }
+                });
+
+        pickImageResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Uri picUri = result.getData().getData();
+                        if (picUri != null) {
+                            try {
+                                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), picUri);
+                                licenseImg.setImageBitmap(bitmap);
+                                textView.setText("File Selected");
+                                uploadBitmap(bitmap, userId);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Toast.makeText(this, "No image selected", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
         captureImg.setOnClickListener(v -> {
             Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(cameraIntent, CAMERA_REQUEST);
+            captureImageResultLauncher.launch(cameraIntent);
         });
 
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (checkCameraHardware(this)) {
-            Camera camera = getCameraInstance();
-            if (camera != null) {
-                camera.release();
-                if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
-                    Bitmap photo = (Bitmap) data.getExtras().get("data");
-                    licenseImg.setImageBitmap(photo);
-                    try{
-                        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                        int userId = sharedPreferences.getInt("id", -1);
-                        uploadImg(userId, photo);
-                    }catch(Exception e){
-                        e.printStackTrace();
-                    }
-                } else {
-                    Toast.makeText(this, "Somthing Wrong", Toast.LENGTH_SHORT).show();
-                }
+        textView.setOnClickListener(v -> {
+            if (checkStoragePermissions()) {
+                showFileChooser();
             } else {
-                Toast.makeText(this, "Unable to access the camera", Toast.LENGTH_SHORT).show();
+                requestStoragePermissions();
             }
-        } else {
-            Toast.makeText(this, "This device doesn't have a camera", Toast.LENGTH_SHORT).show();
-        }
+        });
     }
 
-    public void uploadImg(int userId, Bitmap photo){
-        RequestQueue queue = Volley.newRequestQueue(this);
+    private void showFileChooser() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        pickImageResultLauncher.launch(Intent.createChooser(intent, "Select Picture"));
+    }
+
+    private boolean checkStoragePermissions() {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestStoragePermissions() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE},
+                REQUEST_PERMISSIONS);
+    }
+
+    private void uploadBitmap(final Bitmap bitmap, int userId) {
         String url = Constraint.URL_BE + "/api/v1/users/" + userId + "/upload";
-
-        JSONObject jsonBody = new JSONObject();
-        try {
-            jsonBody.put("id", userId);
-            jsonBody.put("file", photo);
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Failed to create request body.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, url,
                 response -> {
                     try {
-                    String message = response.getString("message");
-                        Toast.makeText(this, message , Toast.LENGTH_SHORT).show();
+                        JSONObject obj = new JSONObject(new String(response.data));
+                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }, error -> {
-            error.printStackTrace();
-        });
+                },
+                error -> {
+                    // Handle error
+                }) {
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                String imageName = "userLicense" + userId;
+                params.put("file", new DataPart(imageName + ".png", getFileDataFromDrawable(bitmap)));
+                return params;
+            }
+        };
 
-        queue.add(jsonObjectRequest);
+        Volley.newRequestQueue(this).add(volleyMultipartRequest);
     }
 
-
-
-    private boolean checkCameraHardware(Context context) {
-        if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
-            return true;
-        } else {
-            return false;
-        }
+    private byte[] getFileDataFromDrawable(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
     }
-    public static Camera getCameraInstance(){
-        Camera c = null;
-        try {
-            c = Camera.open();
-        }
-        catch (Exception e){
-           e.printStackTrace();
-        }
-        return c;
-    }
-
 
     private void loadStatus(int userId) {
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -159,7 +168,7 @@ public class MyLicense extends AppCompatActivity {
                 response -> {
                     try {
                         JSONObject user = new JSONObject(response);
-                        boolean status = user.optBoolean("status", true);
+                        boolean status = user.optBoolean("status", false);
                         if (status) {
                             verificationStatus.setText("Verification Status: Verified");
                             verificationStatus.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
@@ -167,7 +176,6 @@ public class MyLicense extends AppCompatActivity {
                             verificationStatus.setText("Verification Status: Not Verified");
                             verificationStatus.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
                         }
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
