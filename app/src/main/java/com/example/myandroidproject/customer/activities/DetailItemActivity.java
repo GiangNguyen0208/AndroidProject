@@ -46,6 +46,7 @@ public class DetailItemActivity extends AppCompatActivity {
     Vehicle vehicleView;
     ImageView back_evt;
     DetailVehicleAdapter detailVehicleAdapter;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,13 +88,14 @@ public class DetailItemActivity extends AppCompatActivity {
             priceDiscount.setText(formatter.format(vehicleView.getPriceDiscount()) + " VNĐ");
         }
     }
+
     private String formatToPercentage(double discount) {
         return String.format("%.0f%%", discount * 100);
     }
 
     private void getDetailCallAPI(Integer id) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = Constraint.URL_VEHICLE_DETAIL_BY_ID  + String.valueOf(id);
+        String url = Constraint.URL_VEHICLE_DETAIL_BY_ID + String.valueOf(id);
 
         JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -103,30 +105,30 @@ public class DetailItemActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                                int carID = response.getInt("id");
-                                String name = response.getString("name");
-                                String brand = response.getString("brand");
-                                double price = Double.parseDouble(response.getString("price"));
-                                String imageLink = response.getString("image");
-                                String type = response.getString("type");
-                                String color = response.getString("color");
+                            int carID = response.getInt("id");
+                            String name = response.getString("name");
+                            String brand = response.getString("brand");
+                            double price = Double.parseDouble(response.getString("price"));
+                            String imageLink = response.getString("image");
+                            String type = response.getString("type");
+                            String color = response.getString("color");
 //                                String desc = response.getString("desc");
-                                double discount = Double.parseDouble(response.getString("discount"));
-                                double priceDiscount = price*(1-discount);
-                                vehicleView = Vehicle.builder()
-                                        .id(carID)
-                                        .color(color)
-                                        .type(type)
-                                        .discount(discount)
-                                        .priceDiscount(priceDiscount)
-                                        .nameVehicle(name)
-                                        .brandVehicle(brand)
-                                        .imageLink(imageLink)
-                                        .price(price)
+                            double discount = Double.parseDouble(response.getString("discount"));
+                            double priceDiscount = price * (1 - discount);
+                            vehicleView = Vehicle.builder()
+                                    .id(carID)
+                                    .color(color)
+                                    .type(type)
+                                    .discount(discount)
+                                    .priceDiscount(priceDiscount)
+                                    .nameVehicle(name)
+                                    .brandVehicle(brand)
+                                    .imageLink(imageLink)
+                                    .price(price)
 //                                        .description(desc)
-                                        .build();
-                                Toast.makeText(DetailItemActivity.this, "Describe Detail", Toast.LENGTH_SHORT).show();
-                        // Use itemList to update UI (e.g., RecyclerView Adapter)
+                                    .build();
+                            Toast.makeText(DetailItemActivity.this, "Describe Detail", Toast.LENGTH_SHORT).show();
+                            // Use itemList to update UI (e.g., RecyclerView Adapter)
                             getDetailVehicle();
                             detailVehicleAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
@@ -141,12 +143,12 @@ public class DetailItemActivity extends AppCompatActivity {
                         Toast.makeText(DetailItemActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
-        ){
+        ) {
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("id",id+"");
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", id + "");
                 return params;
             }
         };

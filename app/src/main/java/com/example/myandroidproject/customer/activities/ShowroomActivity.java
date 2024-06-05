@@ -16,7 +16,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.adapters.ListVehicleAdapter;
-import com.example.myandroidproject.databinding.ActivityShowroomBinding;
 import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
 
@@ -30,7 +29,6 @@ import java.util.List;
 
 public class ShowroomActivity extends AppCompatActivity {
 
-    ActivityShowroomBinding activityShowroomBinding;
     RecyclerView listViewVehicle;
     List<Vehicle> vehicleList = new ArrayList<>();
     ListVehicleAdapter listVehicleAdapter;
@@ -39,8 +37,8 @@ public class ShowroomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_showroom);
-        listViewVehicle = findViewById(R.id.listViewVehicle);
+        setContentView(R.layout.fragment_showroom);
+        listViewVehicle = findViewById(R.id.recommended_container);
         listVehicleAdapter = new ListVehicleAdapter(vehicleList, this);
         listViewVehicle.setLayoutManager(new LinearLayoutManager(this));
         listViewVehicle.setAdapter(listVehicleAdapter);

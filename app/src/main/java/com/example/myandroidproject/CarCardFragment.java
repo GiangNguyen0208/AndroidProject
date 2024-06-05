@@ -105,7 +105,7 @@ public class CarCardFragment extends Fragment {
 
         goto_showroom = this.getActivity().findViewById(R.id.goto_showroom);
         goto_showroom.setOnClickListener(v -> {
-            startActivity(new Intent(v.getContext(), ShowroomFragment.class));
+            startActivity(new Intent(v.getContext(), CarCardFragment.class));
         });
 //        cardView = view.findViewById(R.id.searchView);
 //        recyclerViewHome = view.findViewById(R.id.listViewVehicleInHome);
