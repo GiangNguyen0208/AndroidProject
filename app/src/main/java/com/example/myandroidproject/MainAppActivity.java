@@ -10,8 +10,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainAppActivity extends AppCompatActivity {
+import com.example.myandroidproject.customer.activities.HomeActivity;
 
+public class MainAppActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +25,7 @@ public class MainAppActivity extends AppCompatActivity {
         });
         // delay animation for 5275
         new Handler().postDelayed(() -> {
-            startActivity(new Intent(MainAppActivity.this, LoginActivity.class));
+            startActivity(new Intent(MainAppActivity.this, HomeActivity.class));
             finish();
         }, 2275);
     }

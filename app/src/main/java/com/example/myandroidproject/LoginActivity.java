@@ -23,6 +23,7 @@ import com.example.myandroidproject.customer.fragments.NotifyFragment;
 import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.shipper.activites.ShipperActivity;
 import com.example.myandroidproject.utilss.Constraint;
+import com.example.myandroidproject.utilss.SharedPreferencesUtils;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
@@ -112,13 +113,15 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString("role", role);
                             editor.putInt("id", idUser);
                             editor.apply();
-
+                            // Login success and save cache
+                            SharedPreferencesUtils.add(SharedPreferencesUtils.STATE_LOGIN, "TRUE", this);
                             if (role.equals("admin")) {
                                 startActivity(new Intent(LoginActivity.this, AdminActivity.class));
                             } else if(role.equals("shipper")) {
                                 startActivity(new Intent(LoginActivity.this, ShipperActivity.class));
                             } else {
                                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+
                             }
                             finish();
                         } else {
