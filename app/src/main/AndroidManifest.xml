@@ -37,18 +37,22 @@
             android:exported="false" />
         <activity
             android:name=".customer.activities.ShowroomActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".customer.fragments.SupportFragment"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".customer.activities.HomeActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".SignUpActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".customer.activities.DetailItemActivity"
             android:exported="true" />
         <activity
             android:name=".MainAppActivity"

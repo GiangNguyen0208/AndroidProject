@@ -43,12 +43,22 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.media3.common)
+    implementation(libs.car.ui.lib)
 
     androidTestImplementation(libs.espresso.core)
+
     //GET img from server
     implementation ("com.github.bumptech.glide:glide:4.11.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
     //noinspection UseTomlInstead
     implementation("com.airbnb.android:lottie:6.4.0")
     implementation("com.android.volley:volley:1.2.1")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    compileOnly("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
+
+
+//    implementation ("com.squareup.okhttp:okhttp:2.7.2")
+//    implementation ("com.squareup.retrofit2:retrofit:2.4.0")
+//    implementation ("com.squareup.retrofit2:converter-gson:2.3.0")
 }

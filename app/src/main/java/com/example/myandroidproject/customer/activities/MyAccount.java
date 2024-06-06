@@ -22,7 +22,7 @@ import org.json.JSONObject;
 
 import com.example.myandroidproject.LoginActivity;
 import com.example.myandroidproject.R;
-import com.example.myandroidproject.utils.Constraint;
+import com.example.myandroidproject.utilss.Constraint;
 
 public class MyAccount extends AppCompatActivity {
 

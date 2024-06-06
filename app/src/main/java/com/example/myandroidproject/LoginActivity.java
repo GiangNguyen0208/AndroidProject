@@ -15,21 +15,19 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.admin.activities.AdminActivity;
 import com.example.myandroidproject.customer.activities.HomeActivity;
+import com.example.myandroidproject.customer.fragments.NotifyFragment;
 import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.shipper.activites.ShipperActivity;
-import com.example.myandroidproject.utils.Constraint;
+import com.example.myandroidproject.utilss.Constraint;
+import com.example.myandroidproject.utilss.SharedPreferencesUtils;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -58,9 +56,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginBtn.setOnClickListener(v -> {
-            if (validateLoginForm()) {
-                performLogin();
-            }
+//            if (validateLoginForm()) {
+//                performLogin();
+//            }
+            startActivity(new Intent(this, HomeActivity.class));
         });
     }
 
@@ -88,8 +87,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void performLogin() {
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-        String url = Constraint.URL_BE + "/api/v1/user/signin";
-
+//        String url = "http://" + Constraint.URL_BE + ":" + Constraint.PORT_BE + "/api/v1/user/signin";
+            String url = Constraint.URL_SIGN_IN;
+        System.out.println(url);
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("email", email.getText()).toString();
@@ -113,13 +113,15 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString("role", role);
                             editor.putInt("id", idUser);
                             editor.apply();
-
+                            // Login success and save cache
+                            SharedPreferencesUtils.add(SharedPreferencesUtils.STATE_LOGIN, "TRUE", this);
                             if (role.equals("admin")) {
                                 startActivity(new Intent(LoginActivity.this, AdminActivity.class));
                             } else if(role.equals("shipper")) {
                                 startActivity(new Intent(LoginActivity.this, ShipperActivity.class));
                             } else {
                                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+
                             }
                             finish();
                         } else {
@@ -133,7 +135,6 @@ public class LoginActivity extends AppCompatActivity {
                     error.printStackTrace();
                     Toast.makeText(LoginActivity.this, "Login failed. Please try again.", Toast.LENGTH_SHORT).show();
                 });
-
         queue.add(jsonObjectRequest);
     }
 }
