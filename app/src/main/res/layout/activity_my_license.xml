@@ -5,13 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".customer.activities.MyLicense">
+    tools:context=".customer.activities.MyLicense"
+    android:background="@color/White">
 
         <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Driver's License"
+        android:text="Bằng Lái Xe"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,10 +35,10 @@
         android:id="@+id/btnCapture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Capture Image"
+        android:layout_marginTop="16dp"
+        android:text="Chụp Hình"
         app:layout_constraintEnd_toEndOf="@+id/ivLicenseImage"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="@+id/ivLicenseImage"
         app:layout_constraintTop_toBottomOf="@+id/ivLicenseImage" />
 
@@ -45,12 +46,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="chooseFile"
+        android:layout_marginTop="80dp"
+        android:text="Chọn Hình"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.812"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivLicenseImage" />
 
@@ -58,20 +59,17 @@
         android:id="@+id/tvVerificationStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:text="Verification Status: Not Verified"
-        android:textColor="@android:color/holo_red_dark"
+        android:layout_marginTop="132dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivLicenseImage" />
 
-
     <TextView
         android:id="@+id/readMe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="308dp"
+        android:layout_marginTop="244dp"
         android:text="Read Me"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="18sp"
@@ -80,14 +78,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivLicenseImage" />
 
-    <Button
-        android:id="@+id/btnVerifyNow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Verify Now"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvVerificationStatus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

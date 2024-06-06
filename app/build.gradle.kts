@@ -45,7 +45,9 @@ dependencies {
     implementation(libs.media3.common)
 
     androidTestImplementation(libs.espresso.core)
-
+    //GET img from server
+    implementation ("com.github.bumptech.glide:glide:4.11.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
     //noinspection UseTomlInstead
     implementation("com.airbnb.android:lottie:6.4.0")
     implementation("com.android.volley:volley:1.2.1")

@@ -2,6 +2,8 @@ package com.example.myandroidproject.customer.activities;
 
 import static com.example.myandroidproject.R.layout.activity_my_license;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +13,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,13 +44,11 @@ import java.util.Map;
 
 public class MyLicense extends AppCompatActivity {
     private static final int REQUEST_PERMISSIONS = 100;
-    private TextView verificationStatus;
-    private TextView textView;
+    private TextView verificationStatus, textView;
     private Bitmap bitmap;
     private ImageView licenseImg;
-
-    private ActivityResultLauncher<Intent> captureImageResultLauncher;
-    private ActivityResultLauncher<Intent> pickImageResultLauncher;
+    private Button captureImg;
+    private ActivityResultLauncher<Intent> captureImageResultLauncher, pickImageResultLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +58,13 @@ public class MyLicense extends AppCompatActivity {
         verificationStatus = findViewById(R.id.tvVerificationStatus);
         TextView read = findViewById(R.id.readMe);
         licenseImg = findViewById(R.id.ivLicenseImage);
-        Button captureImg = findViewById(R.id.btnCapture);
-        Button verify = findViewById(R.id.btnVerifyNow);
+        captureImg = findViewById(R.id.btnCapture);
         textView = findViewById(R.id.textView);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         int userId = sharedPreferences.getInt("id", -1);
-
         loadStatus(userId);
+
         read.setOnClickListener(v -> showReadMeDialog());
 
         captureImageResultLauncher = registerForActivityResult(
@@ -140,7 +140,7 @@ public class MyLicense extends AppCompatActivity {
                     }
                 },
                 error -> {
-                    // Handle error
+
                 }) {
             @Override
             protected Map<String, DataPart> getByteData() {
@@ -170,6 +170,9 @@ public class MyLicense extends AppCompatActivity {
                         JSONObject user = new JSONObject(response);
                         boolean status = user.optBoolean("status", false);
                         if (status) {
+                            loadImageLicense(userId);
+                            captureImg.setVisibility(View.GONE);
+                            textView.setVisibility(View.GONE);
                             verificationStatus.setText("Verification Status: Verified");
                             verificationStatus.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
                         } else {
@@ -187,6 +190,16 @@ public class MyLicense extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
+    private void loadImageLicense(int userId) {
+        ImageView ivLicenseImage = findViewById(R.id.ivLicenseImage);
+
+        String imageUrl = Constraint.URL_BE + "/api/v1/users/" + userId + "/files/userLicense" + userId + ".png";
+
+        Glide.with(this)
+                .load(imageUrl)
+                .apply(new RequestOptions().placeholder(R.drawable.img_1).error(R.drawable.img_2))
+                .into(ivLicenseImage);
+    }
     private void showReadMeDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Lưu Ý");
