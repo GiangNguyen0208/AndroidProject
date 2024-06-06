@@ -1,5 +1,6 @@
 package com.example.myandroidproject.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -11,8 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Vehicle {
-    private Integer id;
+public class Vehicle implements Serializable {
+    private Integer id, quantityRent;
     private Integer vehicleid;
     private String type;
     private double discount;
@@ -26,6 +27,4 @@ public class Vehicle {
     private String imageLink;
     private String description;
     private String color;
-    public Vehicle(String name, String brand, double price, String imageLink) {
-    }
 }
