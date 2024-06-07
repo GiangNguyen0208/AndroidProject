@@ -42,7 +42,6 @@ public class SignUpActivity extends AppCompatActivity {
         password = findViewById(R.id.password_Sign_Up);
         passwordConfirm = findViewById(R.id.password_Sign_Up_Confirm);
 
-        // Hook Sign Up Button
         MaterialButton signUpButton = findViewById(R.id.sign_Up);
 
         signUpButton.setOnClickListener(v -> processFormFields());
@@ -111,7 +110,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void registerUser() {
         RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
-        String url = Constraint.URL_BE + "/api/v1/user/register";
+        String url = Constraint.URL_SIGN_UP + "/api/v1/user/register";
 
         JSONObject jsonBody = new JSONObject();
         try {

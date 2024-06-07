@@ -1,6 +1,7 @@
 package com.example.myandroidproject.customer.activities;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
@@ -8,28 +9,26 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.example.myandroidproject.LoginActivity;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.utilss.Constraint;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MyAccount extends AppCompatActivity {
 
     private EditText firstname, lastname, phone, email, birthday, password;
     private RadioGroup gender;
-    private RadioButton male, female;
-    private Button btnSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +42,7 @@ public class MyAccount extends AppCompatActivity {
         password = findViewById(R.id.etPassword);
         birthday = findViewById(R.id.etBirthday);
         gender = findViewById(R.id.radioGenderGroup);
-        male = findViewById(R.id.radioMale);
-        female = findViewById(R.id.radioFemale);
-        btnSave = findViewById(R.id.btnSave);
+        Button btnSave = findViewById(R.id.btnSave);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         int userId = sharedPreferences.getInt("id", -1);
@@ -54,14 +51,55 @@ public class MyAccount extends AppCompatActivity {
             loadUserData(userId);
         }
 
-        btnSave.setOnClickListener(v -> {
-            saveUserData(userId);
-        });
+        birthday.setOnClickListener(v -> showDatePickerDialog());
+        btnSave.setOnClickListener(v -> saveUserData(userId));
+    }
+
+    private String convertDateFormat(String dateStr) {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date date = fromUser.parse(dateStr);
+            assert date != null;
+            return myFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return dateStr;
+        }
+    }
+
+    private String convertDateFormatToServer(String dateStr) {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat myFormat = new SimpleDateFormat("YYYY-MM-DD");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat fromUser = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date date = fromUser.parse(dateStr);
+            assert date != null;
+            return myFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return dateStr;
+        }
+    }
+
+    private void showDatePickerDialog() {
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                (view, selectedYear, selectedMonth, selectedDay) -> {
+                    calendar.set(selectedYear, selectedMonth, selectedDay);
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    String selectedDate = dateFormat.format(calendar.getTime());
+                    birthday.setText(selectedDate);
+                }, year, month, day);
+        datePickerDialog.show();
     }
 
     private void loadUserData(int userId) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = Constraint.URL_BE + "/api/v1/users/" + userId;
+        String url = Constraint.URL + "/api/v1/users/" + userId;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
@@ -78,8 +116,7 @@ public class MyAccount extends AppCompatActivity {
                         } else {
                             gender.check(R.id.radioFemale);
                         }
-                        birthday.setText(user.optString("birthDay", ""));
-
+                        birthday.setText(convertDateFormat(user.optString("birthDay", "")));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -93,7 +130,7 @@ public class MyAccount extends AppCompatActivity {
 
     private void saveUserData(int userId) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = Constraint.URL_BE + "/api/v1/users/" + userId;
+        String url = Constraint.URL + "/api/v1/users/" + userId;
 
         JSONObject user = new JSONObject();
         try {
@@ -115,19 +152,15 @@ public class MyAccount extends AppCompatActivity {
             boolean isMale = gender.getCheckedRadioButtonId() == R.id.radioMale;
             user.put("gender", isMale);
             if (!birthday.getText().toString().isEmpty()) {
-                user.put("birthDay", birthday.getText().toString());
+                user.put("birthDay", convertDateFormatToServer(birthday.getText().toString()));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, url, user,
-                response -> {
-                    Toast.makeText(MyAccount.this, "User updated successfully", Toast.LENGTH_SHORT).show();
-                },
-                error -> {
-                    Toast.makeText(MyAccount.this, "Error updating user", Toast.LENGTH_SHORT).show();
-                });
+                response -> Toast.makeText(MyAccount.this, "User updated successfully", Toast.LENGTH_SHORT).show(),
+                error -> Toast.makeText(MyAccount.this, "Error updating user", Toast.LENGTH_SHORT).show());
 
         queue.add(jsonObjectRequest);
     }

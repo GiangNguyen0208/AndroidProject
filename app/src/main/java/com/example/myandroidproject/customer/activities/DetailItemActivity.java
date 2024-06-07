@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -59,22 +58,16 @@ public class DetailItemActivity extends AppCompatActivity {
         day = findViewById(R.id.quantityDay);
         add = findViewById(R.id.addDay);
         remove = findViewById(R.id.removeDay);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (quantityRent < 10) {
-                    quantityRent++;
+        add.setOnClickListener(v -> {
+            if (quantityRent < 10) {
+                quantityRent++;
 //                    day.setText(String.valueOf(quantityRent));
-                }
             }
         });
-        remove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (quantityRent > 0) {
-                    quantityRent--;
+        remove.setOnClickListener(v -> {
+            if (quantityRent > 0) {
+                quantityRent--;
 //                    day.setText(String.valueOf(quantityRent));
-                }
             }
         });
         back_evt.setOnClickListener(v -> {

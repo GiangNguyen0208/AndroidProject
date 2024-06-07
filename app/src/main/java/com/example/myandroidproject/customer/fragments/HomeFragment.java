@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -25,7 +24,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.activities.ShowroomActivity;
-import com.example.myandroidproject.customer.activities.SignUpActivity;
 import com.example.myandroidproject.customer.adapters.ListVehicleAdapter;
 import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;

@@ -32,7 +32,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.helpers.VolleyMultipartRequest;
-import com.example.myandroidproject.utils.Constraint;
+import com.example.myandroidproject.utilss.Constraint;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -129,7 +129,7 @@ public class MyLicense extends AppCompatActivity {
     }
 
     private void uploadBitmap(final Bitmap bitmap, int userId) {
-        String url = Constraint.URL_BE + "/api/v1/users/" + userId + "/upload";
+        String url = Constraint.URL + "/api/v1/users/" + userId + "/upload";
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, url,
                 response -> {
                     try {
@@ -162,7 +162,7 @@ public class MyLicense extends AppCompatActivity {
 
     private void loadStatus(int userId) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = Constraint.URL_BE + "/api/v1/users/" + userId + "/uploadStatus";
+        String url = Constraint.URL + "/api/v1/users/" + userId + "/uploadStatus";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
@@ -193,7 +193,7 @@ public class MyLicense extends AppCompatActivity {
     private void loadImageLicense(int userId) {
         ImageView ivLicenseImage = findViewById(R.id.ivLicenseImage);
 
-        String imageUrl = Constraint.URL_BE + "/api/v1/users/" + userId + "/files/userLicense" + userId + ".png";
+        String imageUrl = Constraint.URL + "/api/v1/users/" + userId + "/files/userLicense" + userId + ".png";
 
         Glide.with(this)
                 .load(imageUrl)

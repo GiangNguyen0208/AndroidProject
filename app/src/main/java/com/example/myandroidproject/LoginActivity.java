@@ -56,10 +56,9 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginBtn.setOnClickListener(v -> {
-//            if (validateLoginForm()) {
-//                performLogin();
-//            }
-            startActivity(new Intent(this, HomeActivity.class));
+            if (validateLoginForm()) {
+                performLogin();
+            }
         });
     }
 
@@ -87,8 +86,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void performLogin() {
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-//        String url = "http://" + Constraint.URL_BE + ":" + Constraint.PORT_BE + "/api/v1/user/signin";
-            String url = Constraint.URL_SIGN_IN;
+        String url = Constraint.URL_SIGN_IN;
         System.out.println(url);
         JSONObject jsonBody = new JSONObject();
         try {
@@ -113,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString("role", role);
                             editor.putInt("id", idUser);
                             editor.apply();
-                            // Login success and save cache
+
                             SharedPreferencesUtils.add(SharedPreferencesUtils.STATE_LOGIN, "TRUE", this);
                             if (role.equals("admin")) {
                                 startActivity(new Intent(LoginActivity.this, AdminActivity.class));
