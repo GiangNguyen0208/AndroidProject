@@ -43,7 +43,6 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.media3.common)
-    implementation(libs.car.ui.lib)
 
     androidTestImplementation(libs.espresso.core)
 
@@ -57,7 +56,7 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.32")
     annotationProcessor("org.projectlombok:lombok:1.18.32")
 
-
+    implementation("")
 //    implementation ("com.squareup.okhttp:okhttp:2.7.2")
 //    implementation ("com.squareup.retrofit2:retrofit:2.4.0")
 //    implementation ("com.squareup.retrofit2:converter-gson:2.3.0")
