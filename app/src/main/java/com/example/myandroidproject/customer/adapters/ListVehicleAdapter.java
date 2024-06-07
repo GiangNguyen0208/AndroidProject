@@ -61,8 +61,8 @@ public class ListVehicleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public ViewVehicleHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
-            brand = itemView.findViewById(R.id.brandName);
-            price = itemView.findViewById(R.id.rentalPrice);
+            brand = itemView.findViewById(R.id.QuantityDate);
+            price = itemView.findViewById(R.id.Quantity);
             imageView = itemView.findViewById(R.id.imageVehicle);
         }
     }
