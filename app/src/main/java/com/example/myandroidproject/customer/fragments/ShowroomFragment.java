@@ -20,7 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.adapter.VehicleAdapter;
 import com.example.myandroidproject.models.Vehicles;
-import com.example.myandroidproject.utils.Constraint;
+import com.example.myandroidproject.utilss.Constraint;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -90,7 +90,7 @@ public class ShowroomFragment extends Fragment {
 
     private void getNewProduct() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        String url = Constraint.URL_BE + "/api/v1/product";
+        String url = Constraint.URL_VEHICLE_LIST;
 
         JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 onReturn(), onError());

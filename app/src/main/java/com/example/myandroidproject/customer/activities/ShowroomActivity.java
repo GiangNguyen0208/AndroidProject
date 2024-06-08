@@ -17,7 +17,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.adapters.ListVehicleAdapter;
 import com.example.myandroidproject.models.Vehicle;
-import com.example.myandroidproject.utils.Constraint;
+import com.example.myandroidproject.utilss.Constraint;
 
 
 import org.json.JSONArray;
@@ -47,7 +47,7 @@ public class ShowroomActivity extends AppCompatActivity {
 
     private void getListVehicle() {
         RequestQueue queue = Volley.newRequestQueue(ShowroomActivity.this);
-        String url = "http://" + Constraint.URL_BE + ":" + Constraint.PORT_BE + "/api/v1/product";
+        String url = Constraint.URL_VEHICLE_LIST;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,

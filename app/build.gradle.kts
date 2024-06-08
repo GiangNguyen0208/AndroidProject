@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.androidApplication)
     id("com.google.gms.google-services")
-    alias(libs.plugins.jetbrainsKotlinAndroid)
 }
 
 android {
@@ -37,12 +36,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -70,12 +63,11 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.github.bumptech.glide:glide:4.16.0")
-    androidTestImplementation(platform(libs.compose.bom))
-    androidTestImplementation(libs.ui.test.junit4)
+//    androidTestImplementation(libs.ui.test.junit4)
     compileOnly("org.projectlombok:lombok:1.18.32")
     annotationProcessor("org.projectlombok:lombok:1.18.32")
-    debugImplementation(libs.ui.tooling)
-    debugImplementation(libs.ui.test.manifest)
+//    debugImplementation(libs.ui.tooling)
+//    debugImplementation(libs.ui.test.manifest)
 
 //    implementation ("com.squareup.okhttp:okhttp:2.7.2")
 //    implementation ("com.squareup.retrofit2:retrofit:2.4.0")

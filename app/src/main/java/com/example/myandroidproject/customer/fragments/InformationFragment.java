@@ -14,12 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.myandroidproject.LoginActivity;
+import com.example.myandroidproject.account.LoginActivity;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.activities.MyAccount;
 import com.example.myandroidproject.customer.activities.MyLicense;
 import com.example.myandroidproject.customer.activities.VoucherCustomer;
-import com.example.myandroidproject.utilss.SharedPreferencesUtils;
+import com.example.myandroidproject.utils.SharedPreferencesUtils;
 
 public class InformationFragment extends Fragment {
 

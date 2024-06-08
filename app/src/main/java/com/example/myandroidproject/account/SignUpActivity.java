@@ -1,4 +1,4 @@
-package com.example.myandroidproject;
+package com.example.myandroidproject.account;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myandroidproject.R;
 import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.utilss.Constraint;
 import com.google.android.material.button.MaterialButton;

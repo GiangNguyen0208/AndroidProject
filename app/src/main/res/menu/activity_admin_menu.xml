@@ -2,31 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
         <item android:id="@+id/nav_item_one"
-            android:icon="@drawable/ic_drafts_black_24dp"
-            android:title="Item 1" />
+            android:icon="@drawable/baseline_account_circle_24"
+            android:title="Người dùng" />
         <item android:id="@+id/nav_item_two"
-            android:icon="@drawable/ic_drafts_black_24dp"
-            android:title="Item 2" />
+            android:icon="@drawable/baseline_directions_car_24"
+            android:title="Xe" />
         <item android:id="@+id/nav_item_three"
-            android:icon="@drawable/ic_drafts_black_24dp"
-            android:title="Item 3" />
+            android:icon="@drawable/baseline_exit_to_app_24"
+            android:title="Đơn hàng" />
     </group>
-
-    <group android:id="@+id/group_menu">
-        <item android:id="@+id/nav_item_four"
-            android:title="Item 4" />
-        <item android:id="@+id/nav_item_five"
-            android:title="Item 5" />
-    </group>
-
-    <item android:title="Title 1">
-        <menu>
-            <item android:id="@+id/nav_item_six"
-                android:icon="@drawable/ic_drafts_black_24dp"
-                android:title="Item 6" />
-            <item android:id="@+id/nav_item_seven"
-                android:icon="@drawable/ic_drafts_black_24dp"
-                android:title="Item 7" />
-        </menu>
-    </item>
 </menu>
