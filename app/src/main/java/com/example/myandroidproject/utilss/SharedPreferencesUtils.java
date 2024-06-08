@@ -1,7 +1,5 @@
 package com.example.myandroidproject.utilss;
 
-import static java.security.AccessController.getContext;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 

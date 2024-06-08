@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_home_graph"
     app:startDestination="@id/home">
-
     <fragment
         android:id="@+id/home"
         android:name="com.example.myandroidproject.customer.fragments.HomeFragment"
@@ -25,10 +24,8 @@
         android:label="fragment_nav_home"
         tools:layout="@layout/fragment_support">
     </fragment>
-
     <action android:id="@+id/action_global_home" app:destination="@id/home" />
     <action android:id="@+id/in4_personal" app:destination="@id/in4" />
     <action android:id="@+id/action_global_support_fragment" app:destination="@id/support_fragment" />
-
 
 </navigation>

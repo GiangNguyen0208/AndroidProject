@@ -130,31 +130,16 @@ public class DetailItemActivity extends AppCompatActivity {
     private void getAddToJourney(Integer id) {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = Constraint.URL_ADD_TO_JOURNEY + String.valueOf(id);
-
-
-        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST,
                 url,
                 null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        JSONObject jsonBody = new JSONObject();
-                        try {
-                            jsonBody.put("name", nameCar.getText().toString());
-                            jsonBody.put("price", priceDiscount.getText().toString());
-                            jsonBody.put("rentalDate", rentalDate.getText().toString());
-                            jsonBody.put("returnDate", returnDate.getText().toString());
-                            jsonBody.put("image", vehicleView.getImageLink());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            return;
-                        }
-                        Intent intent = new Intent(DetailItemActivity.this, YourJourneyActivity.class);
-                        intent.putExtra(Constraint.CART_ITEM, jsonBody.toString());
+                        Intent intent = new Intent(DetailItemActivity.this, HomeActivity.class);
                         startActivity(intent);
                         Toast.makeText(DetailItemActivity.this, "Add success !!!", Toast.LENGTH_SHORT).show();
-                            // Use itemList to update UI (e.g., RecyclerView Adapter)
                     }
                 },
                 new Response.ErrorListener() {
@@ -163,17 +148,16 @@ public class DetailItemActivity extends AppCompatActivity {
                         Toast.makeText(DetailItemActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
-        ){
+        ) {
             @Nullable
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("id",id+"");
-                return params;
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                return headers;
             }
         };
-        // Add the request to the RequestQueue
-        queue.add(jsonArrayRequest);
+        queue.add(jsonObjectRequest);
     }
 
     private void getDetailCallAPI(Integer id) {
@@ -189,34 +173,34 @@ public class DetailItemActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                                int carID = response.getInt("id");
-                                String name = response.getString("name");
-                                String brand = response.getString("brand");
-                                double price = Double.parseDouble(response.getString("price"));
-                                String imageLink = response.getString("image");
-                                String type = response.getString("type");
-                                String color = response.getString("color");
-                                Date rental = formatter.parse(response.getString("rentalDate"));
-                                Date returnDate = formatter.parse(response.getString("returnDate"));
-                                String desc = response.getString("desc");
-                                double discount = Double.parseDouble(response.getString("discount"));
-                                double priceDiscount = price*(1-discount);
-                                vehicleView = Vehicle.builder()
-                                        .id(carID)
-                                        .color(color)
-                                        .type(type)
-                                        .discount(discount)
-                                        .priceDiscount(priceDiscount)
-                                        .nameVehicle(name)
-                                        .brandVehicle(brand)
-                                        .imageLink(imageLink)
-                                        .price(price)
-                                        .description(desc)
-                                        .rentalDate(rental)
-                                        .returnDate(returnDate)
-                                        .build();
-                                Toast.makeText(DetailItemActivity.this, "Describe Detail", Toast.LENGTH_SHORT).show();
-                        // Use itemList to update UI (e.g., RecyclerView Adapter)
+                            int carID = response.getInt("id");
+                            String name = response.getString("name");
+                            String brand = response.getString("brand");
+                            double price = Double.parseDouble(response.getString("price"));
+                            String imageLink = response.getString("image");
+                            String type = response.getString("type");
+                            String color = response.getString("color");
+                            Date rental = formatter.parse(response.getString("rentalDate"));
+                            Date returnDate = formatter.parse(response.getString("returnDate"));
+                            String desc = response.getString("desc");
+                            double discount = Double.parseDouble(response.getString("discount"));
+                            double priceDiscount = price*(1-discount);
+                            vehicleView = Vehicle.builder()
+                                    .id(carID)
+                                    .color(color)
+                                    .type(type)
+                                    .discount(discount)
+                                    .priceDiscount(priceDiscount)
+                                    .nameVehicle(name)
+                                    .brandVehicle(brand)
+                                    .imageLink(imageLink)
+                                    .price(price)
+                                    .description(desc)
+                                    .rentalDate(rental)
+                                    .returnDate(returnDate)
+                                    .build();
+                            Toast.makeText(DetailItemActivity.this, "Describe Detail", Toast.LENGTH_SHORT).show();
+                            // Use itemList to update UI (e.g., RecyclerView Adapter)
                             getDetailVehicle();
                             detailVehicleAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {

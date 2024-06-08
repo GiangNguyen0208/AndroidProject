@@ -2,7 +2,6 @@ package com.example.myandroidproject.customer.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.models.Vehicle;
-import com.example.myandroidproject.utilss.Constraint;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

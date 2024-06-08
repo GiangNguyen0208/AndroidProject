@@ -9,8 +9,6 @@
     android:paddingRight="0dp"
     android:background="@color/White">
 
-
-
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"

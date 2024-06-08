@@ -1,24 +1,30 @@
 package com.example.myandroidproject.customer.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.adapters.YourJourneyAdapter;
 import com.example.myandroidproject.models.CartItem;
+import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
 import com.google.android.material.color.utilities.Contrast;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,46 +36,74 @@ import java.util.List;
 
 public class YourJourneyActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private YourJourneyAdapter yourJourneyAdapter;
-    private List<CartItem> cartItems;
+    private YourJourneyAdapter adapter;
+    private List<CartItem> cartItems = new ArrayList<>();
+    Button btn_ConfirmPay;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_your_journey);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-        recyclerView = findViewById(R.id.listViewVehicle);
+        recyclerView = findViewById(R.id.listCartItem);
+        adapter = new YourJourneyAdapter(cartItems, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        cartItems = new ArrayList<>();
+        recyclerView.setAdapter(adapter);
+        getListCart();
+    }
+    private void getListCart() {
+        RequestQueue queue = Volley.newRequestQueue(YourJourneyActivity.this);
+        String url = Constraint.URL_CART_ITEM;
 
-        Intent intent = getIntent();
-        String jsonString = intent.getStringExtra(Constraint.CART_ITEM);
-
-        JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
-        SimpleDateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd");
-
-        Date rentalDate = null;
-        Date returnDate = null;
-        try {
-            rentalDate = formatterDate.parse(jsonObject.get("rentalDate").getAsString());
-            returnDate = formatterDate.parse(jsonObject.get("returnDate").getAsString());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        CartItem cartItem = CartItem.builder()
-                .nameItem(jsonObject.get("name").getAsString())
-                .price(jsonObject.get("price").getAsDouble())
-                .imageLink(jsonObject.get("image").getAsString())
-                .rentalDate(rentalDate)
-                .returnDate(returnDate)
-                .build();
-        cartItems.add(cartItem);
-
-        yourJourneyAdapter = new YourJourneyAdapter(cartItems, this);
-        recyclerView.setAdapter(yourJourneyAdapter);
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                System.out.println(response.length());
+                                SimpleDateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd");
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                int id = jsonObject.getInt("id");
+                                int idVehicle = jsonObject.getInt("vehicleid");
+                                String name = jsonObject.getString("nameVehicle");
+                                double price = Double.parseDouble(jsonObject.getString("price"));
+                                String imageLink = jsonObject.getString("imageLink");
+                                Date rentalDate = formatterDate.parse(jsonObject.getString("rentalDate"));
+                                Date returnDate = formatterDate.parse(jsonObject.getString("returnDate"));
+                                CartItem cartItem = CartItem.builder()
+                                        .id(id)
+                                        .idVehicle(id)
+                                        .nameItem(name)
+                                        .imageLink(imageLink)
+                                        .price(price)
+                                        .returnDate(returnDate)
+                                        .rentalDate(rentalDate)
+                                        .build();
+                                cartItems.add(cartItem);
+                            }
+                            adapter.notifyDataSetChanged();
+                            // Use itemList to update UI (e.g., RecyclerView Adapter)
+                            Toast.makeText(YourJourneyActivity.this, "Show !!!", Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(YourJourneyActivity.this, "Parsing error", Toast.LENGTH_SHORT).show();
+                        } catch (ParseException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(YourJourneyActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+        // Add the request to the RequestQueue
+        queue.add(jsonArrayRequest);
     }
 }
