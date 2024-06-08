@@ -52,6 +52,8 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.media3.common)
+    implementation(libs.legacy.support.v4)
+    implementation(libs.recyclerview)
 
     androidTestImplementation(libs.espresso.core)
 

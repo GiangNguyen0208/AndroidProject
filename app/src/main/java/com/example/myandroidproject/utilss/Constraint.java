@@ -7,6 +7,7 @@ public class Constraint {
     public static final String URL_SIGN_IN = URL + "/api/v1/user/signin";
     public static final String URL_SIGN_UP = URL + "/api/v1/user/register";
     public static final String URL_ADD_TO_JOURNEY = URL + "/api/v1/rental/add?id=";
+    public static final String URL_USER_LIST = URL + "/api/v1/admin/getAllUser";
 
 
 
