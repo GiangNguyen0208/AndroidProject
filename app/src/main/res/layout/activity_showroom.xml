@@ -37,28 +37,49 @@
                         android:iconifiedByDefault="false"
                         android:layoutDirection="ltr"
                         android:orientation="horizontal"
-                        android:queryHint="Tìm kiếm ở đây..." />
+                        android:queryHint="Tìm kiếm ở đây..."
+                        tools:ignore="MissingConstraints" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
 
-                    <!--                    <TextView-->
-                    <!--                        android:id="@+id/title"-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:text="Showroom"-->
-                    <!--                        android:textSize="25sp"-->
-                    <!--                        android:textStyle="bold"-->
-                    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--                        app:layout_constraintHorizontal_bias="0.498"-->
-                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                        app:layout_constraintTop_toTopOf="parent"-->
-                    <!--                        app:layout_constraintVertical_bias="0.17" />-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
 
-                    <!--                    <ImageView-->
-                    <!--                        android:id="@+id/home_evt"-->
-                    <!--                        android:layout_width="31dp"-->
-                    <!--                        android:layout_height="32dp"-->
-                    <!--                        android:src="@tools:sample/avatars"-->
-                    <!--                        app:srcCompat="@drawable/baseline_home_24" />-->
+
+                        <TextView
+                            android:id="@+id/findByCar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_weight="1"
+                            android:background="#C5B578"
+                            android:padding="5dp"
+                            android:text="Xe oto"
+                            android:textStyle="bold"
+                            android:textColor="@color/White"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:id="@+id/findByMotor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_weight="1"
+                            android:background="#C5B578"
+                            android:padding="5dp"
+                            android:text="Xe máy"
+                            android:textStyle="bold"
+                            android:textColor="@color/White"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout

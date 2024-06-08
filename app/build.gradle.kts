@@ -42,12 +42,14 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
-    implementation(libs.car.ui.lib)
+//    implementation(libs.car.ui.lib)
 
     androidTestImplementation(libs.espresso.core)
 
     implementation("com.airbnb.android:lottie:6.4.0")
     implementation("com.android.volley:volley:1.2.1")
+    implementation("com.google.code.gson:gson:2.8.6")
+    implementation("com.google.code.gson:gson:2.8.6")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     compileOnly("org.projectlombok:lombok:1.18.32")
     annotationProcessor("org.projectlombok:lombok:1.18.32")

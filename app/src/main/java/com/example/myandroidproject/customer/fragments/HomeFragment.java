@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -25,7 +24,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.activities.ShowroomActivity;
-import com.example.myandroidproject.customer.activities.SignUpActivity;
+import com.example.myandroidproject.customer.activities.YourJourneyActivity;
 import com.example.myandroidproject.customer.adapters.ListVehicleAdapter;
 import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
@@ -52,7 +51,7 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private TextView goto_showroom;
+    private TextView goto_showroom, goto_gara;
 
     RecyclerView recyclerViewHome;
     List<Vehicle> vehicleList = new ArrayList<>();
@@ -101,19 +100,14 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-
         goto_showroom = this.getActivity().findViewById(R.id.goto_showroom);
+        goto_gara = this.getActivity().findViewById(R.id.gara);
         goto_showroom.setOnClickListener(v -> {
             startActivity(new Intent(v.getContext(), ShowroomActivity.class));
         });
-//        cardView = view.findViewById(R.id.searchView);
-//        recyclerViewHome = view.findViewById(R.id.listViewVehicleInHome);
-//        listVehicleAdapter = new ListVehicleAdapter(vehicleList, getContext());
-//        recyclerViewHome.setLayoutManager(new LinearLayoutManager(getContext()));
-//        recyclerViewHome.setAdapter(listVehicleAdapter);
-//        getListVehicle();
+        goto_gara.setOnClickListener(v -> {
+            startActivity(new Intent(v.getContext(), YourJourneyActivity.class));
+        });
     }
     private void getListVehicle() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
