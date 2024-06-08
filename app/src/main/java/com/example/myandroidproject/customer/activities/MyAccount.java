@@ -27,7 +27,7 @@ import java.util.Date;
 
 public class MyAccount extends AppCompatActivity {
 
-    private EditText firstname, lastname, phone, email, birthday, password;
+    private EditText firstname, lastname, phone, email, birthday;//, password;
     private RadioGroup gender;
 
     @Override
@@ -39,7 +39,7 @@ public class MyAccount extends AppCompatActivity {
         lastname = findViewById(R.id.etLastname);
         phone = findViewById(R.id.etPhone);
         email = findViewById(R.id.etEmail);
-        password = findViewById(R.id.etPassword);
+//        password = findViewById(R.id.etPassword);
         birthday = findViewById(R.id.etBirthday);
         gender = findViewById(R.id.radioGenderGroup);
         Button btnSave = findViewById(R.id.btnSave);
@@ -69,7 +69,7 @@ public class MyAccount extends AppCompatActivity {
     }
 
     private String convertDateFormatToServer(String dateStr) {
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat myFormat = new SimpleDateFormat("YYYY-MM-DD");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
         @SuppressLint("SimpleDateFormat") SimpleDateFormat fromUser = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date date = fromUser.parse(dateStr);
@@ -108,7 +108,7 @@ public class MyAccount extends AppCompatActivity {
                         firstname.setText(user.optString("firstname", ""));
                         lastname.setText(user.optString("lastname", ""));
                         email.setText(user.optString("email", ""));
-                        password.setText(user.optString("password", ""));
+//                        password.setText(user.optString("password", ""));
                         phone.setText(user.optString("phone", ""));
                         boolean isMale = user.optBoolean("gender", true);
                         if (isMale) {
@@ -143,9 +143,9 @@ public class MyAccount extends AppCompatActivity {
             if (!email.getText().toString().isEmpty()) {
                 user.put("email", email.getText().toString());
             }
-            if (!password.getText().toString().isEmpty()) {
-                user.put("password", password.getText().toString());
-            }
+//            if (!password.getText().toString().isEmpty()) {
+//                user.put("password", password.getText().toString());
+//            }
             if (!phone.getText().toString().isEmpty()) {
                 user.put("phone", phone.getText().toString());
             }

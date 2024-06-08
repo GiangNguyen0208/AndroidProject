@@ -31,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         TextView goBackLogin = findViewById(R.id.go_back_login);
+
         goBackLogin.setOnClickListener(v -> {
             startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
             finish();
@@ -110,7 +111,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void registerUser() {
         RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
-        String url = Constraint.URL_SIGN_UP + "/api/v1/user/register";
+        String url = Constraint.URL_SIGN_UP;
 
         JSONObject jsonBody = new JSONObject();
         try {

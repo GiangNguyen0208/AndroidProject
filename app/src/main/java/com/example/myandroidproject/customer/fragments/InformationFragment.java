@@ -19,6 +19,7 @@ import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.activities.MyAccount;
 import com.example.myandroidproject.customer.activities.MyLicense;
 import com.example.myandroidproject.customer.activities.VoucherCustomer;
+import com.example.myandroidproject.utilss.SharedPreferencesUtils;
 
 public class InformationFragment extends Fragment {
 
@@ -43,7 +44,6 @@ public class InformationFragment extends Fragment {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
-
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
         getActivity().finish();
