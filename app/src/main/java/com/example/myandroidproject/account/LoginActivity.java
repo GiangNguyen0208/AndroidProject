@@ -1,4 +1,4 @@
-package com.example.myandroidproject.account;
+package com.example.myandroidproject;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,13 +17,13 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.myandroidproject.R;
 import com.example.myandroidproject.admin.activities.AdminActivity;
 import com.example.myandroidproject.customer.activities.HomeActivity;
+import com.example.myandroidproject.customer.fragments.NotifyFragment;
 import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.shipper.activites.ShipperActivity;
-import com.example.myandroidproject.utils.Constraint;
-import com.example.myandroidproject.utils.SharedPreferencesUtils;
+import com.example.myandroidproject.utilss.Constraint;
+import com.example.myandroidproject.utilss.SharedPreferencesUtils;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
@@ -59,7 +59,6 @@ public class LoginActivity extends AppCompatActivity {
             if (validateLoginForm()) {
                 performLogin();
             }
-//            startActivity(new Intent(this, HomeActivity.class));
         });
     }
 
@@ -87,8 +86,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void performLogin() {
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-        String url = "http://" + Constraint.URL_BE + ":" + Constraint.PORT_BE + "/api/v1/user/signin";
-//            String url = Constraint.URL_SIGN_IN;
+        String url = Constraint.URL_SIGN_IN;
         System.out.println(url);
         JSONObject jsonBody = new JSONObject();
         try {
@@ -114,7 +112,6 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putInt("id", idUser);
                             editor.apply();
 
-                            // Login success and save cache
                             SharedPreferencesUtils.add(SharedPreferencesUtils.STATE_LOGIN, "TRUE", this);
                             if (role.equals("admin")) {
                                 startActivity(new Intent(LoginActivity.this, AdminActivity.class));
@@ -126,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             finish();
                         } else {
-                            Toast.makeText(LoginActivity.this, "Login failed. Please try again. No roles Founded", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Login failed. Please try again.", Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

@@ -1,4 +1,4 @@
-package com.example.myandroidproject.account;
+package com.example.myandroidproject;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.myandroidproject.R;
 import com.example.myandroidproject.helpers.StringHelper;
-import com.example.myandroidproject.utils.Constraint;
+import com.example.myandroidproject.utilss.Constraint;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -43,7 +42,6 @@ public class SignUpActivity extends AppCompatActivity {
         password = findViewById(R.id.password_Sign_Up);
         passwordConfirm = findViewById(R.id.password_Sign_Up_Confirm);
 
-        // Hook Sign Up Button
         MaterialButton signUpButton = findViewById(R.id.sign_Up);
 
         signUpButton.setOnClickListener(v -> processFormFields());
@@ -112,7 +110,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void registerUser() {
         RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
-        String url = Constraint.URL_BE + ":" + Constraint.PORT_BE  + "/api/v1/user/register";
+        String url = Constraint.URL_SIGN_UP + "/api/v1/user/register";
 
         JSONObject jsonBody = new JSONObject();
         try {
@@ -136,8 +134,7 @@ public class SignUpActivity extends AppCompatActivity {
                     startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                     finish();
                 },
-                error -> Toast.makeText(SignUpActivity.this, "Đăng ký thất bại !!!", Toast.LENGTH_SHORT).show())
-        {
+                error -> Toast.makeText(SignUpActivity.this, "Đăng ký thất bại !!!", Toast.LENGTH_SHORT).show()) {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();

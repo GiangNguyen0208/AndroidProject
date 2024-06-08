@@ -10,12 +10,17 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myandroidproject.R;
 
-public class DetailsCar extends AppCompatActivity {
+public class VoucherCustomer extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_detail_item);
+        setContentView(R.layout.activity_voucher_customer);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
     }
 }

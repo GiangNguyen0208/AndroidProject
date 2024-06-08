@@ -5,13 +5,13 @@
 
     <uses-permission
         android:name="android.permission.INTERNET"
-        tools:ignore="ManifestOrder" />
+        tools:ignore="ManifestOrder"/>
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
 
     <application
         android:allowBackup="true"
@@ -24,6 +24,19 @@
         android:theme="@style/Theme.MyAndroidProject"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+        <activity
+            android:name=".customer.activities.MyLicense"
+            android:exported="false" />
+        <activity
+            android:name=".customer.activities.VoucherCustomer"
+            android:exported="false" />
+        <activity
+            android:name=".customer.activities.YourJourneyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".customer.activities.ConfirmDateActivity"
+            android:exported="false" />
         <activity
             android:name=".AdminHeaderMainActivity"
             android:exported="false" />

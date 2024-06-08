@@ -58,19 +58,17 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.activity.compose)
-    implementation(platform(libs.compose.bom))
-    implementation(libs.ui)
-    implementation(libs.ui.graphics)
-    implementation(libs.ui.tooling.preview)
-    implementation(libs.material3)
-//    implementation(libs.car.ui.lib)
+    implementation(libs.media3.common)
 
     androidTestImplementation(libs.espresso.core)
 
+    //GET img from server
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
+    //noinspection UseTomlInstead
     implementation("com.airbnb.android:lottie:6.4.0")
     implementation("com.android.volley:volley:1.2.1")
+    implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
@@ -78,7 +76,6 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.32")
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
-
 
 //    implementation ("com.squareup.okhttp:okhttp:2.7.2")
 //    implementation ("com.squareup.retrofit2:retrofit:2.4.0")
