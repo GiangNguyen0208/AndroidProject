@@ -1,6 +1,9 @@
 package com.example.myandroidproject.shipper.activites;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +24,11 @@ public class ShipperActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+        Button showMap = findViewById(R.id.showMap);
+        showMap.setOnClickListener(v -> {
+            Intent intent = new Intent(ShipperActivity.this, MapsActivityShipper.class);
+            startActivity(intent);
         });
     }
 }

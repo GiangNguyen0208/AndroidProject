@@ -35,9 +35,18 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
         this.mErrorListener = errorListener;
     }
 
+    public VolleyMultipartRequest(int method, String url, Map<String, String> headers,
+                                  Response.Listener<NetworkResponse> listener,
+                                  Response.ErrorListener errorListener) {
+        super(method, url, errorListener);
+        this.mListener = listener;
+        this.mErrorListener = errorListener;
+        this.mHeaders = headers;
+    }
+
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
-        return (mHeaders != null) ? mHeaders : super.getHeaders();
+        return mHeaders != null ? mHeaders : super.getHeaders();
     }
 
     @Override

@@ -2,13 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:targetSandboxVersion="1">
-    <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
-
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -21,12 +24,23 @@
         android:theme="@style/Theme.MyAndroidProject"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyA-L7S1M_iM0IswnbICO9F8WpiR2V_fwSE" />
 
+        <activity
+            android:name=".shipper.activites.MapsActivityShipper"
+            android:exported="false"
+            android:label="@string/title_activity_maps_shipper" />
         <activity
             android:name=".customer.activities.MyLicense"
             android:exported="false" />
         <activity
-            android:name=".customer.activities.VoucherCustomer"
+            android:name=".shipper.activites.ShipperActivity"
+            android:exported="false" />
+        <activity
+            android:name=".customer.activities.ChangesPass"
             android:exported="false" />
         <activity
             android:name=".customer.activities.YourJourneyActivity"
@@ -61,6 +75,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
     </application>
 
 </manifest>
