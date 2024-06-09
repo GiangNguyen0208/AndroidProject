@@ -9,13 +9,26 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class CartItem {
-    private Integer id, idVehicle, rental_day;
-    private String nameItem, imageLink;
+@NoArgsConstructor
+public class OrderItem {
+    private Integer id;
+
+    private Integer vehicleid;
+
+    private String nameVehicle;
+
+    private String brandVehicle;
+
+    private String imageLink;
+
     private double price;
-    private Date rentalDate, returnDate;
+
+    private Date rentalDate;
+
+    private Date returnDate;
+
+    private int rental_day;
 
     private String address;
 
