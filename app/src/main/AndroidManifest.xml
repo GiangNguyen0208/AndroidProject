@@ -5,12 +5,14 @@
 
     <uses-permission
         android:name="android.permission.INTERNET"
-        tools:ignore="ManifestOrder"/>
+        tools:ignore="ManifestOrder" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
 
     <application
@@ -26,6 +28,9 @@
         tools:targetApi="31">
 
         <activity
+            android:name=".customer.fragments.ShowroomSearchFragment"
+            android:exported="true" />
+        <activity
             android:name=".customer.activities.MyLicense"
             android:exported="false" />
         <activity
@@ -35,26 +40,14 @@
             android:name=".customer.activities.YourJourneyActivity"
             android:exported="false" />
         <activity
-            android:name=".customer.activities.ConfirmDateActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AdminHeaderMainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AdminAppbarMainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AdminBarMainActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MyAndroidProject" />
-        <activity
             android:name=".SearchActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
         <activity
             android:name=".customer.activities.DetailItemActivity"
@@ -64,9 +57,6 @@
             android:exported="true" />
         <activity
             android:name=".admin.activities.AdminActivity"
-            android:exported="true" />
-        <activity
-            android:name=".customer.activities.DetailsCar"
             android:exported="true" />
         <activity
             android:name=".customer.fragments.SupportFragment"
@@ -83,12 +73,13 @@
         <activity
             android:name=".shipper.activites.ShipperActivity"
             android:exported="true" />
+
+
         <activity
             android:name=".MainAppActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

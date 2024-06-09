@@ -32,8 +32,8 @@
                 app:layout_constraintVertical_weight="1" />
 
             <Button
-                android:id="@+id/searchView"
-                style="?attr/materialButtonOutlinedStyle"
+                android:id="@+id/searchBtn"
+                style="@style/PrimaryOutlineButton"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:drawableLeft="@drawable/baseline_search_24"
@@ -42,9 +42,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView9"
-                app:layout_constraintTop_toTopOf="parent"
-                app:rippleColor="@color/notYellow"
-                app:strokeColor="@color/notYellow" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,28 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/home"
-        android:title="Trang chủ" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-
-    <group android:checkableBehavior="single">
+    <group>
         <item
-            android:id="@+id/nav_item_one"
-            android:checked="true"
-            android:icon="@drawable/baseline_account_circle_24"
-            android:title="Người dùng" />
-        <item
-            android:id="@+id/nav_item_two"
-            android:icon="@drawable/baseline_directions_car_24"
-            android:title="Xe" />
-        <item
-            android:id="@+id/nav_item_three"
-            android:icon="@drawable/baseline_exit_to_app_24"
-            android:title="Đơn hàng" />
+            android:id="@+id/customer_home"
+            android:icon="@drawable/baseline_home_24"
+            android:title="Trang chủ" />
     </group>
 
-    <item
-        android:id="@+id/logout"
-        android:icon="@drawable/baseline_exit_to_app_24"
-        android:title="Đăng xuất"/>
+
+    <item android:title="Quản lí">
+
+        <menu>
+            <item
+                android:id="@+id/admin_user"
+                android:icon="@drawable/baseline_account_circle_24"
+                android:title="Người dùng"
+                />
+            <item
+                android:id="@+id/admin_vehicle"
+                android:icon="@drawable/baseline_directions_car_24"
+                android:title="Xe"
+                />
+            <item
+                android:id="@+id/admin_order"
+                android:icon="@drawable/baseline_receipt_24"
+                android:title="Đơn hàng" />
+
+        </menu>
+    </item>
+
+    <item android:title="Thao tác">
+        <menu>
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/baseline_exit_to_app_24"
+                android:title="Đăng xuất" />
+        </menu>
+
+    </item>
+
+
 </menu>

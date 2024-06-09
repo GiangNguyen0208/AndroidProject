@@ -1,6 +1,5 @@
 package com.example.myandroidproject.admin.activities;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,7 +7,6 @@ import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.DialogFragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -57,9 +55,9 @@ public class AdminActivity extends AppCompatActivity {
         NavigationView nv = findViewById(R.id.nav_view);
         nv.setNavigationItemSelectedListener((item) -> {
             drawer.closeDrawer(findViewById(R.id.nav_view), true);
-            if (item.getItemId() == R.id.nav_item_one)
+            if (item.getItemId() == R.id.admin_user)
                 navController.navigate(R.id.action_admin_user);
-            else if (item.getItemId() == R.id.nav_item_two)
+            else if (item.getItemId() == R.id.admin_vehicle)
                 navController.navigate(R.id.action_admin_vehicle);
             else if (item.getItemId() == R.id.logout) {
                 new LogoutDialog(this).show();

@@ -1,13 +1,19 @@
-package com.example.myandroidproject.customer.activities;
+package com.example.myandroidproject.customer.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,8 +35,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class ShowroomActivity extends AppCompatActivity {
+public class ShowroomSearchFragment extends Fragment {
 
     RecyclerView listViewVehicle;
     List<Vehicle> vehicleList = new ArrayList<>();
@@ -39,20 +46,25 @@ public class ShowroomActivity extends AppCompatActivity {
     SearchView searchView;
 
     TextView findByCar, findByMotor;
-    @SuppressLint("MissingInflatedId")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.fragment_showroom);
-        listViewVehicle = findViewById(R.id.recommended_container);
-        setContentView(R.layout.activity_showroom);
-        findByCar = findViewById(R.id.findByCar);
-        findByMotor = findViewById(R.id.findByMotor);
-        searchView = findViewById(R.id.searchBar);
-        listViewVehicle = findViewById(R.id.listViewVehicle);
-        listVehicleAdapter = new ListVehicleAdapter(vehicleList, this);
-        listViewVehicle.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_showroom, container,false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        findByCar = view.findViewById(R.id.findByCar);
+        findByMotor = view.findViewById(R.id.findByMotor);
+        searchView = view.findViewById(R.id.searchBar);
+        listViewVehicle = view.findViewById(R.id.listViewVehicle);
+        listVehicleAdapter = new ListVehicleAdapter(vehicleList, view.getContext());
+        listViewVehicle.setLayoutManager(new LinearLayoutManager(view.getContext()));
         listViewVehicle.setAdapter(listVehicleAdapter);
         findByCar.setOnClickListener(v -> {
             vehicleType = "car";
@@ -82,7 +94,7 @@ public class ShowroomActivity extends AppCompatActivity {
         vehicleList.clear(); // Clear the list before adding new items
         listVehicleAdapter.notifyDataSetChanged();
 
-        RequestQueue queue = Volley.newRequestQueue(ShowroomActivity.this);
+        RequestQueue queue = Volley.newRequestQueue(requireContext());
         String url = Constraint.URL_SEARCH_VEHICLE + query; // Assume URL_SEARCH_VEHICLE is your search endpoint
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
@@ -97,9 +109,9 @@ public class ShowroomActivity extends AppCompatActivity {
                                 JSONObject jsonObject = response.getJSONObject(i);
                                 int id = jsonObject.getInt("id");
                                 String name = jsonObject.getString("name");
-                                String brand = jsonObject.getString("brand");
+                                String brand = jsonObject.getString("brandName");
                                 double price = jsonObject.getDouble("price");
-                                String imageLink = jsonObject.getString("image");
+                                String imageLink = jsonObject.getString("imageUrl");
                                 Vehicle vehicle = Vehicle.builder()
                                         .id(id)
                                         .nameVehicle(name)
@@ -112,14 +124,14 @@ public class ShowroomActivity extends AppCompatActivity {
                             listVehicleAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(ShowroomActivity.this, "Parsing error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), "Parsing error", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(ShowroomActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
         );
@@ -130,7 +142,7 @@ public class ShowroomActivity extends AppCompatActivity {
         vehicleList.clear(); // Clear the list before adding new items
         listVehicleAdapter.notifyDataSetChanged();
 
-        RequestQueue queue = Volley.newRequestQueue(ShowroomActivity.this);
+        RequestQueue queue = Volley.newRequestQueue(requireContext());
         String url = Constraint.URL_FIND_BY_TYPE + vehicleType;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
@@ -145,9 +157,9 @@ public class ShowroomActivity extends AppCompatActivity {
                                 JSONObject jsonObject = response.getJSONObject(i);
                                 int id = jsonObject.getInt("id");
                                 String name = jsonObject.getString("name");
-                                String brand = jsonObject.getString("brand");
+                                String brand = jsonObject.getString("brandName");
                                 double price = jsonObject.getDouble("price");
-                                String imageLink = jsonObject.getString("image");
+                                String imageLink = jsonObject.getString("imageUrl");
                                 Vehicle vehicle = Vehicle.builder()
                                         .id(id)
                                         .nameVehicle(name)
@@ -160,14 +172,14 @@ public class ShowroomActivity extends AppCompatActivity {
                             listVehicleAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(ShowroomActivity.this, "Parsing error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), "Parsing error", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(ShowroomActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
         );
@@ -175,7 +187,7 @@ public class ShowroomActivity extends AppCompatActivity {
     }
 
     private void getListVehicle() {
-        RequestQueue queue = Volley.newRequestQueue(ShowroomActivity.this);
+        RequestQueue queue = Volley.newRequestQueue(requireContext());
         String url = Constraint.URL_VEHICLE_LIST;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
@@ -190,9 +202,9 @@ public class ShowroomActivity extends AppCompatActivity {
                                 JSONObject jsonObject = response.getJSONObject(i);
                                 int id = jsonObject.getInt("id");
                                 String name = jsonObject.getString("name");
-                                String brand = jsonObject.getString("brand");
-                                double price = Double.parseDouble(jsonObject.getString("price"));
-                                String imageLink = jsonObject.getString("image");
+                                String brand = jsonObject.getString("brandName");
+                                double price = jsonObject.getDouble("price");
+                                String imageLink = jsonObject.getString("imageUrl");
                                 Vehicle vehicle = Vehicle.builder()
                                         .id(id)
                                         .nameVehicle(name)
@@ -206,14 +218,14 @@ public class ShowroomActivity extends AppCompatActivity {
                             listVehicleAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(ShowroomActivity.this, "Parsing error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireContext(), "Parsing error", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(ShowroomActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
         );
