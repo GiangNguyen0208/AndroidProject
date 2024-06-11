@@ -3,24 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_admin_graph"
-    app:startDestination="@id/customer_home">
+    app:startDestination="@id/admin_user">
 
 
     <fragment
-        android:id="@+id/customer_home"
+        android:id="@+id/admin_user"
         android:name="com.example.myandroidproject.admin.fragment.AdminUserFragment"
         android:label="fragment_nav_home"
         tools:layout="@layout/fragment_admin_user" >
     </fragment>
 
     <fragment
-        android:id="@+id/vehicle"
+        android:id="@+id/admin_vehicle"
         android:name="com.example.myandroidproject.admin.fragment.AdminVehicleFragment"
         android:label="fragment_nav_home"
         tools:layout="@layout/fragment_admin_vehicle" >
     </fragment>
 
-    <action android:id="@+id/action_admin_user" app:destination="@id/customer_home" />
-    <action android:id="@+id/action_admin_vehicle" app:destination="@id/vehicle" />
+    <fragment
+        android:id="@+id/admin_order"
+        android:name="com.example.myandroidproject.admin.fragment.AdminOrderFragment"
+        android:label="fragment_admin_order"
+        tools:layout="@layout/fragment_admin_order" />
+
 
 </navigation>

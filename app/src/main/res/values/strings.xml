@@ -77,5 +77,6 @@
     <string name="ng_xu_t">Đăng xuất</string>
     <string name="search_hint">Tìm kiếm ở đây</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="user_keyword">Người dùng</string>
 
 </resources>

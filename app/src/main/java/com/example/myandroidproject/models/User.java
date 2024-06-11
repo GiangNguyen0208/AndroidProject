@@ -34,4 +34,6 @@ public class User {
 
     private String address;
 
+    private String imageURL;
+
 }

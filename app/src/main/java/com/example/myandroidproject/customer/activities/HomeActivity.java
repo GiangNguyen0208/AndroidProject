@@ -53,10 +53,4 @@ public class HomeActivity extends AppCompatActivity {
 //        NavController nc = Navigation.findNavController(findViewById(R.id.navbar_host));
         NavigationUI.setupWithNavController(bnv, nc);
     }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-//        NavController nc = Navigation.findNavController(findViewById(R.id.navbar_host));
-        return super.onSupportNavigateUp();
-    }
 }
