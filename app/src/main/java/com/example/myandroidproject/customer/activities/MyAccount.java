@@ -1,5 +1,6 @@
 package com.example.myandroidproject.customer.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
@@ -18,6 +19,8 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.example.myandroidproject.LoginActivity;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.utilss.Constraint;
 
