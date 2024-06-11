@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.activities.DetailItemActivity;
+import com.example.myandroidproject.customer.activities.PaymentActivity;
 import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
 

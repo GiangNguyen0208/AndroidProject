@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putString("role", role);
-                            editor.putInt("id", idUser);
+                            editor.putInt("id_user", idUser);
                             editor.apply();
                             // Login success and save cache
                             SharedPreferencesUtils.add(SharedPreferencesUtils.STATE_LOGIN, "TRUE", this);
@@ -119,7 +119,6 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, ShipperActivity.class));
                             } else {
                                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-
                             }
                             finish();
                         } else {

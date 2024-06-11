@@ -19,11 +19,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".customer.activities.YourJourneyActivity"
+            android:name=".customer.activities.PaymentActivity"
             android:exported="false" />
         <activity
-            android:name=".customer.activities.ConfirmDateActivity"
+            android:name=".PyamentActivity"
             android:exported="false" />
+        <activity
+            android:name=".customer.activities.YourJourneyActivity"
+            android:exported="true" />
         <activity
             android:name=".customer.activities.MyAccount"
             android:exported="false" />
