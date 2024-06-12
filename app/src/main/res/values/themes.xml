@@ -2,8 +2,14 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.MyAndroidProject" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<!--         <item name="colorPrimary">@color/notYellow</item> -->
+
     </style>
 
-    <style name="Theme.MyAndroidProject" parent="Base.Theme.MyAndroidProject" />
+    <style name="PrimaryOutlineButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="rippleColor">@color/notYellow</item>
+        <item name="strokeColor">@color/notYellow</item>
+    </style>
 </resources>

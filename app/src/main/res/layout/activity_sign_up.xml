@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/img"
-    tools:context=".LoginActivity">
+    tools:context=".account.LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="-30dp"
         android:alpha="0.2"
-        android:background="@color/xam" />
+        android:background="@color/xam"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
 
         <ImageView
             android:layout_width="368dp"
-            android:layout_height="71dp"
+            android:layout_height="144dp"
             android:importantForAccessibility="no"
             android:src="@drawable/logo_rental" />
 
