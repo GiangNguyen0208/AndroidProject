@@ -48,6 +48,7 @@ public class DetailItemActivity extends AppCompatActivity {
     ImageView back_evt;
     DetailVehicleAdapter detailVehicleAdapter;
     Button rentalButton;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,7 @@ public class DetailItemActivity extends AppCompatActivity {
             }
         });
         back_evt.setOnClickListener(v -> {
-            startActivity(new Intent(this, ShowroomSearchFragment.class));
+//            startActivity(new Intent(this, ShowroomSearchFragment.class));
             finish();
         });
         imageView = findViewById(R.id.imageVehicle);
@@ -92,7 +93,7 @@ public class DetailItemActivity extends AppCompatActivity {
         getDetailCallAPI(id);
 
         rentalButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, ShowroomSearchFragment.class));
+//            startActivity(new Intent(this, ShowroomSearchFragment.class));
             getAddToJourney(id);
             finish();
         });
@@ -117,9 +118,11 @@ public class DetailItemActivity extends AppCompatActivity {
             day.setText(String.valueOf(quantityRent));
         }
     }
+
     private String formatToPercentage(double discount) {
         return String.format("%.0f%%", discount * 100);
     }
+
     // Add Journey...
     private void getAddToJourney(Integer id) {
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -131,8 +134,8 @@ public class DetailItemActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Intent intent = new Intent(DetailItemActivity.this, HomeActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(DetailItemActivity.this, HomeActivity.class);
+//                        startActivity(intent);
                         Toast.makeText(DetailItemActivity.this, "Add success !!!", Toast.LENGTH_SHORT).show();
                     }
                 },
@@ -156,7 +159,7 @@ public class DetailItemActivity extends AppCompatActivity {
 
     private void getDetailCallAPI(Integer id) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = Constraint.URL_VEHICLE_DETAIL_BY_ID  + String.valueOf(id);
+        String url = Constraint.URL_VEHICLE_DETAIL_BY_ID + String.valueOf(id);
 
         JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -178,7 +181,7 @@ public class DetailItemActivity extends AppCompatActivity {
                             Date returnDate = formatter.parse(response.getString("returnDate"));
                             String desc = response.getString("desc");
                             double discount = Double.parseDouble(response.getString("discount"));
-                            double priceDiscount = price*(1-discount);
+                            double priceDiscount = price * (1 - discount);
                             vehicleView = Vehicle.builder()
                                     .id(carID)
                                     .color(color)
@@ -211,12 +214,12 @@ public class DetailItemActivity extends AppCompatActivity {
                         Toast.makeText(DetailItemActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
-        ){
+        ) {
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("id",id+"");
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", id + "");
                 return params;
             }
         };

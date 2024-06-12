@@ -46,7 +46,6 @@ public class ShowroomFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        System.out.println("Trigger2");
         super.onCreate(savedInstanceState);
     }
 
@@ -87,10 +86,11 @@ public class ShowroomFragment extends Fragment {
                             .id(obj.getInt("id"))
                             .nameVehicle(obj.getString("name"))
                             .price(obj.getDouble("price"))
-                            .imageLink(obj.getString("imageUrl"))
+                            .imageLink(obj.getString("image"))
                             .build();
                     vehiclesList.add(vehicle);
                 } catch (JSONException e) {
+                    System.err.println(e.getMessage());
                 }
             }
 

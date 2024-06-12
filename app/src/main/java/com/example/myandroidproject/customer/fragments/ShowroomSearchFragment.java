@@ -109,7 +109,7 @@ public class ShowroomSearchFragment extends Fragment {
                                 JSONObject jsonObject = response.getJSONObject(i);
                                 int id = jsonObject.getInt("id");
                                 String name = jsonObject.getString("name");
-                                String brand = jsonObject.getString("brandName");
+                                String brand = jsonObject.getString("brand");
                                 double price = jsonObject.getDouble("price");
                                 String imageLink = jsonObject.getString("imageUrl");
                                 Vehicle vehicle = Vehicle.builder()
@@ -204,7 +204,7 @@ public class ShowroomSearchFragment extends Fragment {
                                 String name = jsonObject.getString("name");
                                 String brand = jsonObject.getString("brandName");
                                 double price = jsonObject.getDouble("price");
-                                String imageLink = jsonObject.getString("imageUrl");
+                                String imageLink = jsonObject.getString("image");
                                 Vehicle vehicle = Vehicle.builder()
                                         .id(id)
                                         .nameVehicle(name)

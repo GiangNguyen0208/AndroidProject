@@ -37,7 +37,7 @@
             android:name=".customer.activities.VoucherCustomer"
             android:exported="false" />
         <activity
-            android:name=".customer.activities.YourJourneyActivity"
+            android:name=".customer.fragments.YourJourneyFragment"
             android:exported="false" />
         <activity
             android:name=".SearchActivity"

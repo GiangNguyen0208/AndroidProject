@@ -22,7 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.myandroidproject.customer.activities.YourJourneyActivity;
+import com.example.myandroidproject.customer.fragments.YourJourneyFragment;
 import com.example.myandroidproject.customer.adapters.ListVehicleAdapter;
 import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
@@ -104,7 +104,7 @@ public class CarCardFragment extends Fragment {
             startActivity(new Intent(v.getContext(), CarCardFragment.class));
         });
         goto_gara.setOnClickListener(v -> {
-            startActivity(new Intent(v.getContext(), YourJourneyActivity.class));
+            startActivity(new Intent(v.getContext(), YourJourneyFragment.class));
         });
     }
     private void getListVehicle() {

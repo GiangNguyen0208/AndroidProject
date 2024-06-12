@@ -39,17 +39,15 @@
     </fragment>
 
     <fragment
-        android:id="@+id/customer_trip"
-        android:name="com.example.myandroidproject.customer.fragments.NotifyFragment"
-        android:label="fragment_nav_home"
-        tools:layout="@layout/fragment_notify">
-    </fragment>
-
-    <fragment
         android:id="@+id/showroomActivity"
         android:name="com.example.myandroidproject.customer.fragments.ShowroomSearchFragment"
         android:label="activity_showroom"
         tools:layout="@layout/activity_showroom" />
+
+    <fragment
+        android:id="@+id/customer_trip"
+        android:name="com.example.myandroidproject.customer.fragments.YourJourneyFragment"
+        android:label="YourJourneyFragment" />
 
 
 </navigation>

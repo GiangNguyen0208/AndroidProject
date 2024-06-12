@@ -35,10 +35,8 @@ public class ListUserAdapter extends RecyclerView.Adapter<ListUserAdapter.UserVi
 
     public void onBindViewHolder(@NonNull UserViewer holder, int position) {
         User user = userList.get(position);
-//        Glide.with(context)
-//                .load(user.getImageURL())
-//                .into(holder.userImage);
         holder.userName.setText(user.getLastname().concat(" ").concat(user.getFirstname()));
+        holder.userInfo.setText("Quyền hạn: ".concat(user.getRoleName()));
     }
 
     public int getItemCount() {

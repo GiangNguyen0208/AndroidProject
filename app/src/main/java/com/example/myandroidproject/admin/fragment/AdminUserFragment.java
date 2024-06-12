@@ -40,13 +40,9 @@ public class AdminUserFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         getUserLists();
         return inflater.inflate(R.layout.fragment_admin_user, container, false);
     }
@@ -71,7 +67,8 @@ public class AdminUserFragment extends Fragment {
                     obj = response.getJSONObject(i);
                     User user = User.builder()
                             .firstname(obj.getString("firstname"))
-                            .lastname(obj.getString("lastname")).build();
+                            .lastname(obj.getString("lastname"))
+                            .roleName(obj.getString("roleName")).build();
                     users.add(user);
                 } catch (JSONException e) {
                     System.err.println(e.getMessage());
@@ -79,17 +76,18 @@ public class AdminUserFragment extends Fragment {
             }
 
             ListUserAdapter adapter = new ListUserAdapter(getContext(), users);
-            RecyclerView view = getView().findViewById(R.id.admin_user_container);
+            RecyclerView view = requireView().findViewById(R.id.admin_user_container);
             RecyclerView.LayoutManager mgr = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
             view.setAdapter(adapter);
             view.setLayoutManager(mgr);
+            requireView().findViewById(R.id.loadingPanel).setVisibility(View.GONE);
         };
     }
 
     private Response.ErrorListener onError() {
         return error -> {
             System.err.println(error.getMessage());
-            Toast.makeText(getContext(), "Error trying to show products", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error trying to show users", Toast.LENGTH_SHORT).show();
         };
     }
 }
