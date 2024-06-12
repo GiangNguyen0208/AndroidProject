@@ -74,7 +74,14 @@ public class MyLicense extends AppCompatActivity {
                     if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
                         Bitmap photo = (Bitmap) result.getData().getExtras().get("data");
                         licenseImg.setImageBitmap(photo);
-                        uploadBitmap(photo, userId);
+                        checkImageLicense(bitmap, userId, isSuccess -> {
+                            if (isSuccess) {
+                                uploadBitmap(bitmap, userId);
+                                Toast.makeText(MyLicense.this, "Xác Thực Thành Công !", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(MyLicense.this, "Đây Phải Là Bằng Lái Xe !!!", Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
                 });
 
@@ -178,7 +185,6 @@ public class MyLicense extends AppCompatActivity {
         String url = "https://api.fpt.ai/vision/dlr/vnm";
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, url,
                 response -> {
-                    // Code xử lý phản hồi từ máy chủ
                     try {
                         JSONObject obj = new JSONObject(new String(response.data));
                         int errorCode = obj.getInt("errorCode");

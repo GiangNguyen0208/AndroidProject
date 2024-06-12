@@ -27,7 +27,7 @@
         
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA-L7S1M_iM0IswnbICO9F8WpiR2V_fwSE" />
+            android:value="AIzaSyA-L7S1M_iM0IswnbICO9F8WpiR2V_fwSE"/>
 
         <activity
             android:name=".shipper.activites.MapsActivityShipper"
@@ -65,7 +65,7 @@
             android:exported="false" />
         <activity
             android:name=".customer.activities.DetailItemActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".MainAppActivity"
             android:exported="true">

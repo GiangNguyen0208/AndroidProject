@@ -19,6 +19,7 @@ import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.activities.MyAccount;
 import com.example.myandroidproject.customer.activities.MyLicense;
 import com.example.myandroidproject.customer.activities.ChangesPass;
+import com.example.myandroidproject.utilss.SharedPreferencesUtils;
 
 public class InformationFragment extends Fragment {
 
@@ -40,6 +41,7 @@ public class InformationFragment extends Fragment {
 
     private void logoutUser() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferencesUtils.add(SharedPreferencesUtils.STATE_LOGIN, "FALSE", getContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
