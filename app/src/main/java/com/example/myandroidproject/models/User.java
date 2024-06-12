@@ -1,51 +1,39 @@
 package com.example.myandroidproject.models;
 
+import java.util.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
-    String firstName, lastName, email, password;
+    private Integer id;
 
-    public User() {
-    }
-    public User(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-    }
+    private String username;
 
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
+    private String firstname;
 
-    public String getFirstName() {
-        return firstName;
-    }
+    private String lastname;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    private Boolean gender;
 
-    public String getLastName() {
-        return lastName;
-    }
+    private String phone;
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    private String email;
 
-    public String getEmail() {
-        return email;
-    }
+    private Date birthDay;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    private Boolean status;
 
-    public String getPassword() {
-        return password;
-    }
+    private String password;
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    private String address;
+
+    private String roleName;
+
 }

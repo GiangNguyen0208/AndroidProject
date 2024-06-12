@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.myandroidproject.LoginActivity;
+import com.example.myandroidproject.account.LoginActivity;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.activities.MyAccount;
 import com.example.myandroidproject.customer.activities.MyLicense;

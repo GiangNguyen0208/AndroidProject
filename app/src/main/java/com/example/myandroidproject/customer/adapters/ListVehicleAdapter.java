@@ -22,16 +22,19 @@ import java.util.List;
 public class ListVehicleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Vehicle> vehicleList;
     private Context context;
+
     public ListVehicleAdapter(List<Vehicle> vehicleList, Context context) {
         this.vehicleList = vehicleList;
         this.context = context;
     }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cardview_vehicle, parent, false);
         return new ListVehicleAdapter.ViewVehicleHolder(view);
     }
+
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Vehicle vehicle = vehicleList.get(position);
@@ -47,10 +50,14 @@ public class ListVehicleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             context.startActivity(intent);
         });
     }
+
     @Override
     public int getItemCount() {
         return vehicleList.size();
     }
+
+
+
     public class ViewVehicleHolder extends RecyclerView.ViewHolder {
         View viewDetail;
         TextView name;
@@ -61,8 +68,8 @@ public class ListVehicleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public ViewVehicleHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
-            brand = itemView.findViewById(R.id.QuantityDate);
-            price = itemView.findViewById(R.id.Quantity);
+            brand = itemView.findViewById(R.id.brand);
+            price = itemView.findViewById(R.id.price);
             imageView = itemView.findViewById(R.id.imageVehicle);
         }
     }

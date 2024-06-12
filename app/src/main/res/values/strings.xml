@@ -75,6 +75,9 @@
     <string name="qu_t_ng">Quà tặng</string>
     <string name="gi_y_ph_p_l_i_xe">Giấy phép lái xe</string>
     <string name="ng_xu_t">Đăng xuất</string>
+    <string name="search_hint">Tìm kiếm ở đây</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="user_keyword">Người dùng</string>
     <string name="i_m_t_kh_u">Đổi Mật Khẩu</string>
     <string name="title_activity_maps_shipper">MapsActivityShipper</string>
     <string name="title_activity_maps">Current Place Details</string>

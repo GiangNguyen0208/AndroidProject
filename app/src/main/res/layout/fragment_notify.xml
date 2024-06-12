@@ -8,7 +8,7 @@
     tools:context=".customer.fragments.NotifyFragment">
 
     <TextView
-        android:id="@+id/notify"
+        android:id="@+id/customer_notify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

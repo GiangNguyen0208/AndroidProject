@@ -16,11 +16,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    aaptOptions {
-        noCompress ("tflite")
-        noCompress ("lite")
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -32,11 +30,17 @@ android {
 
     buildFeatures{
         viewBinding = true
+        compose = true
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 
 }
@@ -56,6 +60,8 @@ dependencies {
     implementation(libs.navigation.ui)
     implementation(libs.media3.common)
     implementation (libs.play.services.maps)
+    implementation(libs.legacy.support.v4)
+    implementation(libs.recyclerview)
 
     androidTestImplementation(libs.espresso.core)
     implementation ("com.google.android.libraries.places:places:3.4.0")
@@ -67,13 +73,12 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.google.code.gson:gson:2.11.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+//    androidTestImplementation(libs.ui.test.junit4)
     compileOnly("org.projectlombok:lombok:1.18.32")
     annotationProcessor("org.projectlombok:lombok:1.18.32")
+//    debugImplementation(libs.ui.tooling)
+//    debugImplementation(libs.ui.test.manifest)
 
-
-    // load TF Lite
-//    implementation("org.tensorflow:tensorflow-lite:+")
-//    implementation("org.tensorflow:tensorflow-lite:0.0.0-nightly")
 //    implementation ("com.squareup.okhttp:okhttp:2.7.2")
 //    implementation ("com.squareup.retrofit2:retrofit:2.4.0")
 //    implementation ("com.squareup.retrofit2:converter-gson:2.3.0")
