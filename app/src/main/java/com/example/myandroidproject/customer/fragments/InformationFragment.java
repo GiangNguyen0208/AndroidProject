@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.example.myandroidproject.LoginActivity;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.activities.MyAccount;
-import com.example.myandroidproject.customer.activities.MyLicense;
+//import com.example.myandroidproject.customer.activities.MyLicense;
 import com.example.myandroidproject.customer.activities.VoucherCustomer;
 
 public class InformationFragment extends Fragment {
@@ -34,7 +34,7 @@ public class InformationFragment extends Fragment {
         myAcc.setOnClickListener(v1 -> startActivity(new Intent(v1.getContext(), MyAccount.class)));
         logout.setOnClickListener(v2 -> logoutUser());
         myGift.setOnClickListener(v3 -> startActivity(new Intent(v3.getContext(), VoucherCustomer.class)));
-        myLicense.setOnClickListener(v4 -> startActivity(new Intent(v4.getContext(), MyLicense.class)));
+//        myLicense.setOnClickListener(v4 -> startActivity(new Intent(v4.getContext(), MyLicense.class)));
         return v;
     }
 

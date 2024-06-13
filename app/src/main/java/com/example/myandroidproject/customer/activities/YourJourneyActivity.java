@@ -1,5 +1,6 @@
 package com.example.myandroidproject.customer.activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import com.example.myandroidproject.customer.adapters.YourJourneyAdapter;
 import com.example.myandroidproject.models.CartItem;
 import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
+import com.example.myandroidproject.utilss.SharedPreferencesUtils;
 import com.google.android.material.color.utilities.Contrast;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -39,6 +41,7 @@ public class YourJourneyActivity extends AppCompatActivity {
     private YourJourneyAdapter adapter;
     private List<CartItem> cartItems = new ArrayList<>();
     Button btn_ConfirmPay;
+    Integer userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +52,15 @@ public class YourJourneyActivity extends AppCompatActivity {
         adapter = new YourJourneyAdapter(cartItems, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        getListCart();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        userId = sharedPreferences.getInt("id_user", -1);
+
+        getListCart(userId);
     }
-    private void getListCart() {
+    private void getListCart(Integer userId) {
         RequestQueue queue = Volley.newRequestQueue(YourJourneyActivity.this);
-        String url = Constraint.URL_CART_ITEM;
+        String url = Constraint.URL_CART_ITEM + "?idUser" + "=" + String.valueOf(userId);
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,

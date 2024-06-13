@@ -84,12 +84,10 @@ public class PaymentActivity extends AppCompatActivity {
         buttonConfirm = findViewById(R.id.button_book_now);
         buttonSave = findViewById(R.id.save);
 
-//        idVehicle = getIntent().getIntExtra(Constraint.ID_VEHICLE, -1);   // Get id Vehicle.
+
 
         id = getIntent().getIntExtra(Constraint.ID_CART_ITEM, -1);   // Get id CartItem.
         getDetailCartItem(id);
-
-
 
         buttonSave.setOnClickListener(v -> {
             day = Integer.valueOf(dayRent.getText().toString()); // Lấy giá trị khi người dùng nhấn nút
@@ -106,8 +104,9 @@ public class PaymentActivity extends AppCompatActivity {
             String address = addressTxt.getText().toString();
             String rentalDay = rentalDate.getText().toString();
             String returnDay = returnDate.getText().toString();
-            double priceToPay = Double.parseDouble(totalPrice.getText().toString());
-            idVehicle = getIntent().getIntExtra(ID_VEHICLE, -1);
+            String priceToPay = totalPrice.getText().toString();
+
+            idVehicle = cartItem.getIdVehicle();
 
             SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
             userId = sharedPreferences.getInt("id_user", -1); // -1 là giá trị mặc định nếu không tìm thấy id_user
@@ -242,16 +241,26 @@ public class PaymentActivity extends AppCompatActivity {
         queue.add(jsonArrayRequest);
     }
 
-    private void paymentCartItem(Integer id, Integer day, String email, String phone, String address, String rentalDay, String returnDay, double price, Integer idVehicle, Integer userId) {
+    private void paymentCartItem(Integer id, Integer day, String email, String phone, String address, String rentalDay, String returnDay, String price, Integer idVehicle, Integer userId) {
+        if (!validationEmail()|| !validationPhone()|| !validationAddress()) {
+            return;
+        }
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = Constraint.URL_ADD_ORDER_ITEM;
         JSONObject paymentInfo = new JSONObject();
+
+        String cleanedStr = price.replace(" VNĐ", "");
+        // Loại bỏ dấu phân cách hàng nghìn
+        cleanedStr = cleanedStr.replace(".", "");
+        // Chuyển đổi chuỗi sang double
+        double amount = Double.parseDouble(cleanedStr);
+
         try {
             paymentInfo.put("id", id);
             paymentInfo.put("day", day);
             paymentInfo.put("email", email);
             paymentInfo.put("phone", phone);
-            paymentInfo.put("price", price);
+            paymentInfo.put("price", amount);
             paymentInfo.put("address", address);
             paymentInfo.put("userid", userId);
             paymentInfo.put("vehicleid", idVehicle);
@@ -266,7 +275,7 @@ public class PaymentActivity extends AppCompatActivity {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-//                            removeItemRegisterSuccess(id);
+                            removeItemRegisterSuccess(id);
                             // Chuyển người dùng về màn hình HomeActivity
                             gotoHomeShow();
                             Toast.makeText(PaymentActivity.this, "Payment successful", Toast.LENGTH_SHORT).show();
@@ -283,10 +292,41 @@ public class PaymentActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
     private void gotoHomeShow() {
         startActivity(new Intent(this, YourJourneyActivity.class));
+    }
+    public boolean validationEmail() {
+        String email = emaiTxt.getText().toString();
+        if (email.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public boolean validationPhone() {
+        String phone = phoneTxt.getText().toString();
+        if (phone.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public boolean validationAddress() {
+        String address = addressTxt.getText().toString();
+        if (address.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public int validateDayRent(int day) {
+        String dayString = dayRent.getText().toString();
+        if (dayString != null) {
+            return 1;
+        } else {
+            return day;
+        }
     }
 
     private void removeItemRegisterSuccess(Integer id) {
