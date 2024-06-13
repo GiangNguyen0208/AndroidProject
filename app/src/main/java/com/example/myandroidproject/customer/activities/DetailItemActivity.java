@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,12 +22,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.example.myandroidproject.LoginActivity;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.adapters.DetailVehicleAdapter;
 import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
-import com.example.myandroidproject.utilss.SharedPreferencesUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,7 +42,7 @@ public class DetailItemActivity extends AppCompatActivity {
     TextView nameCar, nameType, nameColor, description, discountValue, priceDiscount, brand, day;
     TextView price, rentalDate, returnDate;
     ImageView add, remove;
-    Integer id, userId;
+    Integer id;
     Integer quantityRent = 1;
     Vehicle vehicleView;
     ImageView back_evt;
@@ -96,26 +93,13 @@ public class DetailItemActivity extends AppCompatActivity {
         rentalDate = findViewById(R.id.rentalDay);
         returnDate = findViewById(R.id.returnDate);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        userId = sharedPreferences.getInt("id_user", -1); // -1 là giá trị mặc định nếu không tìm thấy id_user
-
-        if (userId == -1) {
-            // Xử lý khi không tìm thấy userId, có thể yêu cầu người dùng đăng nhập lại
-            Toast.makeText(this, "User ID không tồn tại. Vui lòng đăng nhập lại.", Toast.LENGTH_SHORT).show();
-            // Chuyển hướng tới LoginActivity hoặc xử lý khác
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-            return;
-        }
-
         id = getIntent().getIntExtra(ID_VEHICLE, 0);
         detailVehicleAdapter = new DetailVehicleAdapter(this, vehicleView);
         getDetailCallAPI(id);
 
         rentalButton.setOnClickListener(v -> {
             startActivity(new Intent(this, ShowroomActivity.class));
-            getAddToJourney(id, userId);
+            getAddToJourney(id);
             finish();
         });
     }
@@ -143,9 +127,9 @@ public class DetailItemActivity extends AppCompatActivity {
         return String.format("%.0f%%", discount * 100);
     }
     // Add Journey...
-    private void getAddToJourney(Integer id, Integer userId) {
+    private void getAddToJourney(Integer id) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = Constraint.URL_ADD_TO_JOURNEY + String.valueOf(id) + "&userId=" + String.valueOf(userId);
+        String url = Constraint.URL_ADD_TO_JOURNEY + String.valueOf(id);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST,
                 url,

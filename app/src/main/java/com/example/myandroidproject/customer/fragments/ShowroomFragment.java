@@ -1,5 +1,6 @@
 package com.example.myandroidproject.customer.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -23,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
+import com.example.myandroidproject.customer.activities.YourJourneyActivity;
 import com.example.myandroidproject.customer.adapter.VehicleAdapter;
 import com.example.myandroidproject.customer.adapters.ListVehicleAdapter;
 import com.example.myandroidproject.models.Vehicle;
@@ -60,8 +63,12 @@ public class ShowroomFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button searchBtn = view.findViewById(R.id.searchBtn);
+        TextView goto_gara = view.findViewById(R.id.gara);
+        goto_gara.setOnClickListener(v -> {
+            startActivity(new Intent(v.getContext(), YourJourneyActivity.class));
+        });
         searchBtn.setOnClickListener((v)->{
-            Navigation.findNavController(v).navigate(R.id.showroomActivity);
+            Navigation.findNavController(v).navigate(R.id.action_customer_home_to_showroomSearchFragment);
         });
     }
 
