@@ -69,6 +69,7 @@ public class AdminUserFragment extends Fragment {
                             .firstname(obj.getString("firstname"))
                             .lastname(obj.getString("lastname"))
                             .roleName(obj.getString("roleName")).build();
+
                     users.add(user);
                 } catch (JSONException e) {
                     System.err.println(e.getMessage());
