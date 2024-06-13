@@ -1,17 +1,11 @@
-package com.example.myandroidproject.customer.fragments;
+package com.example.myandroidproject.customer.activities;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +18,11 @@ import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.adapters.YourJourneyAdapter;
 import com.example.myandroidproject.models.CartItem;
+import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
+import com.google.android.material.color.utilities.Contrast;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,34 +34,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class YourJourneyFragment extends Fragment {
+public class YourJourneyActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private YourJourneyAdapter adapter;
     private List<CartItem> cartItems = new ArrayList<>();
     Button btn_ConfirmPay;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_your_journey, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.listCartItem);
-        adapter = new YourJourneyAdapter(cartItems, getContext());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_your_journey);
+        recyclerView = findViewById(R.id.listCartItem);
+        adapter = new YourJourneyAdapter(cartItems, this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         getListCart();
     }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
     private void getListCart() {
-        RequestQueue queue = Volley.newRequestQueue(requireContext());
+        RequestQueue queue = Volley.newRequestQueue(YourJourneyActivity.this);
         String url = Constraint.URL_CART_ITEM;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
@@ -98,10 +87,10 @@ public class YourJourneyFragment extends Fragment {
                             }
                             adapter.notifyDataSetChanged();
                             // Use itemList to update UI (e.g., RecyclerView Adapter)
-                            Toast.makeText(getContext(), "Show !!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(YourJourneyActivity.this, "Show !!!", Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(getContext(), "Parsing error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(YourJourneyActivity.this, "Parsing error", Toast.LENGTH_SHORT).show();
                         } catch (ParseException e) {
                             throw new RuntimeException(e);
                         }
@@ -110,7 +99,7 @@ public class YourJourneyFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(YourJourneyActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
         );

@@ -19,17 +19,49 @@
             android:layout_marginVertical="20dp"
             android:orientation="horizontal">
 
-            <ImageView
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView9"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:adjustViewBounds="true"-->
+<!--                android:scaleType="fitCenter"-->
+<!--                android:src="@drawable/logo_rental"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@id/searchBtn"-->
+<!--                app:layout_constraintVertical_weight="1" />-->
+
+            <LinearLayout
                 android:id="@+id/imageView9"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/logo_rental"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/searchBtn"
-                app:layout_constraintVertical_weight="1" />
+                app:layout_constraintEnd_toStartOf="@id/searchBtn">
+
+                <TextView
+                    android:id="@+id/gara"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/Green"
+                    android:text="YOUR-GARA"
+                    android:textColor="@color/White"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="4dp" />
+
+                <TextView
+                    android:id="@+id/quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/Black" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/searchBtn"

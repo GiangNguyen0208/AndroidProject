@@ -9,6 +9,7 @@
     tools:context=".admin.activities.AdminActivity">
 
     <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -25,13 +26,12 @@
                 android:orientation="horizontal">
 
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/button"
                     style="@style/PrimaryOutlineButton"
-                    android:drawableLeft="@drawable/baseline_menu_24"
-                    android:text="LMAO"
-                    android:textSize="0sp"
-                    android:textColor="@color/Dark"
+                    app:icon="@drawable/baseline_menu_24"
+                    android:text="Menu"
+                    android:textAlignment="textEnd"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView9"

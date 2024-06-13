@@ -78,5 +78,7 @@
     <string name="search_hint">Tìm kiếm ở đây</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="user_keyword">Người dùng</string>
+    <string name="vehicle_keyword">Xe</string>
+    <string name="order_keyword">Đơn hàng</string>
 
 </resources>

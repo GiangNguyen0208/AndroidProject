@@ -1,4 +1,4 @@
-package com.example.myandroidproject;
+package com.example.myandroidproject.customer.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -22,6 +22,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myandroidproject.R;
+import com.example.myandroidproject.customer.activities.ShowroomActivity;
 import com.example.myandroidproject.customer.activities.YourJourneyActivity;
 import com.example.myandroidproject.customer.adapters.ListVehicleAdapter;
 import com.example.myandroidproject.models.Vehicle;
@@ -36,10 +38,10 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link CarCardFragment#newInstance} factory method to
+ * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CarCardFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,7 +59,7 @@ public class CarCardFragment extends Fragment {
 
     ListVehicleAdapter listVehicleAdapter;
 
-    public CarCardFragment() {
+    public HomeFragment() {
     }
 
     /**
@@ -66,11 +68,11 @@ public class CarCardFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment CarCardFragment.
+     * @return A new instance of fragment HomeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CarCardFragment newInstance(String param1, String param2) {
-        CarCardFragment fragment = new CarCardFragment();
+    public static HomeFragment newInstance(String param1, String param2) {
+        HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -91,7 +93,7 @@ public class CarCardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_car_card, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @SuppressLint("WrongViewCast")
@@ -101,10 +103,7 @@ public class CarCardFragment extends Fragment {
         goto_showroom = this.getActivity().findViewById(R.id.goto_showroom);
         goto_gara = this.getActivity().findViewById(R.id.gara);
         goto_showroom.setOnClickListener(v -> {
-            startActivity(new Intent(v.getContext(), CarCardFragment.class));
-        });
-        goto_gara.setOnClickListener(v -> {
-            startActivity(new Intent(v.getContext(), YourJourneyActivity.class));
+            startActivity(new Intent(v.getContext(), ShowroomActivity.class));
         });
     }
     private void getListVehicle() {
