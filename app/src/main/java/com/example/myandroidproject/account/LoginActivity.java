@@ -132,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }, error -> {
                     error.printStackTrace();
-                    Toast.makeText(LoginActivity.this, "Login failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Server Lord !!!.", Toast.LENGTH_SHORT).show();
                 });
         queue.add(jsonObjectRequest);
     }

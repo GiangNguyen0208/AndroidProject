@@ -19,7 +19,7 @@ import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.activities.MyAccount;
 import com.example.myandroidproject.customer.activities.MyLicense;
 import com.example.myandroidproject.customer.activities.ChangesPass;
-import com.example.myandroidproject.utilss.SharedPreferencesUtils;
+import com.example.myandroidproject.utils.SharedPreferencesUtils;
 
 public class InformationFragment extends Fragment {
 

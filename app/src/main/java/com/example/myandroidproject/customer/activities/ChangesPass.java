@@ -16,9 +16,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.myandroidproject.LoginActivity;
 import com.example.myandroidproject.R;
-import com.example.myandroidproject.SignUpActivity;
 import com.example.myandroidproject.utilss.Constraint;
 import com.google.android.material.textfield.TextInputEditText;
 

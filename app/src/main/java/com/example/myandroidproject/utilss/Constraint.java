@@ -1,7 +1,7 @@
 package com.example.myandroidproject.utilss;
 
 public class Constraint {
-    public static final String URL = "https://4611-2001-ee0-4f13-7410-64b5-b466-c0e-6584.ngrok-free.app";
+    public static final String URL = "https://0df7-42-119-229-4.ngrok-free.app";
     public static final String URL_VEHICLE_LIST = URL + "/api/v1/product";
     public static final String URL_VEHICLE_DETAIL_BY_ID = URL + "/api/v1/product/detail?id=";
     public static final String URL_SIGN_IN = URL + "/api/v1/user/signin";

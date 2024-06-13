@@ -31,10 +31,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA-L7S1M_iM0IswnbICO9F8WpiR2V_fwSE"/>
-
-        <activity
-            android:name=".customer.fragments.ShowroomSearchFragment"
-            android:exported="false" />
         <activity
             android:name=".shipper.activites.MapsActivityShipper"
             android:exported="false"
@@ -46,10 +42,13 @@
             android:name=".shipper.activites.ShipperActivity"
             android:exported="false" />
         <activity
+            android:name=".admin.activities.AdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".customer.activities.ChangesPass"
             android:exported="false" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".customer.fragments.ShowroomSearchFragment"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -65,7 +64,7 @@
             android:name=".customer.activities.MyAccount"
             android:exported="false" />
         <activity
-            android:name=".customer.activities.ShowroomActivity"
+            android:name=".customer.fragments.ShowroomFragment"
             android:exported="false" />
         <activity
             android:name=".customer.fragments.SupportFragment"
@@ -74,13 +73,10 @@
             android:name=".customer.activities.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".account.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".customer.activities.DetailItemActivity"
+            android:name=".account.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainAppActivity"

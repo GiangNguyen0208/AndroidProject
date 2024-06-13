@@ -27,7 +27,7 @@ import java.util.Date;
 
 public class MyAccount extends AppCompatActivity {
 
-    private EditText firstname, lastname, phone, email, birthday;//, password;
+    private EditText firstname, lastname, phone, email, birthday;
     private RadioGroup gender;
 
     @Override
@@ -39,7 +39,6 @@ public class MyAccount extends AppCompatActivity {
         lastname = findViewById(R.id.etLastname);
         phone = findViewById(R.id.etPhone);
         email = findViewById(R.id.etEmail);
-//        password = findViewById(R.id.etPassword);
         birthday = findViewById(R.id.etBirthday);
         gender = findViewById(R.id.radioGenderGroup);
         Button btnSave = findViewById(R.id.btnSave);
