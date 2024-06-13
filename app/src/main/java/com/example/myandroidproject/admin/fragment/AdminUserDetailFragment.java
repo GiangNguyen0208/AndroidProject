@@ -137,6 +137,9 @@ public class AdminUserDetailFragment extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
                     try {
+                        //bye xd
+                        getActivity().findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                        //hey
                         JSONObject user = new JSONObject(response);
                         firstname.setText(user.optString("firstname", ""));
                         lastname.setText(user.optString("lastname", ""));

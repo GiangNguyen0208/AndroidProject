@@ -7,13 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.models.User;
 
@@ -32,7 +30,7 @@ public class ListUserAdapter extends RecyclerView.Adapter<ListUserAdapter.UserVi
     @NonNull
     public UserViewer onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View heroView = inflater.inflate(R.layout.fragment_user_item, parent, false);
+        View heroView = inflater.inflate(R.layout.fragment_admin_user_item, parent, false);
         return new UserViewer(heroView);
     }
 

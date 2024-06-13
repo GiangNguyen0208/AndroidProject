@@ -20,15 +20,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Check Login, Don't need Login again.
-        boolean isLogin = SharedPreferencesUtils.checkLogin(this);
-        if (!isLogin) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-            return;
-        }
-
 //        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.navbar_host);
 //        assert navHostFragment != null;
 //        NavController navController = navHostFragment.getNavController();

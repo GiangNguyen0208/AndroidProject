@@ -78,7 +78,7 @@ public class DetailItemActivity extends AppCompatActivity {
             }
         });
         back_evt.setOnClickListener(v -> {
-            startActivity(new Intent(this, ShowroomActivity.class));
+//            startActivity(new Intent(this, ShowroomActivity.class));
             finish();
         });
         imageView = findViewById(R.id.imageVehicle);
@@ -98,7 +98,7 @@ public class DetailItemActivity extends AppCompatActivity {
         getDetailCallAPI(id);
 
         rentalButton.setOnClickListener(v -> {
-            startActivity(new Intent(this, ShowroomActivity.class));
+//            startActivity(new Intent(this, ShowroomActivity.class));
             getAddToJourney(id);
             finish();
         });

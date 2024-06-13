@@ -47,7 +47,7 @@
             android:exported="false" />
         <activity
             android:name=".admin.activities.AdminActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".customer.activities.YourJourneyActivity"
             android:exported="false" />
@@ -89,12 +89,12 @@
         <activity
             android:name=".account.LoginActivity"
             android:exported="false" />
+        <activity android:name=".customer.activities.PaymentActivity" android:exported="false" />
         <activity
             android:name=".MainAppActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
