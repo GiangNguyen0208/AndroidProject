@@ -26,9 +26,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-
-
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:id="@+id/button"
                     style="@style/PrimaryOutlineButton"
                     app:icon="@drawable/baseline_menu_24"

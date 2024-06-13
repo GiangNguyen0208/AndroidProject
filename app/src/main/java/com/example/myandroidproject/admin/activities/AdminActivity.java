@@ -51,7 +51,7 @@ public class AdminActivity extends AppCompatActivity {
 
         drawer = findViewById(R.id.drawer_layout);
 
-        ImageView b = findViewById(R.id.button);
+        Button b = findViewById(R.id.button);
         b.setOnClickListener((view) -> {
             drawer.openDrawer(findViewById(R.id.nav_view), true);
         });
