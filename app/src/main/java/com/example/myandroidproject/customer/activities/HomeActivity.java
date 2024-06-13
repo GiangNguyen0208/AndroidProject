@@ -11,6 +11,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.myandroidproject.account.LoginActivity;
 import com.example.myandroidproject.R;
+import com.example.myandroidproject.admin.activities.AdminActivity;
 import com.example.myandroidproject.utils.SharedPreferencesUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -19,6 +20,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
 
 //        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.navbar_host);
 //        assert navHostFragment != null;

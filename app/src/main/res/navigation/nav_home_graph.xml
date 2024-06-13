@@ -20,6 +20,7 @@
       
     </fragment>
 
+
     <fragment
         android:id="@+id/customer_notify"
         android:name="com.example.myandroidproject.customer.fragments.NotifyFragment"
@@ -42,5 +43,19 @@
         android:label="activity_showroom"
         tools:layout="@layout/activity_showroom" />
 
+    <fragment
+        android:id="@+id/customer_trip"
+        android:name="com.example.myandroidproject.customer.fragments.YourJourneyActivity"
+        android:label="YourJourneyActivity" />
+
+    <fragment
+        android:id="@+id/customer_chat"
+        android:name="com.example.myandroidproject.customer.fragments.ChatFragment"
+        android:label="fragment_chat_customer"
+        tools:layout="@layout/fragment_chat_customer" />
+
+
+    <action android:id="@+id/action_global_customer_support" app:destination="@id/customer_support"/>
+    <action android:id="@+id/action_global_customer_chat" app:destination="@id/customer_chat"/>
 
 </navigation>

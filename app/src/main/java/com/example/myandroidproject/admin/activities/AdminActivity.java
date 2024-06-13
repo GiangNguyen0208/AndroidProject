@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageView;
+
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,7 +51,7 @@ public class AdminActivity extends AppCompatActivity {
 
         drawer = findViewById(R.id.drawer_layout);
 
-        Button b = findViewById(R.id.button);
+        ImageView b = findViewById(R.id.button);
         b.setOnClickListener((view) -> {
             drawer.openDrawer(findViewById(R.id.nav_view), true);
         });

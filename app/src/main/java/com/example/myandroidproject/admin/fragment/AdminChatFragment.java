@@ -1,21 +1,12 @@
-package com.example.myandroidproject.customer.fragments;
+package com.example.myandroidproject.admin.fragment;
 
 import static com.example.myandroidproject.utilss.Constraint.URL_GET_ADMINS_MESSAGE;
 import static com.example.myandroidproject.utilss.Constraint.URL_READ_MESSAGE;
 import static com.example.myandroidproject.utilss.Constraint.URL_SEND_MESSAGE;
 
 import android.content.Context;
-import android.inputmethodservice.Keyboard;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.Editable;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -25,66 +16,84 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
-import com.example.myandroidproject.account.LoginActivity;
 import com.example.myandroidproject.admin.adapter.MessageAdapter;
 import com.example.myandroidproject.models.Message;
+import com.example.myandroidproject.models.MessageStorage;
 import com.example.myandroidproject.utils.SharedPreferencesUtils;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ChatFragment extends Fragment {
-    final int ID_USER = 3;
+public class AdminChatFragment extends Fragment {
+    int ID_USER = 1;
+    int customerId;
     final Set<Integer> admins = new HashSet<>();
-    ImageView chatExitBtn;
-    TextView sendBtn;
-    RecyclerView recyclerView;
-    TextInputEditText messageInput;
+    ImageView chatExitBtnAdmin;
+    TextView sendBtnAdmin;
+    RecyclerView recyclerViewAdmin;
+    TextInputEditText messageInputAdmin;
     RequestQueue queue;
     List<Message> messages = new ArrayList<>();
     MessageAdapter adapter = new MessageAdapter(messages);
     Timer timer = new Timer();
 
-    public ChatFragment() {
+    public AdminChatFragment() {
         // Required empty public constructor
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        ID_USER = sharedPreferences.getInt("id", 1);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        customerId = getArguments().getInt("customerId");
         super.onCreate(savedInstanceState);
         queue = Volley.newRequestQueue(getActivity());
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        chatExitBtn = view.findViewById(R.id.chatExitBtn);
-        recyclerView = view.findViewById(R.id.customer_chat_recycleview);
-        sendBtn = view.findViewById(R.id.sendBtn);
-        messageInput = view.findViewById(R.id.messageInput);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        messageInput.setOnKeyListener((v, keyCode, event) -> {
+        chatExitBtnAdmin = view.findViewById(R.id.chatExitBtnAdmin);
+        recyclerViewAdmin = view.findViewById(R.id.admin_chat_recycleview);
+        sendBtnAdmin = view.findViewById(R.id.sendBtnAdmin);
+        messageInputAdmin = view.findViewById(R.id.messageInputAdmin);
+        recyclerViewAdmin.setAdapter(adapter);
+        recyclerViewAdmin.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        messageInputAdmin.setOnKeyListener((v, keyCode, event) -> {
             if (event.getAction() == KeyEvent.ACTION_DOWN){
                 if (keyCode == KeyEvent.KEYCODE_ENTER){
-                    Editable e = messageInput.getText();
+                    Editable e = messageInputAdmin.getText();
                     if (e == null){
                         Toast.makeText(getActivity(), "Invalid input", Toast.LENGTH_LONG).show();
                         return false;
@@ -103,14 +112,36 @@ public class ChatFragment extends Fragment {
             return false;
         });
 
-        chatExitBtn.setOnClickListener(v -> {
+        messageInputAdmin.setOnKeyListener((v, keyCode, event) -> {
+            if (event.getAction() == KeyEvent.ACTION_DOWN){
+                if (keyCode == KeyEvent.KEYCODE_ENTER){
+                    Editable e = messageInputAdmin.getText();
+                    if (e == null){
+                        Toast.makeText(getActivity(), "Invalid input", Toast.LENGTH_LONG).show();
+                        return false;
+                    }
+                    String msg = e.toString().trim();
+
+                    if (msg.isEmpty() || msg.isBlank()){
+                        Toast.makeText(getActivity(), "Invalid input", Toast.LENGTH_LONG).show();
+                        return false;
+                    }
+
+                    sendMessage(msg);
+                    e.clear();
+                }
+            }
+            return false;
+        });
+
+        chatExitBtnAdmin.setOnClickListener(v -> {
             NavController navController = Navigation.findNavController(view);
-            navController.navigate(R.id.action_global_customer_support);
+            navController.navigate(R.id.fragment_admin_chat_storage);
         });
 
 
-        sendBtn.setOnClickListener(v->{
-            Editable e = messageInput.getText();
+        sendBtnAdmin.setOnClickListener(v->{
+            Editable e = messageInputAdmin.getText();
             if (e == null){
                 Toast.makeText(getActivity(), "Invalid input", Toast.LENGTH_LONG).show();
                 return;
@@ -150,7 +181,7 @@ public class ChatFragment extends Fragment {
             try {
                 jsonBody.put("content", msg);
                 jsonBody.put("from", ID_USER);
-                jsonBody.put("to", adminId);
+                jsonBody.put("to", customerId);
             }catch (Exception e){
                 Toast.makeText(getActivity(), "Gửi tin thất bại", Toast.LENGTH_LONG).show();
             }
@@ -187,10 +218,20 @@ public class ChatFragment extends Fragment {
 
                             if (temp.size() > messages.size()){
                                 messages.clear();
-                                messages.addAll(temp);
+
+                                if (!temp.isEmpty()){
+                                        for (Message m: temp){
+                                            if (m.getFrom() == customerId || m.getTo() == customerId){
+                                                messages.add(m);
+                                            }
+                                        }
+                                    messages.sort(Message::sortOldToNew);
+                                }
+
+                                adapter.notifyDataSetChanged();
                             }
-                            adapter.notifyDataSetChanged();
-                            recyclerView.scrollToPosition(messages.size()-1);
+
+                            recyclerViewAdmin.scrollToPosition(messages.size()-1);
                         }
 
                     }catch (Exception e){
@@ -206,7 +247,7 @@ public class ChatFragment extends Fragment {
         }, 100, 2000);
 
 
-        return inflater.inflate(R.layout.fragment_chat_customer, container, false);
+        return inflater.inflate(R.layout.fragment_chat_admin, container, false);
     }
 
     @Override
