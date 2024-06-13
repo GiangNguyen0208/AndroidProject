@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".customer.fragments.NotifyFragment">
+
+    <TextView
+        android:id="@+id/customer_notify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Thông Báo"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:padding="16dp"
+        android:background="@drawable/border_background">
+
+        <ImageView
+            android:id="@+id/promotion_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:src="@drawable/promotion"
+            android:background="@drawable/circle_background"/>
+
+        <TextView
+            android:id="@+id/promotion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="1dp"
+            android:text="Khuyến Mãi"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewPromotion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="20dp"
+            android:text="GIẢM 50% cho chuyến đầu"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/arrow_right1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:padding="16dp"
+        android:background="@drawable/border_background">
+        <ImageView
+            android:id="@+id/ic_campaign"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:src="@drawable/ic_campaign"
+            android:background="@drawable/circle_background"/>
+
+        <TextView
+            android:id="@+id/news"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Tin tức"
+            android:textStyle="bold"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="1dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/textViewNoNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chưa có tin tức nào"
+            android:textSize="16sp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"/>
+
+        <ImageView
+            android:id="@+id/arrow_right2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="1dp"
+        android:background="#CBCBCB">
+
+        <TextView
+            android:id="@+id/new_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:paddingStart="20dp"
+            android:text="Cập nhật quan trọng"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:background="@drawable/notify_border">
+        <ImageView
+            android:id="@+id/ic_notify1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/ic_notify"
+            android:background="@drawable/circle_notify_background"/>
+
+        <TextView
+            android:id="@+id/news2"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Tin tức"
+            android:textStyle="bold"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="1dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/text_notify1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chưa có tin tức nào"
+            android:textSize="16sp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:background="@drawable/notify_border">
+        <ImageView
+            android:id="@+id/ic_notify2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/ic_notify"
+            android:background="@drawable/circle_notify_background"/>
+
+        <TextView
+            android:id="@+id/news3"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Tin tức"
+            android:textStyle="bold"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="1dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/text_notify2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chưa có tin tức nào"
+            android:textSize="16sp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:background="@drawable/notify_border">
+        <ImageView
+            android:id="@+id/ic_notify"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/ic_notify"
+            android:background="@drawable/circle_notify_background"/>
+
+        <TextView
+            android:id="@+id/news1"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Tin tức"
+            android:textStyle="bold"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="1dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/text_notify3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chưa có tin tức nào"
+            android:textSize="16sp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

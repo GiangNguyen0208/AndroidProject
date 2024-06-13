@@ -1,4 +1,4 @@
-package com.example.myandroidproject.utilss;
+package com.example.myandroidproject.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

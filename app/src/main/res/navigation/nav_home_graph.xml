@@ -3,29 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_home_graph"
-    app:startDestination="@id/home">
+    app:startDestination="@id/customer_home">
+
     <fragment
-        android:id="@+id/home"
-        android:name="com.example.myandroidproject.customer.fragments.HomeFragment"
+        android:id="@+id/customer_home"
+        android:name="com.example.myandroidproject.customer.fragments.ShowroomFragment"
         android:label="fragment_nav_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_showroom" >
+        <action
+            android:id="@+id/action_customer_home_to_showroomActivity"
+            app:destination="@id/showroomActivity"
+            app:popUpTo="@id/customer_home" />
     </fragment>
 
     <fragment
-        android:id="@+id/in4"
+        android:id="@+id/customer_user"
         android:name="com.example.myandroidproject.customer.fragments.InformationFragment"
         android:label="fragment_nav_home"
         tools:layout="@layout/activity_personal_information" >
     </fragment>
 
     <fragment
-        android:id="@+id/support_fragment"
+        android:id="@+id/customer_support"
         android:name="com.example.myandroidproject.customer.fragments.SupportFragment"
         android:label="fragment_nav_home"
         tools:layout="@layout/fragment_support">
+      
     </fragment>
-    <action android:id="@+id/action_global_home" app:destination="@id/home" />
-    <action android:id="@+id/in4_personal" app:destination="@id/in4" />
-    <action android:id="@+id/action_global_support_fragment" app:destination="@id/support_fragment" />
+
+    <fragment
+        android:id="@+id/customer_notify"
+        android:name="com.example.myandroidproject.customer.fragments.NotifyFragment"
+        android:label="fragment_nav_home"
+        tools:layout="@layout/fragment_notify">
+    </fragment>
+
+    <fragment
+        android:id="@+id/showroomActivity"
+        android:name="com.example.myandroidproject.customer.fragments.ShowroomSearchFragment"
+        android:label="activity_showroom"
+        tools:layout="@layout/activity_showroom" />
+
+    <fragment
+        android:id="@+id/customer_trip"
+        android:name="com.example.myandroidproject.customer.fragments.YourJourneyFragment"
+        android:label="YourJourneyFragment" />
+
 
 </navigation>

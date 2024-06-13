@@ -1,4 +1,4 @@
-package com.example.myandroidproject;
+package com.example.myandroidproject.account;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myandroidproject.R;
 import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.utilss.Constraint;
 import com.google.android.material.button.MaterialButton;
@@ -31,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         TextView goBackLogin = findViewById(R.id.go_back_login);
+
         goBackLogin.setOnClickListener(v -> {
             startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
             finish();
@@ -42,7 +44,6 @@ public class SignUpActivity extends AppCompatActivity {
         password = findViewById(R.id.password_Sign_Up);
         passwordConfirm = findViewById(R.id.password_Sign_Up_Confirm);
 
-        // Hook Sign Up Button
         MaterialButton signUpButton = findViewById(R.id.sign_Up);
 
         signUpButton.setOnClickListener(v -> processFormFields());
@@ -111,7 +112,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void registerUser() {
         RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
-        String url = Constraint.URL_BE + "/api/v1/user/register";
+        String url = Constraint.URL_SIGN_UP;
 
         JSONObject jsonBody = new JSONObject();
         try {

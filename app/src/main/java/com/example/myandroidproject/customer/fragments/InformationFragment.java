@@ -14,11 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.myandroidproject.LoginActivity;
+import com.example.myandroidproject.account.LoginActivity;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.activities.MyAccount;
 //import com.example.myandroidproject.customer.activities.MyLicense;
 import com.example.myandroidproject.customer.activities.VoucherCustomer;
+import com.example.myandroidproject.utils.SharedPreferencesUtils;
 
 public class InformationFragment extends Fragment {
 
@@ -43,7 +44,6 @@ public class InformationFragment extends Fragment {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
-
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
         getActivity().finish();

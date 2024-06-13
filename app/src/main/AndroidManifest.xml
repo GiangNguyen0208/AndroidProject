@@ -5,12 +5,14 @@
 
     <uses-permission
         android:name="android.permission.INTERNET"
-        tools:ignore="ManifestOrder"/>
+        tools:ignore="ManifestOrder" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
 
     <application
@@ -26,25 +28,35 @@
         tools:targetApi="31">
 
         <activity
+            android:name=".customer.fragments.ShowroomSearchFragment"
+            android:exported="true" />
+        <activity
             android:name=".customer.activities.MyLicense"
             android:exported="false" />
         <activity
             android:name=".customer.activities.VoucherCustomer"
             android:exported="false" />
         <activity
-            android:name=".customer.activities.PaymentActivity"
+            android:name=".customer.fragments.YourJourneyFragment"
             android:exported="false" />
         <activity
-            android:name=".PyamentActivity"
-            android:exported="false" />
+            android:name=".SearchActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
         <activity
-            android:name=".customer.activities.YourJourneyActivity"
+            android:name=".customer.activities.DetailItemActivity"
             android:exported="true" />
         <activity
             android:name=".customer.activities.MyAccount"
-            android:exported="false" />
+            android:exported="true" />
         <activity
-            android:name=".customer.activities.ShowroomActivity"
+            android:name=".admin.activities.AdminActivity"
             android:exported="true" />
         <activity
             android:name=".customer.fragments.SupportFragment"
@@ -53,20 +65,21 @@
             android:name=".customer.activities.HomeActivity"
             android:exported="true" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".account.SignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".account.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".customer.activities.DetailItemActivity"
+            android:name=".shipper.activites.ShipperActivity"
             android:exported="true" />
+
+
         <activity
             android:name=".MainAppActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
