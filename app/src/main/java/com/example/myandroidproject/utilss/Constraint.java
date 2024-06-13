@@ -16,6 +16,7 @@ public class Constraint {
     public static final String URL_ADD_ORDER_ITEM = URL + "/api/v1/order/add";
     public static final String URL_USER_LIST = URL + "/api/v1/users";
     public static final String URL_USER_BY_ID = URL + "/api/v1/users/";
+    public static final String URL_LIST_ORDER = URL + "/api/v1/listOrder";
 
 
 

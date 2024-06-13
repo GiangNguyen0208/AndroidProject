@@ -56,7 +56,7 @@ public class ShowroomFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         getNewProduct();
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_showroom, container, false);
     }
 
     @Override
