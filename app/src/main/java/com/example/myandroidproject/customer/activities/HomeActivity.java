@@ -28,7 +28,6 @@ public class HomeActivity extends AppCompatActivity {
             finish();
             return;
         }
-
 //        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.navbar_host);
 //        assert navHostFragment != null;
 //        NavController navController = navHostFragment.getNavController();

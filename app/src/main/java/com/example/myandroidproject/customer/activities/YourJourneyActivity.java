@@ -21,7 +21,6 @@ import com.example.myandroidproject.customer.adapters.YourJourneyAdapter;
 import com.example.myandroidproject.models.CartItem;
 import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
-import com.example.myandroidproject.utilss.SharedPreferencesUtils;
 import com.google.android.material.color.utilities.Contrast;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
