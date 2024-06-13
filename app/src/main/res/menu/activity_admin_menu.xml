@@ -29,6 +29,11 @@
                 android:icon="@drawable/baseline_receipt_24"
                 android:title="Đơn hàng" />
 
+            <item
+                android:id="@+id/admin_chat_storage"
+                android:icon="@drawable/message"
+                android:title="Chat" />
+
         </menu>
     </item>
 

@@ -3,6 +3,7 @@ package com.example.myandroidproject.admin.activities;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,7 +45,7 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
 
-        Button b = findViewById(R.id.button);
+        ImageView b = findViewById(R.id.button);
         b.setOnClickListener((view) -> {
             drawer.openDrawer(findViewById(R.id.nav_view), true);
         });
