@@ -34,6 +34,11 @@
                 android:icon="@drawable/message"
                 android:title="Chat" />
 
+            <item
+                android:id="@+id/admin_notify"
+                android:icon="@drawable/ic_notify"
+                android:title="Notify" />
+
         </menu>
     </item>
 

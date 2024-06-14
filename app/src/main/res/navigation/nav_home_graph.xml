@@ -45,7 +45,7 @@
 
     <fragment
         android:id="@+id/customer_trip"
-        android:name="com.example.myandroidproject.customer.fragments.YourJourneyActivity"
+        android:name="com.example.myandroidproject.customer.fragments.TripFragment"
         android:label="YourJourneyActivity" />
 
     <fragment
