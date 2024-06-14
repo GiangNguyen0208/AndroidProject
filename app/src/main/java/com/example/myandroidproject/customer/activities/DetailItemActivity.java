@@ -197,7 +197,7 @@ public class DetailItemActivity extends AppCompatActivity {
                             String color = response.getString("color");
                             Date rental = formatter.parse(response.getString("rentalDate"));
                             Date returnDate = formatter.parse(response.getString("returnDate"));
-                            String desc = response.getString("desc");
+                            String desc = response.getString("about");
                             double discount = Double.parseDouble(response.getString("discount"));
                             double priceDiscount = price*(1-discount);
                             vehicleView = Vehicle.builder()

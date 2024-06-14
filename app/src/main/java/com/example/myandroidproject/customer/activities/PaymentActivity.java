@@ -29,6 +29,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.adapters.PaymentCartItemAdapter;
+import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.models.CartItem;
 import com.example.myandroidproject.models.OrderItem;
 import com.example.myandroidproject.models.Vehicle;
@@ -299,10 +300,15 @@ public class PaymentActivity extends AppCompatActivity {
     public boolean validationEmail() {
         String email = emaiTxt.getText().toString();
         if (email.isEmpty()) {
+//            email.setError("Email không được để trống.");
+            return false;
+        } else if (!StringHelper.regexEmailValidationPattern(email)) {
+//            email.setError("Vui lòng nhập email hợp lệ.");
             return false;
         } else {
-            return true;
+//            email.setError(null);
         }
+        return true;
     }
     public boolean validationPhone() {
         String phone = phoneTxt.getText().toString();

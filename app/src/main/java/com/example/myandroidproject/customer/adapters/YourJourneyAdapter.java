@@ -45,7 +45,7 @@ public class YourJourneyAdapter extends RecyclerView.Adapter<YourJourneyAdapter.
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
         viewYourJourneyHolder.name.setText(cartItem.getNameItem());
-        viewYourJourneyHolder.price.setText((int) cartItem.getPrice());
+        viewYourJourneyHolder.price.setText(String.valueOf(cartItem.getPrice()));
         Glide.with(context).load(cartItem.getImageLink()).into(viewYourJourneyHolder.imageView);
         viewYourJourneyHolder.rentalDate.setText(formatter.format(cartItem.getRentalDate()));
         viewYourJourneyHolder.returnDate.setText(formatter.format(cartItem.getReturnDate()));

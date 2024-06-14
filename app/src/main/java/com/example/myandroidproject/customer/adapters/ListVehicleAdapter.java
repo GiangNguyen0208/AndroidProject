@@ -46,7 +46,7 @@ public class ListVehicleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         ViewVehicleHolder viewVehicleHolder = (ViewVehicleHolder) holder;
         viewVehicleHolder.name.setText(vehicle.getNameVehicle());
         viewVehicleHolder.brand.setText(vehicle.getBrandVehicle());
-//        viewVehicleHolder.price.setText(vehicle.getPrice());
+        viewVehicleHolder.price.setText(String.valueOf(vehicle.getPrice()));
         Glide.with(this.context).load(vehicle.getImageLink()).into(viewVehicleHolder.imageView);
         viewVehicleHolder.itemView.setOnClickListener(v -> {
             int id = vehicle.getId();
