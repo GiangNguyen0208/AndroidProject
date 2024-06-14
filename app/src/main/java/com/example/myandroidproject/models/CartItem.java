@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CartItem {
-    private Integer id, idVehicle, rental_day;
+    private Integer id, idVehicle, rental_day, userid;
     private String nameItem, imageLink;
     private double price;
     private Date rentalDate, returnDate;

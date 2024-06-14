@@ -18,6 +18,7 @@ import com.example.myandroidproject.customer.activities.PaymentActivity;
 import com.example.myandroidproject.models.CartItem;
 import com.example.myandroidproject.utilss.Constraint;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -51,8 +52,10 @@ public class YourJourneyAdapter extends RecyclerView.Adapter<YourJourneyAdapter.
 
         holder.itemView.setOnClickListener(v -> {
             int id = cartItem.getId();
-            Intent intent = new Intent(v.getContext(), PaymentActivity.class);
+            int idvehicle = cartItem.getIdVehicle();
+            Intent intent = new Intent(context, PaymentActivity.class);
             intent.putExtra(Constraint.ID_CART_ITEM, id);
+            intent.putExtra(Constraint.ID_VEHICLE, idvehicle);
             context.startActivity(intent);
         });
     }

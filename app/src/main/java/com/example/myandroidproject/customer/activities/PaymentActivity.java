@@ -1,6 +1,7 @@
 package com.example.myandroidproject.customer.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -8,26 +9,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.adapters.PaymentCartItemAdapter;
+import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.models.CartItem;
 import com.example.myandroidproject.models.OrderItem;
-import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
 
 import org.json.JSONArray;
@@ -40,16 +38,12 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-//import vn.momo.momo_partner.AppMoMoLib;
 
 public class PaymentActivity extends AppCompatActivity {
     TextView totalPrice, rentalDate, returnDate, nameVehicle;
     EditText dayRent, emaiTxt, phoneTxt, addressTxt;
     Button buttonConfirm, buttonSave;
-    Integer id, day;
+    Integer id, day, userId, idVehicle;
     CartItem cartItem;
     OrderItem orderItem;
     PaymentCartItemAdapter paymentCartItemAdapter;
@@ -80,7 +74,7 @@ public class PaymentActivity extends AppCompatActivity {
         buttonConfirm = findViewById(R.id.button_book_now);
         buttonSave = findViewById(R.id.save);
 
-        id = getIntent().getIntExtra(Constraint.ID_CART_ITEM, 0);   // Get id CartItem.
+        id = getIntent().getIntExtra(Constraint.ID_CART_ITEM, -1);   // Get id CartItem.
         getDetailCartItem(id);
 
         buttonSave.setOnClickListener(v -> {
@@ -96,8 +90,16 @@ public class PaymentActivity extends AppCompatActivity {
             String email = emaiTxt.getText().toString();
             String phone = phoneTxt.getText().toString();
             String address = addressTxt.getText().toString();
+            String rentalDay = rentalDate.getText().toString();
+            String returnDay = returnDate.getText().toString();
+            String priceToPay = totalPrice.getText().toString();
 
-            paymentCartItem(id, day, email, phone, address);
+            idVehicle = cartItem.getIdVehicle();
+
+            SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+            userId = sharedPreferences.getInt("id_user", -1); // -1 là giá trị mặc định nếu không tìm thấy id_user
+
+            paymentCartItem(id, day, email, phone, address, rentalDay, returnDay, priceToPay, idVehicle, userId);
         });
     }
     private void detailCartItem() {
@@ -163,17 +165,23 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void setStateCartItem(Integer cartItemId, Integer day, String email, String phone, String address) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = Constraint.URL_SET_STATE_CART_ITEM +
-                "?cartItemId=" + cartItemId +
-                "&day=" + day +
-                "&email=" + email +
-                "&phone=" + phone +
-                "&address=" + address;
+        String url = Constraint.URL_SET_STATE_CART_ITEM;
 
+        JSONObject statusUpdateDTO = new JSONObject();
+        try {
+            statusUpdateDTO.put("rentalDate", rentalDate.getText().toString());
+            statusUpdateDTO.put("id", cartItemId);
+            statusUpdateDTO.put("day", day);
+            statusUpdateDTO.put("email", email);
+            statusUpdateDTO.put("phone", phone);
+            statusUpdateDTO.put("address", address);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(
-                Request.Method.GET,
+                Request.Method.POST,
                 url,
-                null,
+                statusUpdateDTO,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -181,8 +189,8 @@ public class PaymentActivity extends AppCompatActivity {
                             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                             int vehicleid = response.getInt("vehicleid");
                             String name = response.getString("nameVehicle");
+                            int dayRent = response.getInt("rental_day");
                             double price = response.getDouble("price");
-                            String imageLink = response.getString("imageLink");
                             Date rental = formatter.parse(response.getString("rentalDate"));
                             Date returnDate = formatter.parse(response.getString("returnDate"));
                             String email = response.getString("email");
@@ -193,6 +201,7 @@ public class PaymentActivity extends AppCompatActivity {
                                     .nameItem(name)
                                     .idVehicle(vehicleid)
                                     .price(price)
+                                    .rental_day(dayRent)
                                     .rentalDate(rental)
                                     .returnDate(returnDate)
                                     .email(email)
@@ -220,17 +229,31 @@ public class PaymentActivity extends AppCompatActivity {
         queue.add(jsonArrayRequest);
     }
 
-    private void paymentCartItem(Integer id, Integer day, String email, String phone, String address) {
+    private void paymentCartItem(Integer id, Integer day, String email, String phone, String address, String rentalDay, String returnDay, String price, Integer idVehicle, Integer userId) {
+        if (!validationEmail()|| !validationPhone()|| !validationAddress()) {
+            return;
+        }
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = Constraint.URL_ADD_ORDER_ITEM;
         JSONObject paymentInfo = new JSONObject();
+
+        String cleanedStr = price.replace(" VNĐ", "");
+        // Loại bỏ dấu phân cách hàng nghìn
+        cleanedStr = cleanedStr.replace(".", "");
+        // Chuyển đổi chuỗi sang double
+        double amount = Double.parseDouble(cleanedStr);
+
         try {
             paymentInfo.put("id", id);
             paymentInfo.put("day", day);
             paymentInfo.put("email", email);
             paymentInfo.put("phone", phone);
+            paymentInfo.put("price", amount);
             paymentInfo.put("address", address);
-            paymentInfo.put("vehicleId", orderItem.getVehicleid()); // Sử dụng vehicleId thay vì vehicleid
+            paymentInfo.put("userid", userId);
+            paymentInfo.put("vehicleid", idVehicle);
+            paymentInfo.put("rentalDate", rentalDay);
+            paymentInfo.put("returnDate", returnDay);
 
             // Gửi thông tin thanh toán đến server
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
@@ -240,8 +263,10 @@ public class PaymentActivity extends AppCompatActivity {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
+                            removeItemRegisterSuccess(id);
+                            // Chuyển người dùng về màn hình HomeActivity
+                            gotoHomeShow();
                             Toast.makeText(PaymentActivity.this, "Payment successful", Toast.LENGTH_SHORT).show();
-                            // Thêm bất kỳ logic nào nếu cần sau khi thanh toán thành công
                         }
                     },
                     new Response.ErrorListener() {
@@ -255,9 +280,71 @@ public class PaymentActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
-    private void removeItemRegisterSuccess(Integer id) {
+    private void gotoHomeShow() {
+        startActivity(new Intent(this, YourJourneyActivity.class));
+    }
+    public boolean validationEmail() {
+        String email = emaiTxt.getText().toString();
+        if (email.isEmpty()) {
+//            email.setError("Email không được để trống.");
+            return false;
+        } else if (!StringHelper.regexEmailValidationPattern(email)) {
+//            email.setError("Vui lòng nhập email hợp lệ.");
+            return false;
+        } else {
+//            email.setError(null);
+        }
+        return true;
+    }
+    public boolean validationPhone() {
+        String phone = phoneTxt.getText().toString();
+        if (phone.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public boolean validationAddress() {
+        String address = addressTxt.getText().toString();
+        if (address.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public int validateDayRent(int day) {
+        String dayString = dayRent.getText().toString();
+        if (dayString != null) {
+            return 1;
+        } else {
+            return day;
+        }
+    }
 
+    private void removeItemRegisterSuccess(Integer id) {
+        String url = Constraint.URL_REMOVE_CART_ITEM + "/" + String.valueOf(id);
+
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.DELETE,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(PaymentActivity.this, "Deleted CartItem success", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Xử lý phản hồi lỗi
+                        Toast.makeText(PaymentActivity.this, "Error deleting rental item: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        // Thêm yêu cầu vào RequestQueue
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(stringRequest);
     }
 }

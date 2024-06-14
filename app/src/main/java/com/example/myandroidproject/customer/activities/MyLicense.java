@@ -227,7 +227,7 @@ public class MyLicense extends AppCompatActivity {
         return byteArrayOutputStream.toByteArray();
     }
 
-    private void loadStatus(int userId) {
+    public void loadStatus(int userId) {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = Constraint.URL + "/api/v1/users/" + userId + "/uploadStatus";
 
