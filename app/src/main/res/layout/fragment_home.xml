@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".customer.fragments.HomeFragment">
+    tools:context=".customer.fragments.ShowroomFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                     android:textColor="@color/Black" />
             </LinearLayout>
             <Button
-                android:id="@+id/searchView"
+                android:id="@+id/searchBtn"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
@@ -119,7 +119,7 @@
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchView">
+            app:layout_constraintTop_toBottomOf="@id/searchBtn">
 
             <LinearLayout
                 android:layout_width="match_parent"

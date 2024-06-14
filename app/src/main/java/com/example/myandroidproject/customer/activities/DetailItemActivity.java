@@ -7,9 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,12 +21,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.example.myandroidproject.LoginActivity;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.adapters.DetailVehicleAdapter;
+import com.example.myandroidproject.customer.fragments.ShowroomSearchFragment;
 import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
-import com.example.myandroidproject.utilss.SharedPreferencesUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,6 +48,7 @@ public class DetailItemActivity extends AppCompatActivity {
     ImageView back_evt;
     DetailVehicleAdapter detailVehicleAdapter;
     Button rentalButton;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,22 +60,16 @@ public class DetailItemActivity extends AppCompatActivity {
         day = findViewById(R.id.quantityDay);
         add = findViewById(R.id.addDay);
         remove = findViewById(R.id.removeDay);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (quantityRent < 10) {
-                    quantityRent++;
+        add.setOnClickListener(v -> {
+            if (quantityRent < 10) {
+                quantityRent++;
 //                    day.setText(String.valueOf(quantityRent));
-                }
             }
         });
-        remove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (quantityRent > 0) {
-                    quantityRent--;
+        remove.setOnClickListener(v -> {
+            if (quantityRent > 0) {
+                quantityRent--;
 //                    day.setText(String.valueOf(quantityRent));
-                }
             }
         });
         back_evt.setOnClickListener(v -> {
@@ -139,9 +131,11 @@ public class DetailItemActivity extends AppCompatActivity {
             day.setText(String.valueOf(quantityRent));
         }
     }
+
     private String formatToPercentage(double discount) {
         return String.format("%.0f%%", discount * 100);
     }
+
     // Add Journey...
     private void getAddToJourney(Integer id, Integer userId) {
         RequestQueue queue = Volley.newRequestQueue(this);

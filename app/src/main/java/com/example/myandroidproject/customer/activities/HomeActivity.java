@@ -11,6 +11,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.myandroidproject.account.LoginActivity;
 import com.example.myandroidproject.R;
+import com.example.myandroidproject.admin.activities.AdminActivity;
 import com.example.myandroidproject.utils.SharedPreferencesUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -20,14 +21,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Check Login, Don't need Login again.
-        boolean isLogin = SharedPreferencesUtils.checkLogin(this);
-        if (!isLogin) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-            return;
-        }
+
 
 //        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.navbar_host);
 //        assert navHostFragment != null;

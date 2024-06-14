@@ -1,12 +1,17 @@
-package com.example.myandroidproject.customer.activities;
+package com.example.myandroidproject.customer.fragments;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,12 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.adapters.YourJourneyAdapter;
 import com.example.myandroidproject.models.CartItem;
-import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
-import com.example.myandroidproject.utilss.SharedPreferencesUtils;
-import com.google.android.material.color.utilities.Contrast;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class YourJourneyActivity extends AppCompatActivity {
+public class YourJourneyFragment extends Fragment {
     private RecyclerView recyclerView;
     private YourJourneyAdapter adapter;
     private List<CartItem> cartItems = new ArrayList<>();

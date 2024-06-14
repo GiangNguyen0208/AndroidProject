@@ -3,7 +3,7 @@
         <item>Nam</item>
         <item>Nữ</item>
     </string-array>
-    <string name="app_name">MyAndroidProject</string>
+    <string name="app_name">UwU</string>
     <string name="rent_car">Five Superman Brother</string>
     <string name="wel_come">Welcome</string>
     <string name="please_login_with_your_information">Please login with your information</string>
@@ -78,5 +78,14 @@
     <string name="search_hint">Tìm kiếm ở đây</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="user_keyword">Người dùng</string>
+    <string name="i_m_t_kh_u">Đổi Mật Khẩu</string>
+    <string name="title_activity_maps_shipper">MapsActivityShipper</string>
+    <string name="title_activity_maps">Current Place Details</string>
+    <string name="default_info_title">Default Location</string>
+    <string name="default_info_snippet">No places found, because location permission is disabled.</string>
+    <string name="option_get_place">Get place</string>
+    <string name="pick_place">Choose a place</string>
+    <string name="vehicle_keyword">Xe</string>
+    <string name="order_keyword">Đơn hàng</string>
 
 </resources>

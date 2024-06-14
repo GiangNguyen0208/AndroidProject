@@ -115,9 +115,9 @@ public class LoginActivity extends AppCompatActivity {
 
                             SharedPreferencesUtils.add(SharedPreferencesUtils.STATE_LOGIN, "TRUE", this);
                             if (role.equals("admin")) {
-                                startActivity(new Intent(LoginActivity.this, AdminActivity.class));
+                                startActivity(new Intent(this, AdminActivity.class));
                             } else if(role.equals("shipper")) {
-                                startActivity(new Intent(LoginActivity.this, ShipperActivity.class));
+                                startActivity(new Intent(this, ShipperActivity.class));
                             } else {
                                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                             }
@@ -131,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }, error -> {
                     error.printStackTrace();
-                    Toast.makeText(LoginActivity.this, "Login failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Server Lord !!!.", Toast.LENGTH_SHORT).show();
                 });
         queue.add(jsonObjectRequest);
     }
