@@ -49,7 +49,7 @@ public class MapsActivityShipper extends AppCompatActivity
     private GoogleMap map;
     private PlacesClient placesClient;
     private FusedLocationProviderClient fusedLocationProviderClient;
-    private final LatLng defaultLocation = new LatLng(-33.8523341, 151.2106085);
+    private final LatLng defaultLocation = new LatLng(-0, 0);
     private static final int DEFAULT_ZOOM = 15;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean locationPermissionGranted;

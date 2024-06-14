@@ -152,7 +152,7 @@
             android:cursorVisible="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:hint="Birthday"
+            android:hint="@string/birthday"
             android:inputType="none"
             android:textSize="12sp" />
     </com.google.android.material.textfield.TextInputLayout>

@@ -1,5 +1,6 @@
 package com.example.myandroidproject.shipper.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.example.myandroidproject.admin.adapter.ListUserAdapter;
 import com.example.myandroidproject.models.OrderItem;
 import com.example.myandroidproject.models.User;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class ListOrderAdapter extends RecyclerView.Adapter<ListOrderAdapter.ShipperViewer> {
@@ -39,7 +41,8 @@ public class ListOrderAdapter extends RecyclerView.Adapter<ListOrderAdapter.Ship
         OrderItem item = orderItems.get(position);
         holder.orderID = item.getId();
         holder.status.setText(item.getStatus());
-        holder.date.setText(item.getRental_day());
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        holder.date.setText(dateFormat.format(item.getRentalDate()));
     }
 
     public int getItemCount() {
@@ -56,7 +59,7 @@ public class ListOrderAdapter extends RecyclerView.Adapter<ListOrderAdapter.Ship
 
         public ShipperViewer(@NonNull View itemView) {
             super(itemView);
-            orderImage = itemView.findViewById(R.id.admin_user_image);
+            orderID = itemView.getId();
             date = itemView.findViewById(R.id.dateShipping);
             status = itemView.findViewById(R.id.status);
             itemView.setOnClickListener(this);
@@ -65,7 +68,7 @@ public class ListOrderAdapter extends RecyclerView.Adapter<ListOrderAdapter.Ship
         public void onClick(View v) {
             Bundle b = new Bundle();
             b.putInt("Order", orderID);
-            Navigation.findNavController(v).navigate(R.id.user_list_to_user_detail, b);
+            Navigation.findNavController(v).navigate(R.id.action_shipper_order_item_to_takingOrderFragment, b);
         }
     }
 }

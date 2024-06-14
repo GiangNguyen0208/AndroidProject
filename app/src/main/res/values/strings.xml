@@ -87,5 +87,6 @@
     <string name="pick_place">Choose a place</string>
     <string name="vehicle_keyword">Xe</string>
     <string name="order_keyword">Đơn hàng</string>
+    <string name="birthday">Birthday</string>
 
 </resources>

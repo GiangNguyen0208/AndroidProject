@@ -1,5 +1,6 @@
 package com.example.myandroidproject.shipper.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,13 +69,15 @@ public class ShipperOrderFragment extends Fragment {
             for (int i = 0; i < response.length(); i++) {
                 try {
                     obj = response.getJSONObject(i);
-                    SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd");
-                    Date rental = fromUser.parse(obj.getString("rental_date"));
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd");
+                    Date rental = fromUser.parse(obj.getString("rentalDate"));
                     OrderItem order = OrderItem.builder()
                             .id(obj.getInt("id"))
                             .status(obj.getString("status"))
                             .rentalDate(rental).build();
-                    orderItem.add(order);
+                    if(!obj.getString("status").equals(Constraint.SHIPPING)){
+                        orderItem.add(order);
+                    }
                 } catch (JSONException e) {
                     System.err.println(e.getMessage());
                 } catch (ParseException e) {

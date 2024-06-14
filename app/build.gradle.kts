@@ -65,6 +65,10 @@ dependencies {
 
     androidTestImplementation(libs.espresso.core)
     implementation ("com.google.android.libraries.places:places:3.4.0")
+//    implementation("com.squareup.retrofit2:retrofit:2.4.0")
+//    implementation("com.squareup.retrofit2:converter-gson:2.3.0")
+//    implementation("com.squareup.retrofit2:retrofit:adapter-rxjava2:2.4.0")
+
     //GET img from server
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
