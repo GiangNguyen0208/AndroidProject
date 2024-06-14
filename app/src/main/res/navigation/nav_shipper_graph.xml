@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_shipper_graph"
+    app:startDestination="@id/shipper_order">
+
+    <fragment
+        android:id="@+id/shipper_order"
+        android:name="com.example.myandroidproject.shipper.fragment.ShipperOrderFragment"
+        android:label="activity_shipper_order_fragment"
+        tools:layout="@layout/activity_shipper_order_fragment" />
+
+
+</navigation>

@@ -18,7 +18,7 @@ import com.example.myandroidproject.account.LoginActivity;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.activities.MyAccount;
 import com.example.myandroidproject.customer.activities.MyLicense;
-import com.example.myandroidproject.customer.activities.VoucherCustomer;
+import com.example.myandroidproject.customer.activities.ChangesPass;
 import com.example.myandroidproject.utils.SharedPreferencesUtils;
 
 public class InformationFragment extends Fragment {
@@ -28,19 +28,20 @@ public class InformationFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_personal_information, container, false);
         TextView myAcc = v.findViewById(R.id.myAccount);
-        TextView myGift = v.findViewById(R.id.myGift);
+        TextView changesPass = v.findViewById(R.id.changesPass);
         TextView myLicense = v.findViewById(R.id.my_license);
         Button logout = v.findViewById(R.id.logoutButton);
 
         myAcc.setOnClickListener(v1 -> startActivity(new Intent(v1.getContext(), MyAccount.class)));
         logout.setOnClickListener(v2 -> logoutUser());
-        myGift.setOnClickListener(v3 -> startActivity(new Intent(v3.getContext(), VoucherCustomer.class)));
+        changesPass.setOnClickListener(v3 -> startActivity(new Intent(v3.getContext(), ChangesPass.class)));
         myLicense.setOnClickListener(v4 -> startActivity(new Intent(v4.getContext(), MyLicense.class)));
         return v;
     }
 
     private void logoutUser() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferencesUtils.add(SharedPreferencesUtils.STATE_LOGIN, "FALSE", getContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();

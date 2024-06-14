@@ -3,18 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_home_graph"
-    app:startDestination="@id/customer_home">
-
-    <fragment
-        android:id="@+id/customer_home"
-        android:name="com.example.myandroidproject.customer.fragments.ShowroomFragment"
-        android:label="fragment_nav_home"
-        tools:layout="@layout/fragment_showroom" >
-        <action
-            android:id="@+id/action_customer_home_to_showroomActivity"
-            app:destination="@id/showroomActivity"
-            app:popUpTo="@id/customer_home" />
-    </fragment>
+    app:startDestination="@+id/customer_home">
 
     <fragment
         android:id="@+id/customer_user"
@@ -40,15 +29,24 @@
     </fragment>
 
     <fragment
-        android:id="@+id/showroomActivity"
+        android:id="@+id/customer_home"
+        android:name="com.example.myandroidproject.customer.fragments.ShowroomFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_showroom" >
+        <action
+            android:id="@+id/action_customer_home_to_showroomSearchFragment"
+            app:destination="@id/showroomSearchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showroomSearchFragment"
         android:name="com.example.myandroidproject.customer.fragments.ShowroomSearchFragment"
         android:label="activity_showroom"
         tools:layout="@layout/activity_showroom" />
 
     <fragment
         android:id="@+id/customer_trip"
-        android:name="com.example.myandroidproject.customer.fragments.YourJourneyFragment"
-        android:label="YourJourneyFragment" />
+        android:name="com.example.myandroidproject.customer.fragments.YourJourneyActivity"
+        android:label="YourJourneyActivity" />
 
     <fragment
         android:id="@+id/customer_chat"

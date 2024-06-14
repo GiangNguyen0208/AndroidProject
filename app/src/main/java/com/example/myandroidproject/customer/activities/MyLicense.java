@@ -41,6 +41,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MyLicense extends AppCompatActivity {
     private static final int REQUEST_PERMISSIONS = 100;
@@ -73,7 +74,14 @@ public class MyLicense extends AppCompatActivity {
                     if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
                         Bitmap photo = (Bitmap) result.getData().getExtras().get("data");
                         licenseImg.setImageBitmap(photo);
-                        uploadBitmap(photo, userId);
+                        checkImageLicense(bitmap, userId, isSuccess -> {
+                            if (isSuccess) {
+                                uploadBitmap(bitmap, userId);
+                                Toast.makeText(MyLicense.this, "Xác Thực Thành Công !", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(MyLicense.this, "Đây Phải Là Bằng Lái Xe !!!", Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
                 });
 
@@ -87,7 +95,14 @@ public class MyLicense extends AppCompatActivity {
                                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), picUri);
                                 licenseImg.setImageBitmap(bitmap);
                                 textView.setText("File Selected");
-                                uploadBitmap(bitmap, userId);
+                                checkImageLicense(bitmap, userId, isSuccess -> {
+                                    if (isSuccess) {
+                                        uploadBitmap(bitmap, userId);
+                                        Toast.makeText(MyLicense.this, "Xác Thực Thành Công !", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(MyLicense.this, "Đây Phải Là Bằng Lái Xe !!!", Toast.LENGTH_LONG).show();
+                                    }
+                                });
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -109,7 +124,9 @@ public class MyLicense extends AppCompatActivity {
                 requestStoragePermissions();
             }
         });
+
     }
+
 
     private void showFileChooser() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -134,13 +151,23 @@ public class MyLicense extends AppCompatActivity {
                 response -> {
                     try {
                         JSONObject obj = new JSONObject(new String(response.data));
-                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                        try {
+                            if (obj.has("message")) {
+                                String message = obj.getString("message");
+                                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "No message found", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 },
                 error -> {
-
+                    // Handle error
                 }) {
             @Override
             protected Map<String, DataPart> getByteData() {
@@ -153,6 +180,46 @@ public class MyLicense extends AppCompatActivity {
 
         Volley.newRequestQueue(this).add(volleyMultipartRequest);
     }
+
+    private void checkImageLicense(final Bitmap bitmap, int userId, LicenseCheckListener listener) {
+        String url = "https://api.fpt.ai/vision/dlr/vnm";
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, url,
+                response -> {
+                    try {
+                        JSONObject obj = new JSONObject(new String(response.data));
+                        int errorCode = obj.getInt("errorCode");
+                        if (errorCode == 0) {
+                            listener.onLicenseCheckResult(true);
+                        } else {
+                            listener.onLicenseCheckResult(false);
+                        }
+                        Toast.makeText(getApplicationContext(), obj.getString("errorMessage"), Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> {
+                    Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    listener.onLicenseCheckResult(false); // Thông báo kết quả thất bại qua callback
+                }) {
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                params.put("image", new DataPart("userLicense" + userId + ".png", getFileDataFromDrawable(bitmap)));
+
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("api_key", "udVhmpDW9rxdosaaWNtCP2QjscTAWbPP");
+                return headers;
+            }
+        };
+        Volley.newRequestQueue(this).add(volleyMultipartRequest);
+    }
+
+
 
     private byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -200,6 +267,7 @@ public class MyLicense extends AppCompatActivity {
                 .apply(new RequestOptions().placeholder(R.drawable.img_1).error(R.drawable.img_2))
                 .into(ivLicenseImage);
     }
+
     private void showReadMeDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Lưu Ý");

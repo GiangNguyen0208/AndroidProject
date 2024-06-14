@@ -51,7 +51,7 @@ public class YourJourneyAdapter extends RecyclerView.Adapter<YourJourneyAdapter.
 
         holder.itemView.setOnClickListener(v -> {
             int id = cartItem.getId();
-            Intent intent = new Intent(context.getApplicationContext(), PaymentActivity.class);
+            Intent intent = new Intent(v.getContext(), PaymentActivity.class);
             intent.putExtra(Constraint.ID_CART_ITEM, id);
             context.startActivity(intent);
         });

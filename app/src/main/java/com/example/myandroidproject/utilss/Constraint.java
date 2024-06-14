@@ -15,9 +15,12 @@ public class Constraint {
     public static final String URL_SET_STATE_CART_ITEM = URL + "/api/v1/rental/setstate";
     public static final String URL_ADD_ORDER_ITEM = URL + "/api/v1/order/add";
     public static final String URL_USER_LIST = URL + "/api/v1/users";
+    public static final String URL_USER_BY_ID = URL + "/api/v1/users/";
+    public static final String URL_LIST_ORDER = URL + "/api/v1/listOrder";
     public static final String URL_READ_MESSAGE = URL + "/api/v1/message/read";
     public static final String URL_SEND_MESSAGE = URL + "/api/v1/message/send";
     public static final String URL_GET_ADMINS_MESSAGE = URL + "/api/v1/message/admins";
+
 
 
     // Variable

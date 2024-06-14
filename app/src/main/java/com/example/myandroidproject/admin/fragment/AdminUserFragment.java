@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -66,6 +67,7 @@ public class AdminUserFragment extends Fragment {
                 try {
                     obj = response.getJSONObject(i);
                     User user = User.builder()
+                            .id(obj.getInt("id"))
                             .firstname(obj.getString("firstname"))
                             .lastname(obj.getString("lastname"))
                             .roleName(obj.getString("roleName")).build();

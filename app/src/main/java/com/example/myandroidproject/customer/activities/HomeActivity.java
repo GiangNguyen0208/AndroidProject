@@ -22,21 +22,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
 
-        // Check Login, Don't need Login again.
-        boolean isLogin = SharedPreferencesUtils.checkLogin(this);
-        if (!isLogin) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-            return;
-        }else{
-            String role = SharedPreferencesUtils.get("role", this);
-            if (role.equals("admin")){
-                Intent intent = new Intent(this, AdminActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }
 
 //        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.navbar_host);
 //        assert navHostFragment != null;

@@ -1,13 +1,20 @@
 package com.example.myandroidproject.admin.dialog;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
 import com.example.myandroidproject.R;
+import com.example.myandroidproject.account.LoginActivity;
+import com.example.myandroidproject.utils.SharedPreferencesUtils;
 
 public class LogoutDialog extends Dialog implements View.OnClickListener {
     public Activity c;
@@ -33,6 +40,12 @@ public class LogoutDialog extends Dialog implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_yes) {
+            SharedPreferences sharedPreferences = v.getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            SharedPreferencesUtils.add(SharedPreferencesUtils.STATE_LOGIN, "FALSE", getContext());
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+            v.getContext().startActivity(new Intent(c, LoginActivity.class));
             c.finish();
         }
         else {

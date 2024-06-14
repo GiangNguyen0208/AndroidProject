@@ -109,7 +109,7 @@ public class Vehicle implements Serializable {
     }
 
     public double getPriceDiscount() {
-        return priceDiscount;
+        return price * (1 - discount);
     }
 
     public void setPriceDiscount(double priceDiscount) {
