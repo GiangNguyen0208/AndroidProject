@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,8 +23,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.myandroidproject.R;
+import com.example.myandroidproject.account.LoginActivity;
 import com.example.myandroidproject.customer.adapters.DetailVehicleAdapter;
-import com.example.myandroidproject.customer.fragments.ShowroomSearchFragment;
 import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
 
@@ -48,6 +49,7 @@ public class DetailItemActivity extends AppCompatActivity {
     ImageView back_evt;
     DetailVehicleAdapter detailVehicleAdapter;
     Button rentalButton;
+    MyLicense myLicense;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -107,6 +109,7 @@ public class DetailItemActivity extends AppCompatActivity {
 
         rentalButton.setOnClickListener(v -> {
             startActivity(new Intent(this, ShowroomActivity.class));
+//            if (myLicense.loadStatus(userId)) return;
             getAddToJourney(id, userId);
             finish();
         });
@@ -147,8 +150,8 @@ public class DetailItemActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Intent intent = new Intent(DetailItemActivity.this, HomeActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(DetailItemActivity.this, HomeActivity.class);
+//                        startActivity(intent);
                         Toast.makeText(DetailItemActivity.this, "Add success !!!", Toast.LENGTH_SHORT).show();
                     }
                 },

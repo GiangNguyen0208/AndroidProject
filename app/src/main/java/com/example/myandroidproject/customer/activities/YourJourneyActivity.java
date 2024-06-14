@@ -1,17 +1,12 @@
-package com.example.myandroidproject.customer.fragments;
+package com.example.myandroidproject.customer.activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class YourJourneyFragment extends Fragment {
+public class YourJourneyActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private YourJourneyAdapter adapter;
     private List<CartItem> cartItems = new ArrayList<>();

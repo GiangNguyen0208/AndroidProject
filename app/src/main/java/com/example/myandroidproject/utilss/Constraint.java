@@ -1,7 +1,7 @@
 package com.example.myandroidproject.utilss;
 
 public class Constraint {
-    public static final String URL = "https://fca8-42-119-229-4.ngrok-free.app";    // ADDRESS CHANGE BY NGROK
+    public static final String URL = "https://bace-42-119-229-4.ngrok-free.app";    // ADDRESS CHANGE BY NGROK
     public static final String URL_BE = "172.16.1.129"; // ADDRESS
     public static final String PORT_BE = "8080";    // PORT
 
@@ -24,6 +24,8 @@ public class Constraint {
 
 
     // ORDER ITEM
+    public static final String URL_GET_HISTORY_ORDERITEM_COMPLETED = URL + "/api/v1/order/getHistoryOrderContinue";
+    public static final String URL_GET_HISTORY_ORDERITEM_CONTINUE = URL + "/api/v1/order/getHistoryOrderContinue";
     public static final String URL_ADD_ORDER_ITEM = URL + "/api/v1/order/add";
     public static final String URL_USER_LIST = URL + "/api/v1/users";
     public static final String URL_USER_BY_ID = URL + "/api/v1/users/";
@@ -39,5 +41,6 @@ public class Constraint {
     // Variable
     public static final String ID_VEHICLE = "id_vehicle";
     public static final String CART_ITEM = "jsonobject";
+    public static final String ID_ORDER_ITEM = "id_order_item";
     public static final String ID_CART_ITEM = "id_cart_item";
 }
