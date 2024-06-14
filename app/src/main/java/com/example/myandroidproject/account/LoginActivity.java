@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putString("role", role);
-                            editor.putInt("id", idUser);
+                            editor.putInt("id_user", idUser);
                             editor.apply();
 
                             SharedPreferencesUtils.add(SharedPreferencesUtils.STATE_LOGIN, "TRUE", this);
@@ -130,9 +130,9 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Error occurred while parsing response.", Toast.LENGTH_SHORT).show();
                     }
                 }, error -> {
-                    error.printStackTrace();
-                    Toast.makeText(LoginActivity.this, "Server Lord !!!.", Toast.LENGTH_SHORT).show();
-                });
+            error.printStackTrace();
+            Toast.makeText(LoginActivity.this, "Server Lord !!!.", Toast.LENGTH_SHORT).show();
+        });
         queue.add(jsonObjectRequest);
     }
 }

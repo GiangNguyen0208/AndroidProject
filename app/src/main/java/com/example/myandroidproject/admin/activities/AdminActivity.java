@@ -2,6 +2,7 @@ package com.example.myandroidproject.admin.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -50,6 +51,7 @@ public class AdminActivity extends AppCompatActivity {
         });
 
         drawer = findViewById(R.id.drawer_layout);
+
 
         Button b = findViewById(R.id.button);
         b.setOnClickListener((view) -> {

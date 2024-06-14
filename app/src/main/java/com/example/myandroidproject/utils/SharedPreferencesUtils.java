@@ -15,6 +15,11 @@ public class SharedPreferencesUtils {
         SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         return sharedPreferences.getString(key, "");
     }
+
+    public static int getInt(String key, Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt(key, -1);
+    }
     public static boolean checkLogin(Context context) {
         return get(STATE_LOGIN, context).equals("TRUE");
     }
