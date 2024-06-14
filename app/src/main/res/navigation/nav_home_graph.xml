@@ -6,17 +6,6 @@
     app:startDestination="@id/customer_home">
 
     <fragment
-        android:id="@+id/customer_home"
-        android:name="com.example.myandroidproject.customer.fragments.ShowroomFragment"
-        android:label="fragment_nav_home"
-        tools:layout="@layout/fragment_showroom" >
-        <action
-            android:id="@+id/action_customer_home_to_showroomActivity"
-            app:destination="@id/showroomActivity"
-            app:popUpTo="@id/customer_home" />
-    </fragment>
-
-    <fragment
         android:id="@+id/customer_user"
         android:name="com.example.myandroidproject.customer.fragments.InformationFragment"
         android:label="fragment_nav_home"
@@ -39,21 +28,25 @@
     </fragment>
 
     <fragment
-        android:id="@+id/showroomActivity"
-        android:name="com.example.myandroidproject.customer.fragments.ShowroomSearchFragment"
-        android:label="activity_showroom"
-        tools:layout="@layout/activity_showroom" />
+        android:id="@+id/customer_home"
+        android:name="com.example.myandroidproject.customer.fragments.ShowroomFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_showroom" />
+    <action
+        android:id="@+id/action_customer_home_to_showroomSearchFragment"
+        app:destination="@id/showroomSearchFragment" />
 
-    <fragment
-        android:id="@+id/customer_trip"
-        android:name="com.example.myandroidproject.customer.fragments.YourJourneyFragment"
-        android:label="YourJourneyFragment" />
 
     <fragment
         android:id="@+id/customer_chat"
         android:name="com.example.myandroidproject.customer.fragments.ChatFragment"
         android:label="fragment_chat_customer"
         tools:layout="@layout/fragment_chat_customer" />
+    <fragment
+        android:id="@+id/showroomSearchFragment"
+        android:name="com.example.myandroidproject.customer.fragments.ShowroomSearchFragment"
+        android:label="activity_showroom"
+        tools:layout="@layout/activity_showroom" />
 
 
     <action android:id="@+id/action_global_customer_support" app:destination="@id/customer_support"/>

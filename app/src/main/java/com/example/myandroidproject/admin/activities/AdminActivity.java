@@ -53,7 +53,7 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
 
-        ImageView b = findViewById(R.id.button);
+        Button b = findViewById(R.id.button);
         b.setOnClickListener((view) -> {
             drawer.openDrawer(findViewById(R.id.nav_view), true);
         });

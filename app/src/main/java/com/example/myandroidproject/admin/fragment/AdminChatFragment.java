@@ -70,7 +70,7 @@ public class AdminChatFragment extends Fragment {
     public void onStart() {
         super.onStart();
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        ID_USER = sharedPreferences.getInt("id", 1);
+        ID_USER = sharedPreferences.getInt("id_user", 1);
     }
 
     @Override
@@ -168,7 +168,6 @@ public class AdminChatFragment extends Fragment {
                     for (int i=0; i<res.length(); i++){
                         admins.add(res.getInt(i));
                     }
-                    sendMessage(msg);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -239,7 +238,7 @@ public class AdminChatFragment extends Fragment {
                     }
 
                 }, err->{
-                    Toast.makeText(getActivity(), "Load message fail", Toast.LENGTH_LONG).show();
+
                 });
 
                 queue.add(rq);

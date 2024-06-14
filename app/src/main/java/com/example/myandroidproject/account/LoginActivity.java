@@ -107,10 +107,10 @@ public class LoginActivity extends AppCompatActivity {
                             int idUser = response.getInt("id");
                             Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
 
-                            SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+                            SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putString("role", role);
-                            editor.putInt("id", idUser);
+                            editor.putInt("id_user", idUser);
                             editor.apply();
 
                             SharedPreferencesUtils.add(SharedPreferencesUtils.STATE_LOGIN, "TRUE", this);
@@ -120,7 +120,6 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, ShipperActivity.class));
                             } else {
                                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-
                             }
                             finish();
                         } else {
@@ -131,9 +130,9 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Error occurred while parsing response.", Toast.LENGTH_SHORT).show();
                     }
                 }, error -> {
-                    error.printStackTrace();
-                    Toast.makeText(LoginActivity.this, "Server Lord !!!.", Toast.LENGTH_SHORT).show();
-                });
+            error.printStackTrace();
+            Toast.makeText(LoginActivity.this, "Server Lord !!!.", Toast.LENGTH_SHORT).show();
+        });
         queue.add(jsonObjectRequest);
     }
 }
