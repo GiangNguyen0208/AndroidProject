@@ -91,6 +91,7 @@ public class YourJourneyActivity extends AppCompatActivity {
                                         .build();
                                 cartItems.add(cartItem);
                             }
+//                            setInfoCartItem();
                             adapter.notifyDataSetChanged();
                             // Use itemList to update UI (e.g., RecyclerView Adapter)
                             Toast.makeText(YourJourneyActivity.this, "Show !!!", Toast.LENGTH_SHORT).show();
