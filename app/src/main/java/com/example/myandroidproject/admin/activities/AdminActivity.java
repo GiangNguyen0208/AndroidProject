@@ -2,6 +2,7 @@ package com.example.myandroidproject.admin.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -51,6 +52,7 @@ public class AdminActivity extends AppCompatActivity {
 
         drawer = findViewById(R.id.drawer_layout);
 
+
         Button b = findViewById(R.id.button);
         b.setOnClickListener((view) -> {
             drawer.openDrawer(findViewById(R.id.nav_view), true);
@@ -62,10 +64,7 @@ public class AdminActivity extends AppCompatActivity {
         NavigationView nv = findViewById(R.id.nav_view);
         NavigationUI.setupWithNavController(nv, navController);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        int userID = sharedPreferences.getInt("id", -1);
-
-
+        int userID = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, this);
         if (userID != -1) {
             checkUserExists(userID);
         }

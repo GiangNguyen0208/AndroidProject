@@ -55,6 +55,8 @@ public class MainAppActivity extends AppCompatActivity {
             boolean isLogin = SharedPreferencesUtils.checkLogin(this);
             if (!isLogin)
                 startActivity(new Intent(this, LoginActivity.class));
+            if (role == null)
+                startActivity(new Intent(this, LoginActivity.class));
             else if (role.equals("admin"))
                 startActivity(new Intent(this, AdminActivity.class));
             else if (role.equals("shipper"))

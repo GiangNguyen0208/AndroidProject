@@ -40,11 +40,7 @@ public class InformationFragment extends Fragment {
     }
 
     private void logoutUser() {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        SharedPreferencesUtils.add(SharedPreferencesUtils.STATE_LOGIN, "FALSE", getContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.apply();
+        SharedPreferencesUtils.clear(requireContext());
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
         getActivity().finish();

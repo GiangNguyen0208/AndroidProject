@@ -13,6 +13,7 @@ public class Constraint {
     public static final String URL_VEHICLE_LIST = URL + "/api/v1/product";
     public static final String URL_VEHICLE_DETAIL_BY_ID = URL + "/api/v1/product/detail?id=";
     public static final String URL_ADD_TO_JOURNEY = URL + "/api/v1/rental/add?idVehicle=";
+    public static final String URL_CART_ITEM = URL + "/api/v1/rental";
     public static final String URL_FIND_BY_TYPE = URL +"/api/v1/product/type?type=";
     public static final String URL_SEARCH_VEHICLE = URL + "/api/v1/product/search?txtSearch=";
 
@@ -44,4 +45,5 @@ public class Constraint {
     public static final String CART_ITEM = "jsonobject";
     public static final String ID_ORDER_ITEM = "id_order_item";
     public static final String ID_CART_ITEM = "id_cart_item";
+
 }
