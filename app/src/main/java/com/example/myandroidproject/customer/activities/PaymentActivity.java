@@ -1,7 +1,5 @@
 package com.example.myandroidproject.customer.activities;
 
-import static com.example.myandroidproject.utilss.Constraint.ID_VEHICLE;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,28 +9,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.adapters.PaymentCartItemAdapter;
 import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.models.CartItem;
 import com.example.myandroidproject.models.OrderItem;
-import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
 
 import org.json.JSONArray;
@@ -45,10 +38,6 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-//import vn.momo.momo_partner.AppMoMoLib;
 
 public class PaymentActivity extends AppCompatActivity {
     TextView totalPrice, rentalDate, returnDate, nameVehicle;
@@ -84,8 +73,6 @@ public class PaymentActivity extends AppCompatActivity {
 
         buttonConfirm = findViewById(R.id.button_book_now);
         buttonSave = findViewById(R.id.save);
-
-
 
         id = getIntent().getIntExtra(Constraint.ID_CART_ITEM, -1);   // Get id CartItem.
         getDetailCartItem(id);

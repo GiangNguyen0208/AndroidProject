@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/White"
+    tools:context=".admin.fragment.AdminNotifyFragment">
+
+    <TextView
+        android:id="@+id/admin_notify_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gửi Thông Báo"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"
+        android:textColor="@color/Dark"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/admin_notify_title_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập tiêu đề thông báo"
+        android:background="@drawable/edit_text_background"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/Dark"
+        android:textColorHint="@color/xam"/>
+
+    <EditText
+        android:id="@+id/admin_notify_message_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập nội dung thông báo"
+        android:background="@drawable/edit_text_background"
+        android:padding="16dp"
+        android:layout_marginBottom="24dp"
+        android:textColor="@color/Dark"
+        android:textColorHint="@color/xam"
+        android:minHeight="150dp"
+        android:gravity="top"/>
+
+    <Button
+        android:id="@+id/admin_send_notify_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gửi"
+        android:background="@drawable/button_background"
+        android:textColor="@color/White"
+        android:padding="16dp"
+        android:textSize="18sp"/>
+</LinearLayout>

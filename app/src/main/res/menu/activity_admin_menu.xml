@@ -29,6 +29,16 @@
                 android:icon="@drawable/baseline_receipt_24"
                 android:title="@string/order_keyword" />
 
+            <item
+                android:id="@+id/admin_chat_storage"
+                android:icon="@drawable/message"
+                android:title="Chat" />
+
+            <item
+                android:id="@+id/admin_notify"
+                android:icon="@drawable/ic_notify"
+                android:title="Notify" />
+
         </menu>
     </item>
 

@@ -10,14 +10,14 @@
     android:focusable="true"
     android:gravity="center_vertical"
     android:weightSum="8"
-    tools:context=".UserItemFragment">
+    tools:context=".admin.fragment.AdminVehicleItemFragment">
 
     <ImageView
-        android:id="@+id/admin_user_image"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:id="@+id/admin_vehicle_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_weight="1"
-        android:src="@drawable/company" />
+        android:src="@drawable/img_3" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -27,7 +27,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/admin_user_name"
+            android:id="@+id/admin_vehicle_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hello_blank_fragment"
@@ -35,7 +35,21 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/admin_user_smallInfo"
+            android:id="@+id/admin_vehicle_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_blank_fragment"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/admin_vehicle_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_blank_fragment"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/admin_vehicle_discount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hello_blank_fragment"

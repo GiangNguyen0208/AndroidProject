@@ -18,6 +18,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.example.myandroidproject.R;
+import com.example.myandroidproject.utils.SharedPreferencesUtils;
 import com.example.myandroidproject.utilss.Constraint;
 
 import java.text.ParseException;
@@ -27,7 +28,7 @@ import java.util.Date;
 
 public class MyAccount extends AppCompatActivity {
 
-    private EditText firstname, lastname, phone, email, birthday;//, password;
+    private EditText firstname, lastname, phone, email, birthday;
     private RadioGroup gender;
 
     @Override
@@ -39,13 +40,11 @@ public class MyAccount extends AppCompatActivity {
         lastname = findViewById(R.id.etLastname);
         phone = findViewById(R.id.etPhone);
         email = findViewById(R.id.etEmail);
-//        password = findViewById(R.id.etPassword);
         birthday = findViewById(R.id.etBirthday);
         gender = findViewById(R.id.radioGenderGroup);
         Button btnSave = findViewById(R.id.btnSave);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        int userId = sharedPreferences.getInt("id", -1);
+        int userId = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, this);
 
         if (userId != -1) {
             loadUserData(userId);

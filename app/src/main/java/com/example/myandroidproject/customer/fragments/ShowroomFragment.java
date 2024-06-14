@@ -26,10 +26,8 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.activities.YourJourneyActivity;
-import com.example.myandroidproject.customer.adapter.VehicleAdapter;
 import com.example.myandroidproject.customer.adapters.ListVehicleAdapter;
 import com.example.myandroidproject.models.Vehicle;
-import com.example.myandroidproject.models.Vehicles;
 import com.example.myandroidproject.utilss.Constraint;
 
 import org.json.JSONArray;
@@ -100,7 +98,6 @@ public class ShowroomFragment extends Fragment {
                     System.err.println(e.getMessage());
                 }
             }
-
             ListVehicleAdapter adapter = new ListVehicleAdapter(vehiclesList, getContext());
             RecyclerView view = getView().findViewById(R.id.recommended_container);
             RecyclerView.LayoutManager mgr = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);

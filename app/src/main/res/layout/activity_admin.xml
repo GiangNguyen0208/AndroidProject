@@ -25,13 +25,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:id="@+id/button"
                     style="@style/PrimaryOutlineButton"
                     app:icon="@drawable/baseline_menu_24"
                     android:text="Menu"
                     android:textAlignment="textEnd"
+                    android:textColor="@color/Dark"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView9"

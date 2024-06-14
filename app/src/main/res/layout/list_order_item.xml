@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pressHere"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="10dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:weightSum="8"
+    tools:context=".ShipperListOrder">
+
+    <ImageView
+        android:id="@+id/oderIMG"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:src="@drawable/img_4" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="6dp"
+        android:layout_weight="6"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/orderName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đơn Hàng"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="6dp"
+            android:layout_weight="6"
+            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/whichCar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="     Trạng Thái:  "
+            android:textSize="18dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NaS "
+            android:textSize="18dp"
+            android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="6dp"
+            android:layout_weight="6"
+            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ngày Giao Hàng: "
+            android:textSize="15dp" />
+
+         <TextView
+            android:id="@+id/dateShipping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22/22/123073819"
+            android:textSize="15dp" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingHorizontal="10dp"
+        android:src="@drawable/baseline_chevron_right_24" />
+
+
+</LinearLayout>

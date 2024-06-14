@@ -23,11 +23,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.example.myandroidproject.LoginActivity;
 import com.example.myandroidproject.R;
-import com.example.myandroidproject.account.LoginActivity;
 import com.example.myandroidproject.customer.adapters.DetailVehicleAdapter;
 import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
+import com.example.myandroidproject.utilss.SharedPreferencesUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,6 +51,8 @@ public class DetailItemActivity extends AppCompatActivity {
     ImageView back_evt;
     DetailVehicleAdapter detailVehicleAdapter;
     Button rentalButton;
+    MyLicense myLicense;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +83,7 @@ public class DetailItemActivity extends AppCompatActivity {
             }
         });
         back_evt.setOnClickListener(v -> {
-//            startActivity(new Intent(this, ShowroomActivity.class));
+            startActivity(new Intent(this, ShowroomActivity.class));
             finish();
         });
         imageView = findViewById(R.id.imageVehicle);
@@ -113,7 +116,8 @@ public class DetailItemActivity extends AppCompatActivity {
         getDetailCallAPI(id);
 
         rentalButton.setOnClickListener(v -> {
-//            startActivity(new Intent(this, ShowroomActivity.class));
+            startActivity(new Intent(this, ShowroomActivity.class));
+//            if (myLicense.loadStatus(userId)) return;
             getAddToJourney(id, userId);
             finish();
         });
@@ -138,9 +142,11 @@ public class DetailItemActivity extends AppCompatActivity {
             day.setText(String.valueOf(quantityRent));
         }
     }
+
     private String formatToPercentage(double discount) {
         return String.format("%.0f%%", discount * 100);
     }
+
     // Add Journey...
     private void getAddToJourney(Integer id, Integer userId) {
         RequestQueue queue = Volley.newRequestQueue(this);
