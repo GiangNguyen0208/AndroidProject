@@ -59,13 +59,13 @@ public class AdminChatStorageFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        ID_USER = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, requireContext());
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         queue = Volley.newRequestQueue(getActivity());
+        ID_USER = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, requireContext());
     }
 
     @Override
