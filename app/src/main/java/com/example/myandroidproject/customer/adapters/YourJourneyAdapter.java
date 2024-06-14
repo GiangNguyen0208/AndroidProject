@@ -18,6 +18,7 @@ import com.example.myandroidproject.customer.activities.PaymentActivity;
 import com.example.myandroidproject.models.CartItem;
 import com.example.myandroidproject.utilss.Constraint;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -44,15 +45,17 @@ public class YourJourneyAdapter extends RecyclerView.Adapter<YourJourneyAdapter.
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
         viewYourJourneyHolder.name.setText(cartItem.getNameItem());
-        viewYourJourneyHolder.price.setText(String.valueOf(cartItem.getPrice()));
+        viewYourJourneyHolder.price.setText((int) cartItem.getPrice());
         Glide.with(context).load(cartItem.getImageLink()).into(viewYourJourneyHolder.imageView);
         viewYourJourneyHolder.rentalDate.setText(formatter.format(cartItem.getRentalDate()));
         viewYourJourneyHolder.returnDate.setText(formatter.format(cartItem.getReturnDate()));
 
         holder.itemView.setOnClickListener(v -> {
             int id = cartItem.getId();
-            Intent intent = new Intent(context.getApplicationContext(), PaymentActivity.class);
+            int idvehicle = cartItem.getIdVehicle();
+            Intent intent = new Intent(context, PaymentActivity.class);
             intent.putExtra(Constraint.ID_CART_ITEM, id);
+            intent.putExtra(Constraint.ID_VEHICLE, idvehicle);
             context.startActivity(intent);
         });
     }

@@ -14,9 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.activities.DetailItemActivity;
+import com.example.myandroidproject.customer.activities.PaymentActivity;
 import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class ListVehicleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -39,9 +41,12 @@ public class ListVehicleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Vehicle vehicle = vehicleList.get(position);
         if (vehicle == null) return;
+        DecimalFormat formatterCurrency = new DecimalFormat("###,###,###");
+
         ViewVehicleHolder viewVehicleHolder = (ViewVehicleHolder) holder;
         viewVehicleHolder.name.setText(vehicle.getNameVehicle());
         viewVehicleHolder.brand.setText(vehicle.getBrandVehicle());
+//        viewVehicleHolder.price.setText(vehicle.getPrice());
         Glide.with(this.context).load(vehicle.getImageLink()).into(viewVehicleHolder.imageView);
         viewVehicleHolder.itemView.setOnClickListener(v -> {
             int id = vehicle.getId();
