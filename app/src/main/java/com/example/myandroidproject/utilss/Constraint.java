@@ -41,6 +41,7 @@ public class Constraint {
     // USER
     public static final String URL_USER_BY_ID = URL + "/api/v1/users/";
     public static final String URL_USER_LIST = URL + "/api/v1/users";
+    public static final String URL_GET_ROLES = URL + "/api/v1/roles";
 
 
     // Variable
@@ -48,5 +49,4 @@ public class Constraint {
     public static final String CART_ITEM = "jsonobject";
     public static final String ID_ORDER_ITEM = "id_order_item";
     public static final String ID_CART_ITEM = "id_cart_item";
-
 }

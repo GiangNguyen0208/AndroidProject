@@ -49,7 +49,7 @@ public class AdminChatStorageFragment extends Fragment {
     RequestQueue queue;
     int ID_USER = 1;
     Timer timer = new Timer(),
-    timer2 = new Timer();
+            timer2 = new Timer();
     Map<Integer, String> customers = new HashMap<>();
 
     public AdminChatStorageFragment() {
@@ -64,7 +64,7 @@ public class AdminChatStorageFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        queue = Volley.newRequestQueue(getActivity());
+        queue = Volley.newRequestQueue(requireContext());
         ID_USER = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, requireContext());
     }
 
@@ -73,40 +73,37 @@ public class AdminChatStorageFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_admin_chat_storage, container, false);
-
         RecyclerView recyclerView = v.findViewById(R.id.admin_chat_storage_recycleview);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
 
-        adapter.setBind((position)->{
-                Bundle bundle = savedInstanceState;
-                int customer = messageStorages.get(position).getLastMessage().getFrom()==ID_USER?messageStorages.get(position).getLastMessage().getTo():messageStorages.get(position).getLastMessage().getFrom();
-                if (bundle == null){
-                    bundle = new Bundle();
-                }
-                bundle.putInt("customerId", customer);
-                Navigation.findNavController(getView()).navigate(R.id.action_global_admin_chat, bundle);
+        adapter.setBind((position) -> {
+            Bundle bundle = savedInstanceState;
+            int customer = messageStorages.get(position).getLastMessage().getFrom() == ID_USER ? messageStorages.get(position).getLastMessage().getTo() : messageStorages.get(position).getLastMessage().getFrom();
+            if (bundle == null) {
+                bundle = new Bundle();
+            }
+            bundle.putInt("customerId", customer);
+            Navigation.findNavController(requireView()).navigate(R.id.action_global_admin_chat, bundle);
         });
 
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("id", ID_USER);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-
-                JsonObjectRequest rq = new JsonObjectRequest(Request.Method.POST, URL_READ_MESSAGE, jsonBody, resp->{
-
+                JsonObjectRequest rq = new JsonObjectRequest(Request.Method.POST, URL_READ_MESSAGE, jsonBody, resp -> {
                     try {
                         JSONArray res = resp.getJSONArray("data");
                         List<Message> temp = new ArrayList<>();
                         boolean newChat = false;
 
-                        for (int i=0; i<res.length(); i++){
+                        for (int i = 0; i < res.length(); i++) {
                             JSONObject jsonObject = res.getJSONObject(i);
                             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.ENGLISH);
                             int from = jsonObject.getInt("from"),
@@ -115,15 +112,15 @@ public class AdminChatStorageFragment extends Fragment {
                                     toFirstName = jsonObject.getString("toFirstName"),
                                     content = jsonObject.getString("content");
                             Date createAt = formatter.parse(jsonObject.getString("createAt"));
-                            boolean isOwner = jsonObject.getInt("from")==ID_USER;
-                            if (from != ID_USER){
+                            boolean isOwner = jsonObject.getInt("from") == ID_USER;
+                            if (from != ID_USER) {
                                 customers.put(from, fromFirstName);
-                            }else{
+                            } else {
                                 customers.put(to, toFirstName);
                             }
 
                             temp.add(new Message(from, to, fromFirstName, toFirstName, content, createAt, isOwner));
-                            if (temp.size() > allMessages.size()){
+                            if (temp.size() > allMessages.size()) {
                                 allMessages.clear();
                                 allMessages.addAll(temp);
                                 newChat = true;
@@ -133,29 +130,29 @@ public class AdminChatStorageFragment extends Fragment {
                         if (!newChat)
                             return;
                         List<MessageStorage> tempStorages = new ArrayList<>();
-                        if (!customers.isEmpty() && !allMessages.isEmpty()){
-                            for (Map.Entry<Integer, String> cI: customers.entrySet()){
+                        if (!customers.isEmpty() && !allMessages.isEmpty()) {
+                            for (Map.Entry<Integer, String> cI : customers.entrySet()) {
                                 List<Message> ms = new ArrayList<>();
-                                for (Message m: allMessages){
-                                    if (m.getFrom() == cI.getKey() || m.getTo() == cI.getKey()){
+                                for (Message m : allMessages) {
+                                    if (m.getFrom() == cI.getKey() || m.getTo() == cI.getKey()) {
                                         ms.add(m);
                                     }
                                 }
                                 ms.sort(Message::sortOldToNew);
                                 tempStorages.add(new MessageStorage(ms, cI.getValue()));
                             }
-                                messageStorages.clear();
-                                messageStorages.addAll(tempStorages);
-                                messageStorages.sort(MessageStorage::sortOldToNew);
-                                adapter.notifyDataSetChanged();
+                            messageStorages.clear();
+                            messageStorages.addAll(tempStorages);
+                            messageStorages.sort(MessageStorage::sortOldToNew);
+                            adapter.notifyDataSetChanged();
 
                         }
 
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 
-                }, err->{
+                }, err -> {
                     Toast.makeText(getActivity(), "Load messages fail", Toast.LENGTH_LONG).show();
                 });
 
@@ -164,14 +161,13 @@ public class AdminChatStorageFragment extends Fragment {
         }, 100, 2000);
 
 
-
         return v;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (queue != null){
+        if (queue != null) {
             queue.cancelAll(this);
         }
         timer.cancel();

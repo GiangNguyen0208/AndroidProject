@@ -1,10 +1,7 @@
 package com.example.myandroidproject.admin.fragment;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,19 +12,21 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
-import com.example.myandroidproject.customer.activities.MyAccount;
 import com.example.myandroidproject.utilss.Constraint;
 
 import org.json.JSONException;
@@ -35,6 +34,7 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -43,7 +43,8 @@ public class AdminUserDetailFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private int userID;
     private Button backBtn;
-    private TextView txtView;
+    private ArrayAdapter<String> adapter;
+    private CheckBox isAdminMessage;
 
     public AdminUserDetailFragment() {
         // Required empty public constructor
@@ -78,8 +79,10 @@ public class AdminUserDetailFragment extends Fragment {
 //        password = findViewById(R.id.etPassword);
         birthday = view.findViewById(R.id.etBirthday);
         gender = view.findViewById(R.id.radioGenderGroup);
+        roleSpinner = view.findViewById(R.id.role_input);
+        isAdminMessage = view.findViewById(R.id.can_send_message);
         Button btnSave = view.findViewById(R.id.btnSave);
-        loadUserData(userID);
+        loadUser(userID);
         birthday.setOnClickListener(v -> showDatePickerDialog());
         btnSave.setOnClickListener(v -> saveUserData(userID));
     }
@@ -87,6 +90,7 @@ public class AdminUserDetailFragment extends Fragment {
 
     private EditText firstname, lastname, phone, email, birthday;//, password;
     private RadioGroup gender;
+    private Spinner roleSpinner;
 
     private String convertDateFormat(String dateStr) {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd");
@@ -123,7 +127,7 @@ public class AdminUserDetailFragment extends Fragment {
         DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(),
                 (view, selectedYear, selectedMonth, selectedDay) -> {
                     calendar.set(selectedYear, selectedMonth, selectedDay);
-                    @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                     String selectedDate = dateFormat.format(calendar.getTime());
                     birthday.setText(selectedDate);
                 }, year, month, day);
@@ -152,15 +156,17 @@ public class AdminUserDetailFragment extends Fragment {
                         } else {
                             gender.check(R.id.radioFemale);
                         }
+
                         birthday.setText(convertDateFormat(user.optString("birthDay", "")));
+                        roleSpinner.setSelection(adapter.getPosition(user.optString("roleName", "user")), true);
+                        isAdminMessage.setChecked(user.optBoolean("isAdminMessage"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 },
                 error -> {
-                    // Handle error
+                    Toast.makeText(getContext(), "NOOOO", Toast.LENGTH_SHORT).show();
                 });
-
         queue.add(stringRequest);
     }
 
@@ -190,14 +196,41 @@ public class AdminUserDetailFragment extends Fragment {
             if (!birthday.getText().toString().isEmpty()) {
                 user.put("birthDay", convertDateFormatToServer(birthday.getText().toString()));
             }
+            user.put("roleName", roleSpinner.getSelectedItem().toString());
+            user.put("isAdminMessage", isAdminMessage.isChecked());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, url, user,
-                response -> Toast.makeText(requireContext(), "User updated successfully", Toast.LENGTH_SHORT).show(),
+                response -> Toast.makeText(requireContext(), "User updated successfully, restart this app if you updated yourself", Toast.LENGTH_SHORT).show(),
                 error -> Toast.makeText(requireContext(), "Error updating user", Toast.LENGTH_SHORT).show());
 
         queue.add(jsonObjectRequest);
+    }
+
+    private void loadUser(int userID) {
+        RequestQueue queue = Volley.newRequestQueue(requireContext());
+        String url = Constraint.URL_GET_ROLES;
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        ArrayList<String> roleList = new ArrayList<>();
+                        for (int i = 0; i< response.length(); i++) {
+                            roleList.add(response.getJSONObject(i).getString("name"));
+                        }
+                        adapter = new ArrayAdapter<String>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, roleList);
+                        roleSpinner.setAdapter(adapter);
+                        loadUserData(userID);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> {
+                    Toast.makeText(getContext(), "NOOOO", Toast.LENGTH_SHORT).show();
+                });
+
+        queue.add(request);
     }
 }

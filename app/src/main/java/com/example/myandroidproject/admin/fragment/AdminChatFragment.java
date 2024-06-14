@@ -86,6 +86,7 @@ public class AdminChatFragment extends Fragment {
         recyclerViewAdmin = view.findViewById(R.id.admin_chat_recycleview);
         sendBtnAdmin = view.findViewById(R.id.sendBtnAdmin);
         messageInputAdmin = view.findViewById(R.id.messageInputAdmin);
+
         recyclerViewAdmin.setAdapter(adapter);
         recyclerViewAdmin.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -190,7 +191,7 @@ public class AdminChatFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         JSONObject jsonBody = new JSONObject();
@@ -204,7 +205,6 @@ public class AdminChatFragment extends Fragment {
             @Override
             public void run() {
                 JsonObjectRequest rq = new JsonObjectRequest(Request.Method.POST, URL_READ_MESSAGE, jsonBody, resp->{
-
                     try {
                         JSONArray res = resp.getJSONArray("data");
                         List<Message> temp = new ArrayList<>();
@@ -216,7 +216,6 @@ public class AdminChatFragment extends Fragment {
 
                             if (temp.size() > messages.size()){
                                 messages.clear();
-
                                 if (!temp.isEmpty()){
                                         for (Message m: temp){
                                             if (m.getFrom() == customerId || m.getTo() == customerId){
