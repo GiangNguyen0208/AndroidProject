@@ -208,7 +208,7 @@ public class ChatFragment extends Fragment {
     private void sendMessage(String msg){
         if (admins.size() <= 0){
             getAdmins();
-            Toast.makeText(requireContext(), "Not found an admin for support message!", Toast.LENGTH_LONG);
+            Toast.makeText(requireContext(), "Not found an admin for support message!", Toast.LENGTH_LONG).show();
             return;
         }
         Message virtualMessage = new Message(ID_USER, -1, tempOwnerName, null, msg, Date.from(Instant.now()), true);

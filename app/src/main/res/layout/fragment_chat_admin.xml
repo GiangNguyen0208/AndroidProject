@@ -60,7 +60,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutAdmin"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sendBtnAdmin"
         app:layout_constraintStart_toStartOf="parent">
@@ -68,9 +68,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/messageInputAdmin"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="match_parent"
             android:padding="0dp"
-            android:textSize="25sp"
+            android:textSize="35sp"
             android:hint="Input here" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -81,13 +81,13 @@
         android:background="@color/notYellow"
         android:id="@+id/sendBtnAdmin"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="35dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:fontFamily="sans-serif"
         android:textFontWeight="600"
         android:text="Send"
-        android:textSize="20dp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
