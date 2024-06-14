@@ -56,7 +56,6 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerViewHome;
     List<Vehicle> vehicleList = new ArrayList<>();
     CardView cardView;
-
     ListVehicleAdapter listVehicleAdapter;
 
     public HomeFragment() {
@@ -105,52 +104,5 @@ public class HomeFragment extends Fragment {
         goto_showroom.setOnClickListener(v -> {
             startActivity(new Intent(v.getContext(), ShowroomActivity.class));
         });
-    }
-    private void getListVehicle() {
-        RequestQueue queue = Volley.newRequestQueue(getContext());
-        String url = Constraint.URL_VEHICLE_LIST;
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.GET,
-                url,
-                null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            List<Vehicle> temps = new ArrayList<>();
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject jsonObject = response.getJSONObject(i);
-                                int id = jsonObject.getInt("id");
-                                String name = jsonObject.getString("name");
-                                String brand = jsonObject.getString("brand");
-                                double price = Double.parseDouble(jsonObject.getString("price"));
-                                String imageLink = jsonObject.getString("image");
-                                Vehicle vehicle = Vehicle.builder()
-                                        .id(id)
-                                        .nameVehicle(name)
-                                        .brandVehicle(brand)
-                                        .imageLink(imageLink)
-                                        .price(price)
-                                        .build();
-                                vehicleList.add(vehicle);
-                            }
-                            // Use itemList to update UI (e.g., RecyclerView Adapter)
-                            listVehicleAdapter.notifyDataSetChanged();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getContext(), "Parsing error", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
-        // Add the request to the RequestQueue
-        queue.add(jsonArrayRequest);
     }
 }
