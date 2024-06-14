@@ -58,17 +58,18 @@ public class AdminNotifyFragment extends Fragment {
             return;
         }
 
-        String url = Constraint.URL_READ_ADMIN_NOT;
+        String url = Constraint.URL_SEND_NOT;
 
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("title", title);
-            jsonBody.put("message", message);
+            jsonBody.put("content", message);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonBody
+                ,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -77,13 +78,8 @@ public class AdminNotifyFragment extends Fragment {
                         notifyMessageEditText.setText("");
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), "Có lỗi xảy ra khi gửi thông báo", Toast.LENGTH_SHORT).show();
-                        error.printStackTrace();
-                    }
-                });
+                error -> {}
+                );
 
         RequestQueue queue = Volley.newRequestQueue(requireContext());
         queue.add(request);

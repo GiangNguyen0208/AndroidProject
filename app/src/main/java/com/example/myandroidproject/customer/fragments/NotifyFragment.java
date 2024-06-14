@@ -3,6 +3,7 @@ package com.example.myandroidproject.customer.fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +17,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.utilss.Constraint;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,17 +37,19 @@ public class NotifyFragment extends Fragment {
     }
 
     private void sendNotificationRequest(LinearLayout dynamicContainer) {
-        String url = Constraint.URL_SEND_NOT;
+        String url = Constraint.URL_READ_ADMIN_NOT;
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(JSONArray response) {
                         try {
-                            String notificationTitle = response.getString("title");
-                            String notificationMessage = response.getString("message");
-                            showNotificationDialog(notificationTitle, notificationMessage);
-                            addNotificationToLayout(dynamicContainer, notificationTitle, notificationMessage);
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject notification = response.getJSONObject(i);
+                                String notificationTitle = notification.getString("title");
+                                String notificationMessage = notification.getString("content");
+                                addNotificationToLayout(dynamicContainer, notificationTitle, notificationMessage);
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -68,6 +72,7 @@ public class NotifyFragment extends Fragment {
         textView.setText(title + ": " + message);
         textView.setTextSize(16);
         textView.setPadding(16, 16, 16, 16);
+        textView.setBackground(Drawable.createFromPath("@drawable/border_background"));
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +85,6 @@ public class NotifyFragment extends Fragment {
     }
 
     private void showErrorInLayout(LinearLayout container) {
-        // Hiển thị một thông báo lỗi trong layout khi không thể nhận thông báo từ máy chủ
         TextView errorTextView = new TextView(getContext());
         errorTextView.setText("Không thể tải thông báo. Vui lòng thử lại sau.");
         errorTextView.setTextSize(16);

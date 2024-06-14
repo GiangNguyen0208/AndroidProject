@@ -36,7 +36,7 @@
 
             <item
                 android:id="@+id/admin_notify"
-                android:icon="@drawable/ic_notify"
+                android:icon="@drawable/ic_admin_notify"
                 android:title="Notify" />
 
         </menu>

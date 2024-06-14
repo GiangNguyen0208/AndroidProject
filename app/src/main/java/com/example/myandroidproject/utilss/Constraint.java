@@ -20,8 +20,8 @@ public class Constraint {
     public static final String URL_READ_MESSAGE = URL + "/api/v1/message/read";
     public static final String URL_SEND_MESSAGE = URL + "/api/v1/message/send";
     public static final String URL_GET_ADMINS_MESSAGE = URL + "/api/v1/message/admins";
-    public static final String URL_READ_ADMIN_NOT = URL + "/api/vi/notify/send";
-    public static final String URL_SEND_NOT = URL + "/api/vi/notify/send";
+    public static final String URL_READ_ADMIN_NOT = URL + "/api/v1/notify/read";
+    public static final String URL_SEND_NOT = URL + "/api/v1/notify/send";
 
 
 
