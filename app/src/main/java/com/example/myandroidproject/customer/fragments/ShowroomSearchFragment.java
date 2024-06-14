@@ -44,7 +44,6 @@ public class ShowroomSearchFragment extends Fragment {
     ListVehicleAdapter listVehicleAdapter;
     String vehicleType = "";
     SearchView searchView;
-
     TextView findByCar, findByMotor;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -149,31 +148,28 @@ public class ShowroomSearchFragment extends Fragment {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject jsonObject = response.getJSONObject(i);
-                                int id = jsonObject.getInt("id");
-                                String name = jsonObject.getString("name");
-                                String brand = jsonObject.getString("brandName");
-                                double price = jsonObject.getDouble("price");
-                                String imageLink = jsonObject.getString("imageUrl");
-                                Vehicle vehicle = Vehicle.builder()
-                                        .id(id)
-                                        .nameVehicle(name)
-                                        .brandVehicle(brand)
-                                        .imageLink(imageLink)
-                                        .price(price)
-                                        .build();
-                                vehicleList.add(vehicle);
-                            }
-                            listVehicleAdapter.notifyDataSetChanged();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(requireContext(), "Parsing error", Toast.LENGTH_SHORT).show();
+                response -> {
+                    try {
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject jsonObject = response.getJSONObject(i);
+                            int id = jsonObject.getInt("id");
+                            String name = jsonObject.getString("name");
+                            String brand = jsonObject.getString("brand");
+                            double price = jsonObject.getDouble("price");
+                            String imageLink = jsonObject.getString("image");
+                            Vehicle vehicle = Vehicle.builder()
+                                    .id(id)
+                                    .nameVehicle(name)
+                                    .brandVehicle(brand)
+                                    .imageLink(imageLink)
+                                    .price(price)
+                                    .build();
+                            vehicleList.add(vehicle);
                         }
+                        listVehicleAdapter.notifyDataSetChanged();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(requireContext(), "Parsing error", Toast.LENGTH_SHORT).show();
                     }
                 },
                 new Response.ErrorListener() {
@@ -194,40 +190,32 @@ public class ShowroomSearchFragment extends Fragment {
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject jsonObject = response.getJSONObject(i);
-                                int id = jsonObject.getInt("id");
-                                String name = jsonObject.getString("name");
-                                String brand = jsonObject.getString("brandName");
-                                double price = jsonObject.getDouble("price");
-                                String imageLink = jsonObject.getString("image");
-                                Vehicle vehicle = Vehicle.builder()
-                                        .id(id)
-                                        .nameVehicle(name)
-                                        .brandVehicle(brand)
-                                        .imageLink(imageLink)
-                                        .price(price)
-                                        .build();
-                                vehicleList.add(vehicle);
-                            }
-                            // Use itemList to update UI (e.g., RecyclerView Adapter)
-                            listVehicleAdapter.notifyDataSetChanged();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(requireContext(), "Parsing error", Toast.LENGTH_SHORT).show();
+                response -> {
+                    try {
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject jsonObject = response.getJSONObject(i);
+                            int id = jsonObject.getInt("id");
+                            String name = jsonObject.getString("name");
+                            String brand = jsonObject.getString("brand");
+                            double price = jsonObject.getDouble("price");
+                            String imageLink = jsonObject.getString("image");
+                            Vehicle vehicle = Vehicle.builder()
+                                    .id(id)
+                                    .nameVehicle(name)
+                                    .brandVehicle(brand)
+                                    .imageLink(imageLink)
+                                    .price(price)
+                                    .build();
+                            vehicleList.add(vehicle);
                         }
+                        // Use itemList to update UI (e.g., RecyclerView Adapter)
+                        listVehicleAdapter.notifyDataSetChanged();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(requireContext(), "Parsing error", Toast.LENGTH_SHORT).show();
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(requireContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
+                error -> Toast.makeText(requireContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show()
         );
         // Add the request to the RequestQueue
         queue.add(jsonArrayRequest);

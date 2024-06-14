@@ -17,17 +17,17 @@
             <item
                 android:id="@+id/admin_user"
                 android:icon="@drawable/baseline_account_circle_24"
-                android:title="Người dùng"
+                android:title="@string/user_keyword"
                 />
             <item
                 android:id="@+id/admin_vehicle"
                 android:icon="@drawable/baseline_directions_car_24"
-                android:title="Xe"
+                android:title="@string/vehicle_keyword"
                 />
             <item
                 android:id="@+id/admin_order"
                 android:icon="@drawable/baseline_receipt_24"
-                android:title="Đơn hàng" />
+                android:title="@string/order_keyword" />
 
             <item
                 android:id="@+id/admin_chat_storage"

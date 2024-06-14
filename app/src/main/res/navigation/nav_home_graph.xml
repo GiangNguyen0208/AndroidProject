@@ -31,7 +31,6 @@
       
     </fragment>
 
-
     <fragment
         android:id="@+id/customer_notify"
         android:name="com.example.myandroidproject.customer.fragments.NotifyFragment"
@@ -59,5 +58,6 @@
 
     <action android:id="@+id/action_global_customer_support" app:destination="@id/customer_support"/>
     <action android:id="@+id/action_global_customer_chat" app:destination="@id/customer_chat"/>
+
 
 </navigation>

@@ -45,7 +45,7 @@ public class ListVehicleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         Glide.with(this.context).load(vehicle.getImageLink()).into(viewVehicleHolder.imageView);
         viewVehicleHolder.itemView.setOnClickListener(v -> {
             int id = vehicle.getId();
-            Intent intent = new Intent(context.getApplicationContext(), DetailItemActivity.class);
+            Intent intent = new Intent(context, DetailItemActivity.class);
             intent.putExtra(Constraint.ID_VEHICLE, id);
             context.startActivity(intent);
         });

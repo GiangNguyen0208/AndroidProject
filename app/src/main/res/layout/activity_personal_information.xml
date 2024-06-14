@@ -75,6 +75,21 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/changesPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawablePadding="12dp"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="@string/i_m_t_kh_u"
+                    android:textColor="@color/xam"
+                    android:textSize="18sp" />
+
+                <TextView
                     android:id="@+id/my_license"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -86,21 +101,6 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:text="@string/gi_y_ph_p_l_i_xe"
-                    android:textColor="@color/xam"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/myGift"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="?attr/selectableItemBackground"
-                    android:drawablePadding="12dp"
-                    android:gravity="center_vertical"
-                    android:padding="12dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:text="@string/qu_t_ng"
                     android:textColor="@color/xam"
                     android:textSize="18sp" />
 
