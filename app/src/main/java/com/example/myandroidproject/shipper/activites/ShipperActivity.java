@@ -41,11 +41,7 @@ public class ShipperActivity extends AppCompatActivity {
 
     }
     private void logoutUser() {
-        SharedPreferences sharedPreferences = this.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        SharedPreferencesUtils.add(SharedPreferencesUtils.STATE_LOGIN, "FALSE", this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.apply();
+        SharedPreferencesUtils.clear(this);
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         this.finish();

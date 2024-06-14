@@ -70,9 +70,8 @@ public class ChatFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        queue = Volley.newRequestQueue(getActivity());
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        ID_USER = sharedPreferences.getInt("id_user", -1);
+        queue = Volley.newRequestQueue(requireContext());
+        ID_USER = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, requireContext());
 
         System.out.println(ID_USER);
     }

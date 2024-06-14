@@ -64,10 +64,7 @@ public class AdminActivity extends AppCompatActivity {
         NavigationView nv = findViewById(R.id.nav_view);
         NavigationUI.setupWithNavController(nv, navController);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        int userID = sharedPreferences.getInt("id", -1);
-
-
+        int userID = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, this);
         if (userID != -1) {
             checkUserExists(userID);
         }

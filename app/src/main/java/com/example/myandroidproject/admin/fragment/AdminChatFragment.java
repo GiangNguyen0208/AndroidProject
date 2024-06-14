@@ -69,8 +69,7 @@ public class AdminChatFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        ID_USER = sharedPreferences.getInt("id_user", 1);
+        ID_USER = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, requireContext());
     }
 
     @Override
@@ -175,7 +174,7 @@ public class AdminChatFragment extends Fragment {
             queue.add(rq);
         }
 
-        for (Integer adminId : admins){
+
             JSONObject jsonBody = new JSONObject();
             try {
                 jsonBody.put("content", msg);
@@ -187,7 +186,7 @@ public class AdminChatFragment extends Fragment {
 
             JsonObjectRequest rq1 = new JsonObjectRequest(Request.Method.POST, URL_SEND_MESSAGE, jsonBody, resp1->{}, err->{err.printStackTrace();});
             queue.add(rq1);
-        }
+
     }
 
     @Override

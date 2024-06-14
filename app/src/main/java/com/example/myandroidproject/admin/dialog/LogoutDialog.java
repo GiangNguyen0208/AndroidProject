@@ -40,11 +40,7 @@ public class LogoutDialog extends Dialog implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_yes) {
-            SharedPreferences sharedPreferences = v.getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-            SharedPreferencesUtils.add(SharedPreferencesUtils.STATE_LOGIN, "FALSE", getContext());
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.clear();
-            editor.apply();
+            SharedPreferencesUtils.clear(v.getContext());
             v.getContext().startActivity(new Intent(c, LoginActivity.class));
             c.finish();
         }

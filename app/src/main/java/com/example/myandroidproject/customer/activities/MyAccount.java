@@ -18,6 +18,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.example.myandroidproject.R;
+import com.example.myandroidproject.utils.SharedPreferencesUtils;
 import com.example.myandroidproject.utilss.Constraint;
 
 import java.text.ParseException;
@@ -43,8 +44,7 @@ public class MyAccount extends AppCompatActivity {
         gender = findViewById(R.id.radioGenderGroup);
         Button btnSave = findViewById(R.id.btnSave);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        int userId = sharedPreferences.getInt("id", -1);
+        int userId = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, this);
 
         if (userId != -1) {
             loadUserData(userId);

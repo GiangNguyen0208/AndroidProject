@@ -17,6 +17,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
+import com.example.myandroidproject.utils.SharedPreferencesUtils;
 import com.example.myandroidproject.utilss.Constraint;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -37,8 +38,7 @@ public class ChangesPass extends AppCompatActivity {
             return insets;
         });
 
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        int userId = sharedPreferences.getInt("id", -1);
+        int userId = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, this);
 
         old_Pass = findViewById(R.id.oldPass);
         new_Pass = findViewById(R.id.newPass);

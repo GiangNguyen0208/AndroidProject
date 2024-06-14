@@ -59,8 +59,7 @@ public class AdminChatStorageFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        ID_USER = sharedPreferences.getInt("id", 1);
+        ID_USER = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, requireContext());
     }
 
     @Override
