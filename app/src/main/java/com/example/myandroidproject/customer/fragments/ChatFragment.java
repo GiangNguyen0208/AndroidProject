@@ -5,6 +5,7 @@ import static com.example.myandroidproject.utilss.Constraint.URL_READ_MESSAGE;
 import static com.example.myandroidproject.utilss.Constraint.URL_SEND_MESSAGE;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
 
@@ -51,7 +52,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ChatFragment extends Fragment {
-    final int ID_USER = 3;
+    int ID_USER = 3;
     final Set<Integer> admins = new HashSet<>();
     ImageView chatExitBtn;
     TextView sendBtn;
@@ -69,7 +70,10 @@ public class ChatFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        queue = Volley.newRequestQueue(getActivity());
+        queue = Volley.newRequestQueue(requireContext());
+        ID_USER = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, requireContext());
+
+        System.out.println(ID_USER);
     }
 
     @Override
@@ -137,7 +141,6 @@ public class ChatFragment extends Fragment {
                     for (int i=0; i<res.length(); i++){
                         admins.add(res.getInt(i));
                     }
-                    sendMessage(msg);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -198,7 +201,7 @@ public class ChatFragment extends Fragment {
                     }
 
                 }, err->{
-                    Toast.makeText(getActivity(), "Load message fail", Toast.LENGTH_LONG).show();
+
                 });
 
                 queue.add(rq);

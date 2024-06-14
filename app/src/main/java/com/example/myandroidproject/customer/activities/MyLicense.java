@@ -32,6 +32,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.helpers.VolleyMultipartRequest;
+import com.example.myandroidproject.utils.SharedPreferencesUtils;
 import com.example.myandroidproject.utilss.Constraint;
 
 import org.json.JSONException;
@@ -62,8 +63,7 @@ public class MyLicense extends AppCompatActivity {
         captureImg = findViewById(R.id.btnCapture);
         textView = findViewById(R.id.textView);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        int userId = sharedPreferences.getInt("id", -1);
+        int userId = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, this);
         loadStatus(userId);
 
         read.setOnClickListener(v -> showReadMeDialog());
@@ -227,7 +227,7 @@ public class MyLicense extends AppCompatActivity {
         return byteArrayOutputStream.toByteArray();
     }
 
-    private void loadStatus(int userId) {
+    public void loadStatus(int userId) {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = Constraint.URL + "/api/v1/users/" + userId + "/uploadStatus";
 
