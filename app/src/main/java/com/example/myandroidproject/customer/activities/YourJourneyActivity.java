@@ -55,7 +55,7 @@ public class YourJourneyActivity extends AppCompatActivity {
     }
     private void getListCart(Integer userId) {
         RequestQueue queue = Volley.newRequestQueue(YourJourneyActivity.this);
-        String url = Constraint.URL_CART_ITEM + "?idUser" + "=" + String.valueOf(userId);
+        String url = Constraint.URL_CART_ITEM + "?idUser=" + String.valueOf(userId);
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,

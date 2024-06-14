@@ -23,12 +23,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.example.myandroidproject.LoginActivity;
 import com.example.myandroidproject.R;
+import com.example.myandroidproject.account.LoginActivity;
 import com.example.myandroidproject.customer.adapters.DetailVehicleAdapter;
 import com.example.myandroidproject.models.Vehicle;
 import com.example.myandroidproject.utilss.Constraint;
-import com.example.myandroidproject.utilss.SharedPreferencesUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
