@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".customer.activities.DetailOrderActivity">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,7 +21,16 @@
                     app:srcCompat="@drawable/back_icon"
                     tools:ignore="MissingConstraints" />
 
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thông tin đơn hàng"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginStart="75dp"
+                android:layout_marginBottom="20dp"/>
 
             <TextView
                 android:id="@+id/title"
@@ -29,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="Mercedes-Benz GLE "
+                android:text="Tên xe"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
@@ -75,7 +84,7 @@
                     android:id="@+id/priceAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="990.000 VNĐ"
+                    android:text="XXX.XXX VNĐ"
                     android:textColor="@color/Red"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -89,21 +98,73 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/typeTitle"
+                    android:id="@+id/addressTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Loại xe: "
+                    android:text="Địa chỉ: "
                     android:textColor="@color/Black"
-                    android:textSize="15sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/type"
+                    android:id="@+id/address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ô tô"
+                    android:text="address"
                     android:textColor="@color/Black"
-                    android:textSize="15sp"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/emailTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Email: "
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="email"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/phoneTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="SĐT: "
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="phone"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -121,23 +182,24 @@
                     android:layout_height="wrap_content"
                     android:text="Hãng xe: "
                     android:textColor="@color/Black"
-                    android:textSize="15sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/brandValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mercedes"
+                    android:text="brand"
                     android:textColor="@color/Black"
-                    android:textSize="15sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
-                android:layout_marginEnd="14dp">
+                android:layout_marginEnd="14dp"
+                android:layout_marginTop="25dp">
 
                 <TextView
                     android:id="@+id/returnDayTitle"
@@ -149,7 +211,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/rentalDay"
+                    android:id="@+id/rentalDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="XX-XX-XXXX"
@@ -163,7 +225,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="14dp">
 
                 <TextView
@@ -189,7 +251,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="14dp">
 
                 <TextView

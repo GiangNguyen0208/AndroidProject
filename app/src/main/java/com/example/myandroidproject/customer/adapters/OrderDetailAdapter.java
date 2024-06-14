@@ -41,10 +41,13 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         viewDetailOrderHolder.nameCar.setText(orderItem.getNameVehicle());
         viewDetailOrderHolder.brand.setText(orderItem.getBrandVehicle());
         viewDetailOrderHolder.day.setText(orderItem.getRental_day());
-        viewDetailOrderHolder.pricePerOn.setText((int) orderItem.getPrice()/orderItem.getRental_day());
+        viewDetailOrderHolder.pricePerOn.setText(orderItem.getPrice()/orderItem.getRental_day()+"");
         viewDetailOrderHolder.rentalDate.setText(formatter.format(orderItem.getRentalDate()));
         viewDetailOrderHolder.returnDate.setText(formatter.format(orderItem.getReturnDate()));
-        viewDetailOrderHolder.totalPrice.setText((int) orderItem.getPrice());
+        viewDetailOrderHolder.totalPrice.setText(orderItem.getPrice()+"");
+        viewDetailOrderHolder.address.setText(orderItem.getAddress());
+        viewDetailOrderHolder.email.setText(orderItem.getEmail());
+        viewDetailOrderHolder.phone.setText(orderItem.getPhone());
     }
 
     @Override
@@ -53,19 +56,19 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public class ViewDetailOrderHolder extends RecyclerView.ViewHolder {
-        TextView nameCar, day, pricePerOn, type, brand, color, about, rentalDate, returnDate, totalPrice;
+        TextView nameCar, day, pricePerOn, address, brand, email, phone, rentalDate, returnDate, totalPrice;
         public ViewDetailOrderHolder(View view) {
             super(view);
             nameCar = view.findViewById(R.id.title);
             day = view.findViewById(R.id.dayRental);
             pricePerOn = view.findViewById(R.id.priceAmount);
-            type = view.findViewById(R.id.type);
             brand = view.findViewById(R.id.brandValue);
-            color = view.findViewById(R.id.color);
-            about = view.findViewById(R.id.desc);
-            rentalDate = view.findViewById(R.id.rentalDay);
-            returnDate = view.findViewById(R.id.returnDay);
+            rentalDate = view.findViewById(R.id.rentalDate);
+            returnDate = view.findViewById(R.id.returnDate);
             totalPrice = view.findViewById(R.id.totalPrice);
+            address = view.findViewById(R.id.address);
+            email = view.findViewById(R.id.email);
+            phone = view.findViewById(R.id.phone);
         }
     }
 }
