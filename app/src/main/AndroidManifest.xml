@@ -46,6 +46,9 @@
             android:name=".customer.activities.MyLicense"
             android:exported="false" />
         <activity
+            android:name=".customer.activities.InstructionActivity"
+            android:exported="false" />
+        <activity
             android:name=".shipper.activites.ShipperActivity"
             android:exported="false" />
         <activity
@@ -85,7 +88,7 @@
             android:exported="false" />
         <activity
             android:name=".customer.activities.HomeActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".account.SignUpActivity"
             android:exported="false" />
