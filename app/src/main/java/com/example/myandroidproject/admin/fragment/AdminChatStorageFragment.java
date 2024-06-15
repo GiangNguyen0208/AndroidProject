@@ -47,9 +47,8 @@ public class AdminChatStorageFragment extends Fragment {
     List<Message> allMessages = new ArrayList<>();
     MessageStorageAdapter adapter = new MessageStorageAdapter(messageStorages);
     RequestQueue queue;
-    int ID_USER = 1;
-    Timer timer = new Timer(),
-    timer2 = new Timer();
+    int ID_USER;
+    Timer fetchMessages = new Timer();
     Map<Integer, String> customers = new HashMap<>();
 
     public AdminChatStorageFragment() {
@@ -59,45 +58,15 @@ public class AdminChatStorageFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        ID_USER = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, requireContext());
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        queue = Volley.newRequestQueue(getActivity());
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View v = inflater.inflate(R.layout.fragment_admin_chat_storage, container, false);
-
-        RecyclerView recyclerView = v.findViewById(R.id.admin_chat_storage_recycleview);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
-
-        adapter.setBind((position)->{
-                Bundle bundle = savedInstanceState;
-                int customer = messageStorages.get(position).getLastMessage().getFrom()==ID_USER?messageStorages.get(position).getLastMessage().getTo():messageStorages.get(position).getLastMessage().getFrom();
-                if (bundle == null){
-                    bundle = new Bundle();
-                }
-                bundle.putInt("customerId", customer);
-                Navigation.findNavController(getView()).navigate(R.id.action_global_admin_chat, bundle);
-        });
-
-        JSONObject jsonBody = new JSONObject();
-        try {
-            jsonBody.put("id", ID_USER);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        timer.schedule(new TimerTask() {
+        fetchMessages.schedule(new TimerTask() {
             @Override
             public void run() {
+                JSONObject jsonBody = new JSONObject();
+                try {
+                    jsonBody.put("id", ID_USER);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
 
                 JsonObjectRequest rq = new JsonObjectRequest(Request.Method.POST, URL_READ_MESSAGE, jsonBody, resp->{
 
@@ -144,10 +113,10 @@ public class AdminChatStorageFragment extends Fragment {
                                 ms.sort(Message::sortOldToNew);
                                 tempStorages.add(new MessageStorage(ms, cI.getValue()));
                             }
-                                messageStorages.clear();
-                                messageStorages.addAll(tempStorages);
-                                messageStorages.sort(MessageStorage::sortOldToNew);
-                                adapter.notifyDataSetChanged();
+                            messageStorages.clear();
+                            messageStorages.addAll(tempStorages);
+                            messageStorages.sort(MessageStorage::sortOldToNew);
+                            adapter.notifyDataSetChanged();
 
                         }
 
@@ -160,13 +129,42 @@ public class AdminChatStorageFragment extends Fragment {
                 });
 
                 queue.add(rq);
+                System.out.println("fetch at adminstorage");
             }
-        }, 100, 2000);
+        }, 100, 10000);
+    }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ID_USER = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, requireContext());
+        queue = Volley.newRequestQueue(requireContext());
+    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View v = inflater.inflate(R.layout.fragment_admin_chat_storage, container, false);
+
+        RecyclerView recyclerView = v.findViewById(R.id.admin_chat_storage_recycleview);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(container.getContext()));
+
+        adapter.setBind((position)->{
+                Bundle bundle = savedInstanceState;
+                int customer = messageStorages.get(position).getLastMessage().getFrom()==ID_USER?messageStorages.get(position).getLastMessage().getTo():messageStorages.get(position).getLastMessage().getFrom();
+                if (bundle == null){
+                    bundle = new Bundle();
+                }
+                bundle.putInt("customerId", customer);
+                Navigation.findNavController(this.getView()).navigate(R.id.action_global_admin_chat, bundle);
+        });
 
         return v;
     }
+
+
 
     @Override
     public void onDestroy() {
@@ -174,7 +172,17 @@ public class AdminChatStorageFragment extends Fragment {
         if (queue != null){
             queue.cancelAll(this);
         }
-        timer.cancel();
-        timer2.cancel();
+        fetchMessages.cancel();;
+        System.out.println("huy diet");
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (queue != null){
+            queue.cancelAll(this);
+        }
+        fetchMessages.cancel();
+    }
+
 }

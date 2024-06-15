@@ -8,9 +8,9 @@
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@drawable/other_chat_bubble"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:background="@color/notYellow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="wrap_content"

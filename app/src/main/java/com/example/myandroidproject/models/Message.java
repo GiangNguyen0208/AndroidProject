@@ -8,6 +8,7 @@ public class Message {
     private String content;
     private Date createAt;
     private boolean isOwner;
+    public boolean isVirtualMessage = false;
 
     public Message(int from, int to, String fromFirstName, String toFirstName, String content, Date createAt, boolean isOwner) {
         this.from = from;
