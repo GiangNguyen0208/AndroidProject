@@ -40,7 +40,6 @@ import java.util.Date;
 
 public class AdminUserDetailFragment extends Fragment {
 
-    // TODO: Rename and change types of parameters
     private int userID;
     private Button backBtn;
     private ArrayAdapter<String> adapter;
