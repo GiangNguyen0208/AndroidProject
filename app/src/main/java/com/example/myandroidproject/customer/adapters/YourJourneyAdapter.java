@@ -50,7 +50,15 @@ public class YourJourneyAdapter extends RecyclerView.Adapter<YourJourneyAdapter.
         viewYourJourneyHolder.rentalDate.setText(formatter.format(cartItem.getRentalDate()));
         viewYourJourneyHolder.returnDate.setText(formatter.format(cartItem.getReturnDate()));
 
-        holder.itemView.setOnClickListener(v -> {
+//        holder.itemView.setOnClickListener(v -> {
+//            int id = cartItem.getId();
+//            int idvehicle = cartItem.getIdVehicle();
+//            Intent intent = new Intent(context, PaymentActivity.class);
+//            intent.putExtra(Constraint.ID_CART_ITEM, id);
+//            intent.putExtra(Constraint.ID_VEHICLE, idvehicle);
+//            context.startActivity(intent);
+//        });
+        holder.itemView.findViewById(R.id.confirmPayment).setOnClickListener(v -> {
             int id = cartItem.getId();
             int idvehicle = cartItem.getIdVehicle();
             Intent intent = new Intent(context, PaymentActivity.class);

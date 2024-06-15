@@ -19,6 +19,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.myandroidproject.R;
 import com.example.myandroidproject.customer.adapters.YourJourneyAdapter;
 import com.example.myandroidproject.models.CartItem;
+import com.example.myandroidproject.utils.SharedPreferencesUtils;
 import com.example.myandroidproject.utilss.Constraint;
 
 import org.json.JSONArray;
@@ -48,14 +49,13 @@ public class YourJourneyActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        userId = sharedPreferences.getInt("id_user", -1);
+        userId = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, this);
 
         getListCart(userId);
     }
     private void getListCart(Integer userId) {
         RequestQueue queue = Volley.newRequestQueue(YourJourneyActivity.this);
-        String url = Constraint.URL_CART_ITEM + "?idUser=" + String.valueOf(userId);
+        String url = Constraint.URL_CART_ITEM + "?idUser=" + userId;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
@@ -65,8 +65,8 @@ public class YourJourneyActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
+                            System.out.println(response.length());
                             for (int i = 0; i < response.length(); i++) {
-                                System.out.println(response.length());
                                 SimpleDateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd");
                                 JSONObject jsonObject = response.getJSONObject(i);
                                 int id = jsonObject.getInt("id");
