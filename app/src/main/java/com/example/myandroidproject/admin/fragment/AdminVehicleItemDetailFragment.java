@@ -65,7 +65,7 @@ public class AdminVehicleItemDetailFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         TextView tv = view.findViewById(R.id.texthere);
-        tv.setText(vehicleID+"");
-        view.findViewById(R.id.backBtn).setOnClickListener(v->Navigation.findNavController(v).navigate(R.id.action_adminVehicleItemDetailFragment_to_admin_vehicle));
+        tv.setText(vehicleID + "");
+        view.findViewById(R.id.backBtn).setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_adminVehicleItemDetailFragment_to_admin_vehicle));
     }
 }

@@ -48,9 +48,7 @@ public class ListVehicleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         vehicleHolder.price.setText(String.format(Locale.getDefault(), "Giá gốc: %d - Giảm giá: %d%%", (int) vehicle.getPrice(), (int)vehicle.getDiscount() * 100));
         vehicleHolder.type.setText(vehicle.getType());
         Glide.with(this.context).load(vehicle.getImageLink()).into(vehicleHolder.imageView);
-        vehicleHolder.itemView.setOnClickListener(v -> {
-            int id = vehicle.getId();
-        });
+
     }
 
     @Override
@@ -74,12 +72,13 @@ public class ListVehicleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             type = itemView.findViewById(R.id.admin_vehicle_type);
             price = itemView.findViewById(R.id.admin_vehicle_price);
             imageView = itemView.findViewById(R.id.admin_vehicle_image);
+            itemView.findViewById(R.id.pressHere).setOnClickListener(this);
         }
 
         public void onClick(View v) {
             Bundle b = new Bundle();
             b.putInt(Constraint.ID_VEHICLE, idVehicle);
-            Navigation.findNavController(v).navigate(R.id.action_admin_vehicle_to_adminVehicleItemDetailFragment);
+            Navigation.findNavController(v).navigate(R.id.action_admin_vehicle_to_adminVehicleItemDetailFragment, b);
         }
     }
 }
