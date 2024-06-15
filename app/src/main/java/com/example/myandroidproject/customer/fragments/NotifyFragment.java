@@ -69,9 +69,10 @@ public class NotifyFragment extends Fragment {
 
     private void addNotificationToLayout(LinearLayout container, String title, String message) {
         TextView textView = new TextView(getContext());
-        textView.setText(title + ": " + message);
+        textView.setText(title.toUpperCase() + ": " + message);
         textView.setTextSize(16);
         textView.setPadding(16, 16, 16, 16);
+        textView.setBackgroundColor(Color.GREEN);
         textView.setBackground(Drawable.createFromPath("@drawable/border_background"));
 
         textView.setOnClickListener(new View.OnClickListener() {
