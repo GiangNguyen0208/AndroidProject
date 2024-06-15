@@ -27,16 +27,16 @@ public class Constraint {
     public static final String URL_ORDER_ITEM_DETAIL_BY_ID = URL + "/api/v1/order/getDetail";
     public static final String URL_GET_HISTORY_ORDERITEM_COMPLETED = URL + "/api/v1/order/getHistoryOrderContinue";
     public static final String URL_GET_HISTORY_ORDERITEM_CONTINUE = URL + "/api/v1/order/getHistoryOrderContinue";
+
+    // ORDER ITEM
+    public static final String URL_ADD_ORDER_ITEM = URL + "/api/v1/order/add";
     public static final String URL_LIST_ORDER = URL + "/api/v1/listOrder";
     public static final String URL_READ_MESSAGE = URL + "/api/v1/message/read";
     public static final String URL_SEND_MESSAGE = URL + "/api/v1/message/send";
     public static final String URL_GET_ADMINS_MESSAGE = URL + "/api/v1/message/admins";
     public static final String URL_READ_ADMIN_NOT = URL + "/api/v1/notify/read";
     public static final String URL_SEND_NOT = URL + "/api/v1/notify/send";
-
-
-    // ORDER ITEM
-    public static final String URL_ADD_ORDER_ITEM = URL + "/api/v1/order/add";
+    public static final String URL_ORDER = URL + "/api/v1/";
 
     // USER
     public static final String URL_USER_BY_ID = URL + "/api/v1/users/";
@@ -49,4 +49,10 @@ public class Constraint {
     public static final String CART_ITEM = "jsonobject";
     public static final String ID_ORDER_ITEM = "id_order_item";
     public static final String ID_CART_ITEM = "id_cart_item";
+
+    public static final int USER_ROLE = 1;
+    public static final int ADMIN_ROLE = 2;
+    public static final String CONFIRM = "Confirming";
+    public static final String SHIPPING = "SHIPPING";
+    public static final String DONE = "Done";
 }
