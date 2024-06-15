@@ -26,6 +26,7 @@ import com.example.myandroidproject.customer.adapters.PaymentCartItemAdapter;
 import com.example.myandroidproject.helpers.StringHelper;
 import com.example.myandroidproject.models.CartItem;
 import com.example.myandroidproject.models.OrderItem;
+import com.example.myandroidproject.utils.SharedPreferencesUtils;
 import com.example.myandroidproject.utilss.Constraint;
 
 import org.json.JSONArray;
@@ -96,8 +97,7 @@ public class PaymentActivity extends AppCompatActivity {
 
             idVehicle = cartItem.getIdVehicle();
 
-            SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-            userId = sharedPreferences.getInt("id_user", -1); // -1 là giá trị mặc định nếu không tìm thấy id_user
+            userId = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, this); // -1 là giá trị mặc định nếu không tìm thấy id_user
 
             paymentCartItem(id, day, email, phone, address, rentalDay, returnDay, priceToPay, idVehicle, userId);
         });

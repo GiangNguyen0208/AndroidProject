@@ -80,7 +80,7 @@ public class AdminActivity extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, onReturn(), onError());
         queue.add(jsonObjectRequest);
     }
-    private Response.Listener<JSONObject> onReturn(){
+    private Response.Listener<JSONObject> onReturn() {
         return response ->  {
             NavigationView nv = findViewById(R.id.nav_view);
             TextView tv = nv.getHeaderView(0).findViewById(R.id.nav_header_textView);
@@ -88,6 +88,10 @@ public class AdminActivity extends AppCompatActivity {
                 tv.setText("Currently login as: " + response.getString("lastname") + " " + response.getString("firstname"));
             } catch (JSONException e) {
                 Toast.makeText(getBaseContext(), "Error trying to load", Toast.LENGTH_SHORT).show();
+            }
+            if (response.optBoolean("isAdminMessage")) {
+                nv.getMenu().findItem(R.id.admin_chat_storage).setVisible(true);
+                nv.getMenu().findItem(R.id.admin_chat_storage).setEnabled(true);
             }
         };
     }

@@ -2,6 +2,7 @@ package com.example.myandroidproject.admin.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -41,16 +43,12 @@ public class ListVehicleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         Vehicle vehicle = vehicleList.get(position);
         if (vehicle == null) return;
         VehicleHolder vehicleHolder = (VehicleHolder) holder;
+        vehicleHolder.idVehicle = vehicle.getId();
         vehicleHolder.name.setText(vehicle.getNameVehicle());
-        vehicleHolder.price.setText(String.format(Locale.getDefault(), "Giá gốc: %f - Giảm giá: %f%%", vehicle.getPrice(), vehicle.getDiscount() * 100));
+        vehicleHolder.price.setText(String.format(Locale.getDefault(), "Giá gốc: %d - Giảm giá: %d%%", (int) vehicle.getPrice(), (int)vehicle.getDiscount() * 100));
         vehicleHolder.type.setText(vehicle.getType());
         Glide.with(this.context).load(vehicle.getImageLink()).into(vehicleHolder.imageView);
-        vehicleHolder.itemView.setOnClickListener(v -> {
-            int id = vehicle.getId();
-            Intent intent = new Intent(context, DetailItemActivity.class);
-            intent.putExtra(Constraint.ID_VEHICLE, id);
-            context.startActivity(intent);
-        });
+
     }
 
     @Override
@@ -60,7 +58,8 @@ public class ListVehicleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
 
-    public class VehicleHolder extends RecyclerView.ViewHolder {
+    public class VehicleHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        int idVehicle;
         View viewDetail;
         TextView name;
         TextView type;
@@ -73,6 +72,13 @@ public class ListVehicleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             type = itemView.findViewById(R.id.admin_vehicle_type);
             price = itemView.findViewById(R.id.admin_vehicle_price);
             imageView = itemView.findViewById(R.id.admin_vehicle_image);
+            itemView.findViewById(R.id.pressHere).setOnClickListener(this);
+        }
+
+        public void onClick(View v) {
+            Bundle b = new Bundle();
+            b.putInt(Constraint.ID_VEHICLE, idVehicle);
+            Navigation.findNavController(v).navigate(R.id.action_admin_vehicle_to_adminVehicleItemDetailFragment, b);
         }
     }
 }

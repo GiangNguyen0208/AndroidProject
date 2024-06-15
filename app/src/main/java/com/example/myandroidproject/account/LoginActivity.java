@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText email, password;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);

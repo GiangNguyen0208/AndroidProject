@@ -22,6 +22,9 @@
         android:name="com.example.myandroidproject.admin.fragment.AdminVehicleFragment"
         android:label="fragment_nav_home"
         tools:layout="@layout/fragment_admin_vehicle" >
+        <action
+            android:id="@+id/action_admin_vehicle_to_adminVehicleItemDetailFragment"
+            app:destination="@id/adminVehicleItemDetailFragment" />
     </fragment>
 
     <fragment
@@ -59,6 +62,15 @@
         tools:layout="@layout/fragment_admin_notify" />
     <action android:id="@+id/action_global_admin_chat" app:destination="@id/admin_chat" />
     <action android:id="@+id/fragment_admin_chat_storage" app:destination="@id/admin_chat_storage"/>
+    <fragment
+        android:id="@+id/adminVehicleItemDetailFragment"
+        android:name="com.example.myandroidproject.admin.fragment.AdminVehicleItemDetailFragment"
+        android:label="fragment_admin_vehicle_item_detail"
+        tools:layout="@layout/fragment_admin_vehicle_item_detail" >
+        <action
+            android:id="@+id/action_adminVehicleItemDetailFragment_to_admin_vehicle"
+            app:destination="@id/admin_vehicle" />
+    </fragment>
 
 
 </navigation>

@@ -27,6 +27,7 @@ import com.example.myandroidproject.R;
 import com.example.myandroidproject.account.LoginActivity;
 import com.example.myandroidproject.customer.adapters.DetailVehicleAdapter;
 import com.example.myandroidproject.models.Vehicle;
+import com.example.myandroidproject.utils.SharedPreferencesUtils;
 import com.example.myandroidproject.utilss.Constraint;
 
 import org.json.JSONException;
@@ -97,8 +98,8 @@ public class DetailItemActivity extends AppCompatActivity {
         rentalDate = findViewById(R.id.rentalDay);
         returnDate = findViewById(R.id.returnDate);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        userId = sharedPreferences.getInt("id_user", -1); // -1 là giá trị mặc định nếu không tìm thấy id_user
+
+        userId = SharedPreferencesUtils.getInt(SharedPreferencesUtils.STATE_USER_ID, this); // -1 là giá trị mặc định nếu không tìm thấy id_user
 
         if (userId == -1) {
             // Xử lý khi không tìm thấy userId, có thể yêu cầu người dùng đăng nhập lại

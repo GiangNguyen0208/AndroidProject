@@ -49,8 +49,7 @@ public class MainAppActivity extends AppCompatActivity {
 
         // delay animation for 5275
         new Handler().postDelayed(() -> {
-            SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-            String role = preferences.getString("role", null);
+            String role = SharedPreferencesUtils.get(SharedPreferencesUtils.STATE_ROLE_ID, this);
             // Check Login, Don't need Login again.
             boolean isLogin = SharedPreferencesUtils.checkLogin(this);
             if (!isLogin)
