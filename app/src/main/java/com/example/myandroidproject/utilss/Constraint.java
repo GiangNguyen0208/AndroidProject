@@ -1,7 +1,7 @@
 package com.example.myandroidproject.utilss;
 
 public class Constraint {
-    public static final String URL = "https://9b60-2405-4803-c86c-b800-d5e0-9532-a139-cb68.ngrok-free.app";    // ADDRESS CHANGE BY NGROK
+    public static final String URL = "https://8c4d-203-113-146-152.ngrok-free.app";    // ADDRESS CHANGE BY NGROK
     public static final String URL_BE = "172.16.1.129"; // ADDRESS
     public static final String PORT_BE = "8080";    // PORT
 

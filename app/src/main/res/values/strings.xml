@@ -87,5 +87,11 @@
     <string name="pick_place">Choose a place</string>
     <string name="vehicle_keyword">Xe</string>
     <string name="order_keyword">Đơn hàng</string>
+    <string name="instruction1">1. Tìm kiếm dịch vụ cho thuê xe:\n  •Sử dụng các ứng dụng di động hoặc trang web của các công ty cho thuê xe như Grab, Gojek, hoặc các công ty địa phương.\n  •Bạn cũng có thể tìm kiếm các dịch vụ cho thuê xe uy tín trên Google hoặc các mạng xã hội.\n2. Lựa chọn loại xe và dịch vụ:\n  •Chọn loại xe phù hợp với nhu cầu của bạn: xe máy, ô tô, xe tải, v.v.\n  •Xem xét các gói dịch vụ như thuê theo giờ, theo ngày, hoặc dài hạn.\n3. Kiểm tra giá cả và điều kiện thuê:\n  •So sánh giá cả giữa các nhà cung cấp để tìm được mức giá tốt nhất.\n  •Đọc kỹ các điều khoản và điều kiện thuê, bao gồm chính sách hủy bỏ, phí phụ thu, và bảo hiểm.\n4. Đặt xe:\n  •Điền thông tin cá nhân và chi tiết thuê xe theo yêu cầu của nhà cung cấp.\n  •Xác nhận đặt xe và thanh toán qua các phương thức thanh toán hỗ trợ (thẻ tín dụng, chuyển khoản, ví điện tử, v.v.).\n5. Nhận xe:\n  •Đến địa điểm nhận xe theo thỏa thuận hoặc yêu cầu giao xe tận nơi.\n  •Kiểm tra tình trạng xe trước khi nhận, chụp ảnh hoặc quay video nếu cần thiết.\n6. Trả xe:\n  •Trả xe đúng thời gian và địa điểm đã thỏa thuận.\n  •Kiểm tra và đảm bảo rằng xe không bị hư hỏng hoặc mất mát tài sản.\n\n</string>
+    <string name="instruction2"><![CDATA[1. Chọn phương thức thanh toán\n2. Thanh toán\n3. Chúc mừng bạn đã thanh toán <3]]></string>
+    <string name="company_info_company">Thông tin công ty:\n-Là 1 công ty tiềm năng</string>
+    <string name="secure">Bảo mật is good</string>
+    <string name="qA">Những câu hỏi thường gặp:\n1. App này tên gì\n2. Thanh toán thế nào\n3. Donate</string>
+    <string name="policy">Chính sách:\n1. Tôn trọng app\n2. không copy dưới mọi hình thức!</string>
 
 </resources>

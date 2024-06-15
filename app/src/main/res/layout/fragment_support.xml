@@ -151,6 +151,7 @@
                         android:paddingRight="10dp">
 
                         <LinearLayout
+                            android:id="@+id/support_instruction1_btn"
                             android:layout_width="300dp"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="10dp"
@@ -178,6 +179,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/support_instruction2_btn"
                             android:layout_width="300dp"
                             android:layout_height="match_parent"
                             android:background="@color/notYellow"
@@ -244,6 +246,7 @@
                         android:paddingRight="20dp">
 
                         <LinearLayout
+                            android:id="@+id/company_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -271,6 +274,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/policy_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -305,6 +309,7 @@
                         android:paddingRight="20dp">
 
                         <LinearLayout
+                            android:id="@+id/qA_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -331,6 +336,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/secure_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
